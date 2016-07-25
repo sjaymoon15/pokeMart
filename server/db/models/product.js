@@ -7,24 +7,25 @@ var db = require('../_db');
 module.exports = db.define('product', {
     title: {
         type: Sequelize.STRING,
-        allowNull: false;
+        allowNull: false
     },
     category: {
         type: Sequelize.STRING
     },
-    descrition: {
+    description: {
         type: Sequelize.TEXT,
-        allowNull: false;
+        allowNull: false
     },
     photoUrl: {
         type: Sequelize.STRING
     },
     quantity: {
         type: Sequelize.INTEGER,
-        allowNull: false;
+        allowNull: false
     },
     price: {
         type: Sequelize.INTEGER,
-        allowNull: false;
+        allowNull: false
     }
 });
+

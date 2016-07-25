@@ -4,10 +4,10 @@ var Sequelize = require('sequelize');
 
 var db = require('../_db');
 
-module.exports = db.define('Order', {
+module.exports = db.define('order', {
     paid: {
         type: Sequelize.BOOLEAN,
-        allowNull: false
+        defaultValue: false
     },
     purchasedPrice: {
         type: Sequelize.INTEGER
