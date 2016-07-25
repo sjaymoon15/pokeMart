@@ -1,4 +1,4 @@
 'use strict'
 
-var router = require('express'). Router();
+var router = require('express').Router();
 
