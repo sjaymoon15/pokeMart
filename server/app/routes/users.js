@@ -21,7 +21,7 @@ router.get('/:id', function(req, res, next){
   }).then(function(user){
     res.send(user)
   })
-})
+});
 
 router.post('/', function(req,res,next){
   User.findOne({
@@ -38,6 +38,30 @@ router.post('/', function(req,res,next){
       })
     }
   })
+});
+
+router.put('/:id', function(req,res,next){
+  User.findById(req.params.id)
+  .then(function(user){
+    return user.update(req.body)
+  }).then(function(updatedUser) {
+    res.send(updatedUser);
+  }).catch(next)
+});
+
+router.delete('/:id', function(req,res,next){
+  //check if the is correct user based on id 
+  //or check if admin
+
+  //if yes
+  User.findById(req.params.id)
+  .then(function(user){
+     return user.destroy()
+  }).then(function(){
+    res.status(204).end()
+    //res.send('destroyed user #', + req.params.id);
+
+  }).catch(next)
 })
 
 module.exports = router;
