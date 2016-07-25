@@ -5,7 +5,7 @@ var User = require('../../db/models/user');
 
 router.get('/', function (req, res, next) {
   //check user priviledge
-
+  console.log('session', req.session)
   //if user isAdmin then return all users
   User.findAll()
   .then(function (usersArray){
@@ -52,7 +52,7 @@ router.put('/:id', function(req,res,next){
 router.delete('/:id', function(req,res,next){
   //check if the is correct user based on id 
   //or check if admin
-
+  
   //if yes
   User.findById(req.params.id)
   .then(function(user){
