@@ -10,6 +10,33 @@ router.get('/', function (req, res, next) {
   User.findAll()
   .then(function (usersArray){
     res.send(usersArray)
+  }).catch(next)
+});
+
+router.get('/:id', function(req, res, next){
+  User.findOne({
+    where: {
+      id: req.params.id
+    }
+  }).then(function(user){
+    res.send(user)
+  })
+})
+
+router.post('/', function(req,res,next){
+  User.findOne({
+    where: {
+      email: req.body.email
+    }
+  }).then(function(userOrNull){
+    if (userOrNull){
+      res.send('Error, email exists already')
+    } else{
+      User.create(req.body)
+      .then(function(user) {
+        res.send(user)
+      })
+    }
   })
 })
 
