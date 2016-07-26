@@ -50,6 +50,8 @@ module.exports = function (app, db) {
                 });
             });
 
+            console.log('=====req user=====', req.user.id); // hash
+
         };
 
         passport.authenticate('local', authCb)(req, res, next);

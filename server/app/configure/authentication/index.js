@@ -55,10 +55,11 @@ module.exports = function (app, db) {
     // This is used by the browser application (Angular) to determine if a user is
     // logged in already.
     app.get('/session', function (req, res) {
-        console.log('----------session---------', req.session);
-        console.log('=====session id=====', req.sessionID);
+        console.log('----------session---------', req.session); //
+        console.log('=====session id=====', req.sessionID); // hash
         if (req.user) {
             res.send({ user: req.user.sanitize() });
+            console.log('=====req user=====', req.user); // hash
         } else {
             res.status(401).send('No authenticated user.');
         }

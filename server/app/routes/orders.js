@@ -4,12 +4,18 @@ var router = require('express').Router();
 var UserOrders = require('../../db/models/userOrders');
 var OrderDetails = require('../../db/models/orderDetails');
 
+// req.session.orderId =
+router.use(function (req, res, next) {
+    req.searchObj = (!req.user) ?
+                    {id: req.session.orderId, status: 'pending'} :
+                    {userId: req.user.id, status: 'pending'}
+    next();
+})
+
 router.get('/cart', function (req, res, next) {
+
     UserOrders.findOne({
-        where: {
-            userId: req.body.userId, // from session/auth
-            status: 'pending'
-        }
+        where: req.searchObj
     }).then(function (userOrder) {
         return OrderDetails.findAll({
             where: {
@@ -19,6 +25,7 @@ router.get('/cart', function (req, res, next) {
     }).then(function (cartItems) {
         res.send(cartItems);
     }).catch(next);
+
 });
 
  // req.body = {
@@ -28,15 +35,19 @@ router.get('/cart', function (req, res, next) {
  // }
 
 router.post('/cart', function (req, res, next) {
-    // if its guest, check with sessionID
-    console.log(req.body)
-    // if its user
+
     UserOrders.findOne({
-            where: {
-            userId: req.body.userId,
-            status: 'pending'
-        }
+        where: req.searchObj // user order entry is not created
     }).then(function (userOrder) {
+        if (!userOrder) {
+
+            return UserOrders.create({status: 'pending'})
+        } else {
+            return userOrder;
+        }
+    })
+    .then(function (userOrder) {
+        if (!req.session.orderId) req.session.orderId = userOrder.id;
         return OrderDetails.create(req.body)
         .then(function (orderDetail) {
             // return orderDetail
@@ -50,10 +61,7 @@ router.post('/cart', function (req, res, next) {
 router.delete('/:productId', function (req, res, next) {
     // product id needs to be sent to front end
     UserOrders.findOne({
-        where: {
-            userId: req.user.id, // from session/auth
-            status: 'pending'
-        }
+        where: req.searchObj
     }).then(function (userOrder) {
         return OrderDetails.destroy({
             where: {

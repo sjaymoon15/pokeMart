@@ -19,5 +19,5 @@ module.exports = function (app, db) {
     app.use(app.getValue('log'));
 
     require('./authentication')(app, db);
-
+    // require a new file to do something with session for both users and guests
 };
