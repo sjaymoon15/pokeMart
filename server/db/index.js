@@ -5,10 +5,15 @@ module.exports = db;
 var User = require('./models/user');
 var Product = require('./models/product');
 var Review = require('./models/review');
-var Order = require('./models/order')
+var UserOrders = require('./models/userOrders');
+var OrderDetails = require('./models/orderDetails');
 
-Product.belongsToMany(User, {through: Order})
+UserOrders.belongsTo(User)
 
- Review.belongsTo(Product)
- Review.belongsTo(User, {as:'author'})
-// User.hasMany(Review)
+Review.belongsTo(Product)
+Review.belongsTo(User, {as:'author'}) // setAuthor method on review
+
+OrderDetails.belongsTo(Product);
+// OrderDetails.belongsTo(UserOrders);
+UserOrders.hasMany(OrderDetails);
+OrderDetails.belongsTo(UserOrders);

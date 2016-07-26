@@ -21,7 +21,8 @@ var chalk = require('chalk');
 var db = require('./server/db');
 var User = db.model('user');
 var Product = db.model('product');
-var Order = db.model('order');
+var UserOrders = db.model('userOrders');
+var OrderDetails = db.model('orderDetails')
 var Review = db.model('review');
 
 var Promise = require('sequelize').Promise;
