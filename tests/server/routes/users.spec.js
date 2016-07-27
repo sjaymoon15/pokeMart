@@ -7,8 +7,8 @@ var User = db.model('user')
 var app = require('../../../server/app')(db);
 var agent = supertest.agent(app);
 
-describe('Users API routes ', function() {
-  var user1= { email: 'user1@users.com' , password: 'momo'}, 
+xdescribe('Users API routes ', function() {
+  var user1= { email: 'user1@users.com' , password: 'momo'},
   createdUserId, usersLength;
 
   before(function(done){
@@ -20,7 +20,7 @@ describe('Users API routes ', function() {
       done();
     });
   });
-  
+
 
   it('POST api/users should create a user', function(done) {
     agent

@@ -24,7 +24,7 @@ module.exports = db.define('product', {
         allowNull: false
     },
     price: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
         allowNull: false
     }
 });
