@@ -7,18 +7,19 @@ var User = db.model('user')
 var app = require('../../../server/app')(db);
 var agent = supertest.agent(app);
 
-xdescribe('Users API routes ', function() {
-  var user1= { email: 'user1@users.com' , password: 'momo'},
+
+describe('Users API routes ', function() {
+  var user1= { email: 'user1@users.com' , password: 'momo', isAdmin:true},
   createdUserId, usersLength;
 
+
+  //get all the users and store length so we can test for it after we create a new user
   before(function(done){
-    agent
-    .get('/api/users')
-    .end(function(err,res){
-      if (err) console.log(err)
-        usersLength = res.body.length;
-      done();
-    });
+    User.findAll()
+    .then(function(users){
+      usersLength = users.length
+    }).catch(console.error)
+    done();
   });
 
 
@@ -35,7 +36,17 @@ xdescribe('Users API routes ', function() {
     })
   });
 
-  it('api/users should return all users', function(done) {
+  it('logs in as user', function(done){
+    agent
+    .post('/login')
+    .send(user1)
+    .end(function(err,res){
+      if (err) console.log(err)
+      done();
+    });
+  })
+
+  it('api/users should return all users for admin', function(done) {
     agent
     .get('/api/users')
     .end(function(err,res){
