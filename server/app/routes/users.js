@@ -7,13 +7,19 @@ router.get('/', function (req, res, next) {
   //check user priviledge
   console.log('session', req.session)
   //if user isAdmin then return all users
+  if (req.user.isAdmin){
   User.findAll()
   .then(function (usersArray){
     res.send(usersArray)
   }).catch(next)
+	}
+	else {
+		res.status(401).send('Sorry, its just for employees :-(((');
+	}
 });
 
 router.get('/:id', function(req, res, next){
+	if(req.params.id==req.user.id || req.user.isAdmin) {
   User.findOne({
     where: {
       id: req.params.id
@@ -21,6 +27,12 @@ router.get('/:id', function(req, res, next){
   }).then(function(user){
     res.send(user)
   })
+  .catch(next);
+}
+else {
+	res.status(401).send('Sorry, youre not the one you claim to be buhhhh');
+}
+
 });
 
 router.post('/', function(req,res,next){
@@ -41,12 +53,17 @@ router.post('/', function(req,res,next){
 });
 
 router.put('/:id', function(req,res,next){
+if(req.params.id==req.user.id || req.user.isAdmin) {
   User.findById(req.params.id)
   .then(function(user){
     return user.update(req.body)
   }).then(function(updatedUser) {
     res.send(updatedUser);
   }).catch(next)
+}
+else {
+	res.status(401).send('Sorry');
+}
 });
 
 router.delete('/:id', function(req,res,next){
@@ -54,6 +71,7 @@ router.delete('/:id', function(req,res,next){
   //or check if admin
   
   //if yes
+  if(req.params.id==req.user.id || req.user.isAdmin) {
   User.findById(req.params.id)
   .then(function(user){
      return user.destroy()
@@ -62,6 +80,10 @@ router.delete('/:id', function(req,res,next){
     //res.send('destroyed user #', + req.params.id);
 
   }).catch(next)
+}
+else {
+	res.status(401).send('Sorry keep me');
+}
 })
 
 module.exports = router;
