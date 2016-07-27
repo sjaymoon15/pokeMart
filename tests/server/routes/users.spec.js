@@ -9,9 +9,17 @@ var agent = supertest.agent(app);
 
 describe('Users API routes ', function() {
   var user1= { email: 'user1@users.com' , password: 'momo'}, 
-  createdUserId;
+  createdUserId, usersLength;
 
-
+  before(function(done){
+    agent
+    .get('/api/users')
+    .end(function(err,res){
+      if (err) console.log(err)
+        usersLength = res.body.length;
+      done();
+    });
+  });
   
 
   it('POST api/users should create a user', function(done) {
@@ -32,7 +40,7 @@ describe('Users API routes ', function() {
     .get('/api/users')
     .end(function(err,res){
       if (err) console.log(err)
-        expect(res.body).to.have.length(3)
+        expect(res.body).to.have.length(usersLength + 1)
       done();
     });
   });
