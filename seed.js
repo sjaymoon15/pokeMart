@@ -27,6 +27,7 @@ var Review = db.model('review');
 
 var Promise = require('sequelize').Promise;
 
+// OB/SB: consider folder (e.g. `seedData` with a bunch of json files in it)
 var seedUsers = function () {
 
     var users = [

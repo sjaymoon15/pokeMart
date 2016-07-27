@@ -6,14 +6,16 @@ var db = require('../_db');
 
 var Product = db.model('product');
 
-var OrderDetails = db.define('orderDetails', {
+// OB/SB: consider more validations (e.g. min value for price and quantity)
+var OrderDetails = db.define('orderDetails', { // OB/SB: singular isntead of plural seems to be standard
     price: {
-        type: Sequelize.FLOAT,
+        type: Sequelize.FLOAT, // OB/SB: INTEGERS (use cents) to avoid floating point problems
         allowNull: false
     },
     quantity: {
         type: Sequelize.INTEGER,
         allowNull: false
+        // OB/SB: maybe default to 1
     },
     title: {
         type: Sequelize.STRING,
@@ -35,6 +37,7 @@ var OrderDetails = db.define('orderDetails', {
         }
     },
     hooks: {
+        // OB/SB: might as well be a class method, i.e. `.fromProductTitle(...)`
         afterCreate: function (orderDetails) {
             Product.findOne({
                 where: {title: orderDetails.title}

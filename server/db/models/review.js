@@ -14,5 +14,6 @@ module.exports = db.define('review', {
     rating: {
         type: Sequelize.INTEGER,
         allowNull: false
+        // OB/SB: min/max validations
     }
 });

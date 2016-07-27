@@ -1,7 +1,7 @@
 var chai = require('chai');
 var expect = chai.expect;
 
-var supertest = require('supertest');
+var supertest = require('supertest'); // OB/SB: check out supertest-as-promised
 var db = require('../../../server/db');
 var User = db.model('user')
 var app = require('../../../server/app')(db);
@@ -23,6 +23,7 @@ describe('Users API routes ', function() {
   });
 
 
+  // OB/SB: it can be brittle to rely on state from previous spec in later spec
   it('POST api/users should create a user', function(done) {
     agent
     .post('/api/users')
@@ -37,6 +38,7 @@ describe('Users API routes ', function() {
   });
 
   it('logs in as user', function(done){
+    // OB/SB: do a beforeEach
     agent
     .post('/login')
     .send(user1)
@@ -60,7 +62,7 @@ describe('Users API routes ', function() {
     agent
     .get('/api/users/' + createdUserId)
     .end(function(err,res){
-      if (err) console.log(err);
+      if (err) console.log(err); // OB/SB: call done on the error
       expect(res.body.email).to.equal(user1.email)
       done();
     });
@@ -83,4 +85,6 @@ describe('Users API routes ', function() {
     .expect(204)
     .end(done)
   })
+
+  // OB/SB: assert auth stuff (e.g. expect 401 when trying to update without being logged in)
 });

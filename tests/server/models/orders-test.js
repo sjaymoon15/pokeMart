@@ -11,6 +11,8 @@ var userid;
 
 describe('User orders', function () {
 
+    // OB/SB: start by clearing existing db
+
     var user, order;
     before(function (done) {
         Product.create({
@@ -28,6 +30,18 @@ describe('User orders', function () {
         order = UserOrders.create({});
         done();
     });
+    /*
+    OB/SB:
+    var product, user, order;
+    beforeEach(function () {
+        return Promise.all([productPromise, userPromise, orderPromise])
+        .spread(function (p, u, o) {
+            product = p;
+            user = u;
+            order = o;
+        });
+    });
+    */
 
     it('has default status pending', function (done) {
         order
@@ -53,6 +67,7 @@ describe('User orders', function () {
 
 xdescribe('OrderDetails', function () {
 
+    // OB/SB: eager creating: http://docs.sequelizejs.com/en/latest/docs/associations/#creating-with-associations
     var userOrder1, orderDetails1;
     before(function (done) {
         orderDetails1 = User.findById(2)
@@ -81,6 +96,7 @@ xdescribe('OrderDetails', function () {
 
     })
 
+    // OB/SB: check validations instead of identity, e.g. assert that it needs a price
     it('has price and quantity', function () {
         orderDetails1
         .then(function (orderDetails) {
@@ -99,6 +115,7 @@ xdescribe('OrderDetails', function () {
 
     it('requires price and quantity', function () {
         var inValidOrderDetails = OrderDetails.build({});
+        // OB/SB: missing `return`
         inValidOrderDetails.validate()
         .then(function (result) {
             expect(result).to.be.an.instanceOf(Error);
