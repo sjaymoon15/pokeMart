@@ -11,6 +11,17 @@ describe('Users API routes ', function() {
   var user1= { email: 'user1@users.com' , password: 'momo'}, 
   createdUserId, usersLength;
 
+  // before(function(done){
+  //   agent
+  //   .post('/login')
+  //   .send(user1)
+  //   .end(function(err,res){
+  //     if (err) console.log(err)
+  //     done();
+  //   });
+
+  // });
+
   before(function(done){
     agent
     .get('/api/users')
@@ -34,6 +45,16 @@ describe('Users API routes ', function() {
       done();
     })
   });
+
+  it('logs in as user', function(done){
+    agent
+    .post('/login')
+    .send(user1)
+    .end(function(err,res){
+      if (err) console.log(err)
+      done();
+    });
+  })
 
   it('api/users should return all users', function(done) {
     agent
