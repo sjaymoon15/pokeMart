@@ -58,7 +58,7 @@ router.delete('/:id', function(req,res,next){
   .then(function(user){
      return user.destroy()
   }).then(function(){
-    res.status(204).end()
+    res.sendStatus(204)
     //res.send('destroyed user #', + req.params.id);
 
   }).catch(next)
