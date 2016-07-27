@@ -45,7 +45,7 @@ describe('Users API routes ', function() {
     });
   })
 
-  it('api/users should return all users', function(done) {
+  it('api/users should return all users for admin', function(done) {
     agent
     .get('/api/users')
     .end(function(err,res){
