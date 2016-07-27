@@ -21,6 +21,7 @@ var OrderDetails = db.define('orderDetails', {
     },
     photoUrl: {
         type: Sequelize.TEXT
+        // OB/SB: consider url validation (see sequelize docs)
     }
 }, {
     //class methods
