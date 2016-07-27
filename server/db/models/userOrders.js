@@ -5,10 +5,6 @@ var Sequelize = require('sequelize');
 var db = require('../_db');
 
 module.exports = db.define('userOrders', {
-    // id: {
-    //     type: Sequelize.UUID,
-    //     primaryKey: true
-    // },
     status: {
         type: Sequelize.ENUM('pending', 'paid', 'fulfilled'),
         defaultValue: 'pending'
@@ -19,6 +15,10 @@ module.exports = db.define('userOrders', {
 }, {
     //class methods
     //instance methods
+    // onUpdate status, go update orderDetails
 });
 
-// userID
+// status changes to paid
+// fetch orderDetails
+// get orderDetails quantity and productId
+// got update product quantity

@@ -14,6 +14,10 @@ router.use(function (req, res, next) {
 
 router.get('/cart', function (req, res, next) {
 
+    /*
+        if req.session.orderId is null
+        cartItems = null
+    */
     UserOrders.findOne({
         where: req.searchObj
     }).then(function (userOrder) {
@@ -40,7 +44,6 @@ router.post('/cart', function (req, res, next) {
         where: req.searchObj // user order entry is not created
     }).then(function (userOrder) {
         if (!userOrder) {
-
             return UserOrders.create({status: 'pending'})
         } else {
             return userOrder;
@@ -50,7 +53,6 @@ router.post('/cart', function (req, res, next) {
         if (!req.session.orderId) req.session.orderId = userOrder.id;
         return OrderDetails.create(req.body)
         .then(function (orderDetail) {
-            // return orderDetail
             return orderDetail.setUserOrder(userOrder.id)
         })
     }).then(function (orderDetail) {

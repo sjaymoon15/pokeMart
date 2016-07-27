@@ -7,11 +7,12 @@ var User = db.model('user')
 var app = require('../../../server/app')(db);
 var agent = supertest.agent(app);
 
+
 describe('Users API routes ', function() {
-  var user1= { email: 'user1@users.com' , password: 'momo', isAdmin:true}, 
+  var user1= { email: 'user1@users.com' , password: 'momo', isAdmin:true},
   createdUserId, usersLength;
 
- 
+
   //get all the users and store length so we can test for it after we create a new user
   before(function(done){
     User.findAll()
@@ -20,7 +21,7 @@ describe('Users API routes ', function() {
     }).catch(console.error)
     done();
   });
-  
+
 
   it('POST api/users should create a user', function(done) {
     agent

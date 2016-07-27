@@ -14,6 +14,6 @@ Review.belongsTo(Product)
 Review.belongsTo(User, {as:'author'}) // setAuthor method on review
 
 OrderDetails.belongsTo(Product);
-// OrderDetails.belongsTo(UserOrders);
 UserOrders.hasMany(OrderDetails);
 OrderDetails.belongsTo(UserOrders);
+

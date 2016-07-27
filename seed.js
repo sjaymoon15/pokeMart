@@ -37,6 +37,10 @@ var seedUsers = function () {
     {
         email: 'obama@gmail.com',
         password: 'potus'
+    },
+    {
+        email: 'ross@gmail.com',
+        password: 'pivot'
     }
     ];
 
@@ -51,15 +55,31 @@ var seedUsers = function () {
         description: ' best lightning pokemon. Loves hats.',
         photoUrl: 'whatever',
         quantity: 4,
-        price: 20
+        price: 30
     },
     {
         title: 'Squirtle',
-       category: 'pokemon',
-       description: ' great starter pokemon. Would evolve again',
-       photoUrl: 'whatever',
-       quantity: 4,
-       price: 20
+        category: 'pokemon',
+        description: ' great starter pokemon. Would evolve again',
+        photoUrl: 'whatever',
+        quantity: 8,
+        price: 20
+   },
+   {
+        title: 'Charmander',
+        category: 'pokemon',
+        description: 'another starter pokemon from gameboy original',
+        photoUrl: 'whatever',
+        quantity: 8,
+        price: 20
+   },
+   {
+        title: 'Zubat',
+        category: 'pokemon',
+        description: 'bats, bats eveywhere',
+        photoUrl: 'whatever',
+        quantity: 99,
+        price: 1
    }
    ];
 
@@ -73,24 +93,24 @@ var seedUsers = function () {
         content:'worst pokemon ever' ,
         subject:'dont buy',
         rating: 4,
-        productId:1
+        productId: 4
     },
     {
         content:'asdijalsdijalsd best POKERMON ever',
         subject:'I love it',
         rating: 4,
-        productId:1
+        productId: 1
    },{
         content:'great value, dont get it wet ' ,
         subject:'caution',
         rating: 5,
-        productId:1
+        productId: 3
     },
     {
         content:'too expensive for me ',
         subject:'Bad choice ',
         rating: 2,
-        productId:1
+        productId: 2
    }
    ];
 
