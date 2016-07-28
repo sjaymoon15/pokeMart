@@ -85,8 +85,6 @@ google_id: {
         },
         afterCreate: function(user) {
             var UserOrders = db.model('userOrders');
-
-
             return UserOrders.create({})
             .then(function (newCart){
                 console.log('+++++++++========++++++++')
