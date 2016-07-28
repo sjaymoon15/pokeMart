@@ -22,9 +22,9 @@ var OrderDetails = db.define('orderDetails', { // OB/SB: singular isntead of plu
         allowNull: false
     },
     photoUrl: {
-        type: Sequelize.TEXT,
+        type: Sequelize.STRING,
         validate: {
-            isUrl:true
+            //isUrl:true
         }
     }
 }, {
