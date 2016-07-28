@@ -11,7 +11,10 @@ module.exports = db.define('user', {
      defaultValue: false
     },
     email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        validate: {
+            isEmail: true
+        }
     },
     password: {
         type: Sequelize.STRING
