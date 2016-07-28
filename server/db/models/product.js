@@ -4,6 +4,8 @@ var Sequelize = require('sequelize');
 
 var db = require('../_db');
 
+var OrderDetails = db.model('userDetails');
+
 // OB/SB: consider more validations
 module.exports = db.define('product', {
     title: {
@@ -18,15 +20,31 @@ module.exports = db.define('product', {
         allowNull: false
     },
     photoUrl: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        validate: {
+            isUrl: true
+        }
     },
     quantity: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        defaultValue: 1
     },
     price: {
-        type: Sequelize.FLOAT,
-        allowNull: false
+        type: Sequelize.INTEGER,
+        defaultValue: 10000
     }
+},{
+    instanceMethods:{
+        addToOrder: function (quantity, userOrderId){
+          OrderDetails.create({
+            price: this.price,
+            title: this.title,
+            quantity: quantity,
+            productId: this.id
+        }).then(function(newOrder){
+            newOrder.setUserOrder(userOrderId)
+        })
+    }
+}
 });
 

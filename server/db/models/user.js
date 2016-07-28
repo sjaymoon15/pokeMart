@@ -12,12 +12,35 @@ module.exports = db.define('user', {
     },
     email: {
         type: Sequelize.STRING,
+        allowNull: false,
         validate: {
             isEmail: true
         }
     },
-    password: {
+    firstName: {
         type: Sequelize.STRING
+    },
+    lastName: {
+        type: Sequelize.STRING
+    },
+    address: {
+        type: Sequelize.STRING
+    },
+    zipCode: {
+        type: Sequelize.INTEGER
+    },
+    city: {
+        type: Sequelize.STRING
+    },
+    state: {
+        type: Sequelize.STRING
+    },
+    country: {
+        type: Sequelize.STRING
+    },
+    password: {
+        type: Sequelize.STRING,
+        allowNull: false
     },
     salt: {
         type: Sequelize.STRING
@@ -38,6 +61,12 @@ module.exports = db.define('user', {
         },
         correctPassword: function (candidatePassword) {
             return this.Model.encryptPassword(candidatePassword, this.salt) === this.password;
+        },
+        createNewUserOrder: function() {
+            UserOrders.create({})
+            .then(function (newOrder){
+                newOrder.setUser(this)
+            })
         }
     },
     classMethods: {

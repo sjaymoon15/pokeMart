@@ -18,7 +18,7 @@ describe('User orders', function () {
         Product.create({
             title: 'pikachu',
             quantity: '10',
-            price: '99.9',
+            price: '9999',
             description: 'starter pokemon'
         });
 
@@ -58,7 +58,7 @@ describe('User orders', function () {
             // })
         })
         .then(function (userOrder) {
-            expect(userOrder.userId).to.be.equal(2)
+            expect(userOrder.userId).to.be.equal(3)
         });
         done()
     });

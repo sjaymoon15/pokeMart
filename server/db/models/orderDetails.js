@@ -36,11 +36,8 @@ var OrderDetails = db.define('orderDetails', { // OB/SB: singular isntead of plu
                     userOrderId: userOrderId
                 }
             });
-        }
-    },
-    hooks: {
-        // OB/SB: might as well be a class method, i.e. `.fromProductTitle(...)`
-        afterCreate: function (orderDetails) {
+        },
+        fromProductTitle: function(title) {
             Product.findOne({
                 where: {title: orderDetails.title}
             }).then(function (product) {
@@ -48,6 +45,16 @@ var OrderDetails = db.define('orderDetails', { // OB/SB: singular isntead of plu
             })
         }
     }
+    // hooks: {
+    //     // OB/SB: might as well be a class method, i.e. `.fromProductTitle(...)`
+    //     afterCreate: function (orderDetails) {
+    //         Product.findOne({
+    //             where: {title: orderDetails.title}
+    //         }).then(function (product) {
+    //             orderDetails.setProduct(product.id);
+    //         })
+    //     }
+    // }
 });
 
 module.exports = OrderDetails;
