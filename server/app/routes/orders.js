@@ -12,8 +12,11 @@ router.use(function (req, res, next) {
     next();
 })
 
+// OB/SB: cart middleware? e.g. req.cart = ... followed by next()
+
 router.get('/cart', function (req, res, next) {
 
+    // OB/SB: bury dead code
     /*
         if req.session.orderId is null
         cartItems = null
@@ -40,6 +43,7 @@ router.get('/cart', function (req, res, next) {
 
 router.post('/cart', function (req, res, next) {
 
+    // OB/SB: hopefully this could be simplified maybe either using an association method `req.cart.createOrderDetails(...)` or a custom method
     UserOrders.findOne({
         where: req.searchObj // user order entry is not created
     }).then(function (userOrder) {
@@ -52,7 +56,7 @@ router.post('/cart', function (req, res, next) {
     .then(function (userOrder) {
         if (!req.session.orderId) req.session.orderId = userOrder.id;
         return OrderDetails.create(req.body)
-        .then(function (orderDetail) {
+        .then(function (orderDetail) { // OB/SB: avoid nested .thens
             return orderDetail.setUserOrder(userOrder.id)
         })
     }).then(function (orderDetail) {
@@ -60,6 +64,7 @@ router.post('/cart', function (req, res, next) {
     }).catch(next);
 });
 
+// OB/SB: /cart/:productId
 router.delete('/:productId', function (req, res, next) {
     // product id needs to be sent to front end
     UserOrders.findOne({
@@ -81,7 +86,7 @@ router.delete('/:productId', function (req, res, next) {
 // }
 
 // req.params.orderDetailId // modified in front end
-
+// OB/SB: maybe go with productId instead, for consistency
 router.put('/:orderDetailId', function (req, res, next) {
     OrderDetails.findById(req.params.orderDetailId)
     .then(function(orderDetail) {
@@ -91,7 +96,19 @@ router.put('/:orderDetailId', function (req, res, next) {
     }).catch(next);
 });
 
+// OB/SB: alternative /api/users/me/orders
 router.get('/paid', function (req, res, next) {
+    // OB/SB: try to move all this to some model method
+    /*
+    req.user.getOrders({
+        where: {status: 'paid'},
+        include: [OrderDetails]
+    })
+    .then(function (orders) {
+        // orders: array of order instances
+        // each instance will have a .orderDetails property because of the include
+    });
+    */
     UserOrders.findAll({
         where: {
             userId: req.user.id, // from session/auth

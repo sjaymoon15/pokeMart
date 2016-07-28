@@ -5,7 +5,7 @@ var User = require('../../db/models/user');
 
 router.get('/', function (req, res, next) {
   //check user priviledge
-  console.log('session', req.session)
+  console.log('session', req.session) // OB/SB: dead code
   //if user isAdmin then return all users
   if (req.user.isAdmin){
   User.findAll()
@@ -19,7 +19,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/:id', function(req, res, next){
-	if(req.params.id==req.user.id || req.user.isAdmin) {
+	if(req.params.id==req.user.id || req.user.isAdmin) { // OB/SB: consider making auth utility
   User.findOne({
     where: {
       id: req.params.id
@@ -38,7 +38,7 @@ else {
 router.post('/', function(req,res,next){
   User.findOne({
     where: {
-      email: req.body.email
+      email: req.body.email // OB/SB: alternative: set field to be unique in the model
     }
   }).then(function(userOrNull){
     if (userOrNull){
@@ -56,7 +56,7 @@ router.put('/:id', function(req,res,next){
 if(req.params.id==req.user.id || req.user.isAdmin) {
   User.findById(req.params.id)
   .then(function(user){
-    return user.update(req.body)
+    return user.update(req.body) // OB/SB: watch out for updating own privileges
   }).then(function(updatedUser) {
     res.send(updatedUser);
   }).catch(next)

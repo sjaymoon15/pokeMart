@@ -5,14 +5,19 @@ var Sequelize = require('sequelize');
 var db = require('../_db');
 
 module.exports = db.define('review', {
-    subject: {
+    title: {
         type: Sequelize.STRING,
+        allowNull: false
     },
     content: {
         type: Sequelize.TEXT
     },
     rating: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        validate:{
+            min: 0,
+            max:5
+        }
+        // OB/SB: min/max validations
     }
 });

@@ -6,21 +6,26 @@ var db = require('../_db');
 
 var Product = db.model('product');
 
-var OrderDetails = db.define('orderDetails', {
+// OB/SB: consider more validations (e.g. min value for price and quantity)
+var OrderDetails = db.define('orderDetails', { // OB/SB: singular isntead of plural seems to be standard
     price: {
-        type: Sequelize.FLOAT,
-        allowNull: false
+        type: Sequelize.INTEGER, // OB/SB: INTEGERS (use cents) to avoid floating point problems
+        defaultValue: 10000
     },
     quantity: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        defaultValue: 1
+        // OB/SB: maybe default to 1
     },
     title: {
         type: Sequelize.STRING,
         allowNull: false
     },
     photoUrl: {
-        type: Sequelize.TEXT
+        type: Sequelize.STRING,
+        validate: {
+            //isUrl:true
+        }
     }
 }, {
     //class methods
@@ -31,10 +36,8 @@ var OrderDetails = db.define('orderDetails', {
                     userOrderId: userOrderId
                 }
             });
-        }
-    },
-    hooks: {
-        afterCreate: function (orderDetails) {
+        },
+        fromProductTitle: function(title) {
             Product.findOne({
                 where: {title: orderDetails.title}
             }).then(function (product) {
@@ -42,6 +45,16 @@ var OrderDetails = db.define('orderDetails', {
             })
         }
     }
+    // hooks: {
+    //     // OB/SB: might as well be a class method, i.e. `.fromProductTitle(...)`
+    //     afterCreate: function (orderDetails) {
+    //         Product.findOne({
+    //             where: {title: orderDetails.title}
+    //         }).then(function (product) {
+    //             orderDetails.setProduct(product.id);
+    //         })
+    //     }
+    // }
 });
 
 module.exports = OrderDetails;

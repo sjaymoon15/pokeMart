@@ -27,6 +27,7 @@ var Review = db.model('review');
 
 var Promise = require('sequelize').Promise;
 
+// OB/SB: consider folder (e.g. `seedData` with a bunch of json files in it)
 var seedUsers = function () {
 
     var users = [
@@ -57,26 +58,26 @@ var seedUsers = function () {
    var reviews = [
     {
         content:'worst pokemon ever' ,
-        subject:'dont buy',
+        title:'dont buy',
         rating: 4,
-        productId: 4
+        //productId: 4
     },
     {
         content:'asdijalsdijalsd best POKERMON ever',
-        subject:'I love it',
+        title:'I love it',
         rating: 4,
-        productId: 1
+        //productId: 1
    },{
         content:'great value, dont get it wet ' ,
-        subject:'caution',
+        title:'caution',
         rating: 5,
-        productId: 3
+        //productId: 3
     },
     {
         content:'too expensive for me ',
-        subject:'Bad choice ',
+        title:'Bad choice ',
         rating: 2,
-        productId: 2
+        //productId: 2
    }
    ];
 
@@ -93,7 +94,15 @@ var seedUsers = function () {
                 return Promise.all(creatingProducts)
             }).then (function() {
                 return Promise.all(creatingReviews)
-            }).catch(console.error)
+            }).then(function(){
+                return Product.findById(1)
+                .then(function(product){
+                   
+                   return product.addToOrder(2,'1')
+                })
+                .catch(console.error);
+            })
+        
 
 };
 

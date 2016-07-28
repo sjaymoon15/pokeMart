@@ -4,9 +4,10 @@ var Sequelize = require('sequelize');
 
 var db = require('../_db');
 
-module.exports = db.define('userOrders', {
+module.exports = db.define('userOrders', { // OB/SB: maybe could just be called 'order'
+    // OB/SB: maybe need 'date', 'shipping address'
     status: {
-        type: Sequelize.ENUM('pending', 'paid', 'fulfilled'),
+        type: Sequelize.ENUM('pending', 'paid', 'fulfilled'), // OB/SB: 'cancelled'?
         defaultValue: 'pending'
     },
     sessionId: {
