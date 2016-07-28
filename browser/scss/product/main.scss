@@ -1,0 +1,45 @@
+@import 'mixins';
+@import 'colors';
+
+.product-wrapper {
+    margin: 2% 2%;
+    background-color: white;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    .pokemon-img {
+        margin: auto;
+        text-align: right;
+        flex-grow: 1;
+    }
+    .product-info {
+        flex-grow: 1;
+        @include flex-column();
+        justify-content: center;
+        div {
+            width: 40%;
+            margin: 10px 0;
+            h4 {
+                margin: 0;
+            }
+            h6 {
+                margin: 5px 0;
+            }
+        }
+        .name-type-wrapper {
+            h4 {
+                letter-spacing: .3px;
+                border-bottom: 4px solid $light-green;
+            }
+        }
+    }
+    #add-to-cart-btn {
+        width: 45%;
+        background-color: white;
+        padding: 10px 0;
+        border: 2px solid black;
+    }
+}
+
+
+
+
