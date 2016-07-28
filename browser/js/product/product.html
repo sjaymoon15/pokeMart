@@ -1,15 +1,15 @@
 <section>
   <div class="product-wrapper">
     <div class="pokemon-img">
-      <img src="/images/1.png">
+      <img src="{{product.imageUrl}}">
     </div>
     <div class="product-info">
       <div class="name-type-wrapper">
-        <h4>Bulbasaur</h4>
-        <h6>Grass Type Pokemon</h6>
+        <h4>{{product.title}}</h4>
+        <h6>{{product.category}} Type Pokemon</h6>
       </div>
       <div>
-        <h4>$99.99</h4>
+        <h4>${{product.price}}</h4>
         <h6>quantity: 1</h6>
       </div>
       <button id="add-to-cart-btn">Add To Cart</button>

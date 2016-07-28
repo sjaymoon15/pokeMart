@@ -1,0 +1,9 @@
+<li class="card" ng-repeat="product in products" ui-sref="product({productId:product.id})">
+  <div class="pokemon-img">
+    <img src="{{product.imageUrl}}">
+  </div>
+  <div class="card-content">
+    <h3 class="pokemon-name">{{product.title}}</h3>
+    <p>${{product.price}}</p>
+  </div>
+</li>
