@@ -48,41 +48,7 @@ var seedUsers = function () {
         return User.create(userObj);
     });
 
-    var products = [
-    {
-        title: 'pikachu',
-        category: 'pokemon',
-        description: ' best lightning pokemon. Loves hats.',
-        photoUrl: 'whatever',
-        quantity: 4,
-        price: 30
-    },
-    {
-        title: 'Squirtle',
-        category: 'pokemon',
-        description: ' great starter pokemon. Would evolve again',
-        photoUrl: 'whatever',
-        quantity: 8,
-        price: 20
-   },
-   {
-        title: 'Charmander',
-        category: 'pokemon',
-        description: 'another starter pokemon from gameboy original',
-        photoUrl: 'whatever',
-        quantity: 8,
-        price: 20
-   },
-   {
-        title: 'Zubat',
-        category: 'pokemon',
-        description: 'bats, bats eveywhere',
-        photoUrl: 'whatever',
-        quantity: 99,
-        price: 1
-   }
-   ];
-
+   var products = require('./products.json').products;
 
    var creatingProducts = products.map(function (productObj) {
         return Product.create(productObj);
