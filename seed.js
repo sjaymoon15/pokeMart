@@ -128,7 +128,15 @@ var seedUsers = function () {
                 return Promise.all(creatingProducts)
             }).then (function() {
                 return Promise.all(creatingReviews)
-            }).catch(console.error)
+            }).then(function(){
+                return Product.findById(1)
+                .then(function(product){
+                   
+                   return product.addToOrder(2,'1')
+                })
+                .catch(console.error);
+            })
+        
 
 };
 

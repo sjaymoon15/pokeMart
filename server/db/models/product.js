@@ -35,16 +35,28 @@ module.exports = db.define('product', {
     }
 },{
     instanceMethods:{
-        addToOrder: function (quantity, userOrderId){
+        addToOrder: function (quantity,userId){
+         var currentOrder;
          var OrderDetails = db.model('orderDetails');
-         OrderDetails.create({
+        return OrderDetails.create({
             price: this.price,
             title: this.title,
             quantity: quantity,
             productId: this.id
-        }).then(function(arg){
-            //find userOrderId
-            console.log('done', arg)
+        }).then(function(orderDetail){
+            currentOrder=orderDetail;
+         var UserOrders = db.model('userOrders');
+        return UserOrders.findOne({
+            where:{
+                userId:userId,
+                status:'pending'
+            }
+         })
+         .then(function(cart){
+            
+            return currentOrder.setUserOrder(cart);
+         })
+         .catch(console.error);
         })
         
     }
