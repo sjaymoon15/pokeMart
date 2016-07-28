@@ -9,12 +9,12 @@ var Product = db.model('product');
 // OB/SB: consider more validations (e.g. min value for price and quantity)
 var OrderDetails = db.define('orderDetails', { // OB/SB: singular isntead of plural seems to be standard
     price: {
-        type: Sequelize.FLOAT, // OB/SB: INTEGERS (use cents) to avoid floating point problems
-        allowNull: false
+        type: Sequelize.INTEGER, // OB/SB: INTEGERS (use cents) to avoid floating point problems
+        defaultValue: 10000
     },
     quantity: {
         type: Sequelize.INTEGER,
-        allowNull: false
+        defaultValue: 1
         // OB/SB: maybe default to 1
     },
     title: {
@@ -22,8 +22,10 @@ var OrderDetails = db.define('orderDetails', { // OB/SB: singular isntead of plu
         allowNull: false
     },
     photoUrl: {
-        type: Sequelize.TEXT
-        // OB/SB: consider url validation (see sequelize docs)
+        type: Sequelize.TEXT,
+        validate: {
+            isUrl:true
+        }
     }
 }, {
     //class methods
