@@ -17,7 +17,7 @@ module.exports = db.define('product', {
     },
     description: {
         type: Sequelize.TEXT,
-        allowNull: false
+        defaultValue: 'No description'
     },
     photoUrl: {
         type: Sequelize.STRING,
