@@ -24,6 +24,15 @@ app.factory('ProductFactory', function ($http) {
         return product;
     };
 
+    ProductFactory.createReview = function (productId, data) {
+        return $http.post('/api/reviews/' + productId, data)
+            .then(getData); // add a cache for reviews?
+    }
+
+    ProductFactory.fetchAllReviews = function (productId) {
+        return $http.get('/api/reviews/' + productId).then(getData)
+    }
+
     return ProductFactory;
 
 })

@@ -6,6 +6,9 @@ app.config(function ($stateProvider) {
         resolve: {
             theProduct: function (ProductFactory, $stateParams) {
                 return ProductFactory.fetchById($stateParams.productId);
+            },
+            allReviews: function(ProductFactory, $stateParams) {
+                return ProductFactory.fetchAllReviews($stateParams.productId);
             }
         }
     });
