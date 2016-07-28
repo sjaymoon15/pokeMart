@@ -1,0 +1,49 @@
+// media query function
+$phone-width: 480px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+// mobile first media queries
+@mixin wearable {
+    @media (max-width: #{$phone-width}) {
+    @content;
+  }
+}
+
+@mixin phone {
+  @media (min-width: #{$phone-width}) and (max-width: #{$tablet-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+@mixin flex-column () {
+    display: flex;
+    flex-direction: column;
+    > * {
+        flex: 0 0 auto;
+    }
+}
+
+@mixin flex-row () {
+    display: flex;
+    flex-direction: row;
+    > * {
+        flex: 0 0 auto;
+    }
+}
+
+@mixin stretchy () {
+    flex: 1 1 auto;
+}
