@@ -1,4 +1,4 @@
-@import 'colors';
+// @import 'colors';
 
 .product-card-wrapper {
   margin: 2% 2%;
@@ -11,41 +11,40 @@ ul {
   list-style: none;
 }
 
-.products {
-  display: flex;
-  flex-wrap: wrap;
-}
+// .products {
+//   display: flex;
+//   flex-wrap: wrap;
+// }
 
-// mobile first one card per row
+// // mobile first one card per row
 .card {
   background-color: white;
-  flex: 100%;
   margin: 0 0 20px;
   text-align: center;
 }
 
-//
-@media (min-width: 36em) {
-  .card {
-    flex: 0 0 calc( 50% - 10px );
-    margin-left: 20px;
-  }
-   .card:nth-child(odd){
-     margin-left: 0;
-   }
-}
+// //
+// @media (min-width: 36em) {
+//   .card {
+//     flex: 0 0 calc( 50% - 10px );
+//     margin-left: 20px;
+//   }
+//    .card:nth-child(odd){
+//      margin-left: 0;
+//    }
+// }
 
-@media (min-width: 60em) {
-  .card {
-    flex: 0 0 calc(100% / 3 - 14px);
-  }
-  .card:nth-child(odd), .card:nth-child(even) {
-      margin-left: 20px;
-  }
-  .card:nth-child(3n+1) {
-    margin-left: 0;
-  }
-}
+// @media (min-width: 60em) {
+//   .card {
+//     flex: 0 0 calc(100% / 3 - 14px);
+//   }
+//   .card:nth-child(odd), .card:nth-child(even) {
+//       margin-left: 20px;
+//   }
+//   .card:nth-child(3n+1) {
+//     margin-left: 0;
+//   }
+// }
 
 .pokemon-name {
   margin: 0 30%;
