@@ -37,5 +37,10 @@ app.controller('ProductCardCtrl', function($scope){
 
         }
     }
+    $scope.priceRangeFilter=function(min=0,max=2000){
+        return function(product){
+            return product.price>=min && product.price<=max;
+        }
+    }
 })
 
