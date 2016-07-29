@@ -2,8 +2,9 @@
     <option ng-repeat="category in categories">{{category.name}}</option>
 </select>
 
+<search-bar></search-bar>
 
-<li class="card col-md-4 col-sm-6 col-xs-12" ng-repeat="product in products | filter:filter(selected)" ui-sref="product({productId:product.id})">
+<li class="card col-md-4 col-sm-6 col-xs-12" ng-repeat="product in products | filter:filter(selected) | filter: searchFilter(name)" ui-sref="product({productId:product.id})">
   <div class="pokemon-img">
     <img src="{{product.imageUrl}}">
   </div>
