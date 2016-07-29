@@ -4,8 +4,12 @@
     </select>
 </div>
 
+<search-bar></search-bar>
+
+
 <div class="row">
-<li class="card col l4 m6 s12" ng-repeat="product in products | filter:filter(selected)" ui-sref="product({productId:product.id})">
+<li class="card col l4 m6 s12" ng-repeat="product in products | filter:filter(selected) | filter: searchFilter(name)" ui-sref="product({productId:product.id})">
+
   <div class="pokemon-img">
     <img src="{{product.imageUrl}}">
   </div>
