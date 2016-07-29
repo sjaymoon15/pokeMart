@@ -7,6 +7,12 @@ body {
   margin: 0;
 }
 
+
+.caret {
+  border-top: 4px transparent; // weird shadow if this style is not in place
+}
+
+
 @mixin clearfix {
   &:after {
     content: "";
