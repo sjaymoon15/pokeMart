@@ -35,7 +35,7 @@ module.exports = db.define('product', {
     }
 },{
     instanceMethods:{
-        addToOrder: function (quantity,userId){
+        addToOrder: function (quantity=1,userId){
          var currentOrder;
          var OrderDetails = db.model('orderDetails');
         return OrderDetails.create({
