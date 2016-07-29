@@ -4,6 +4,7 @@ var router = require('express').Router();
 var UserOrders = require('../../db/models/userOrders');
 var OrderDetails = require('../../db/models/orderDetails');
 var Product = require('../../db/models/product');
+var User = require('../../db/models/product');
 
 // req.session.orderId =
 router.use(function (req, res, next) {
@@ -17,22 +18,24 @@ router.use(function (req, res, next) {
 
 router.get('/cart', function (req, res, next) {
 
-    // OB/SB: bury dead code
-    /*
-        if req.session.orderId is null
-        cartItems = null
-    */
-    UserOrders.findOne({
-        where: req.searchObj
-    }).then(function (userOrder) {
-        return OrderDetails.findAll({
+    User.findById(req.userId)
+    .then(function(user){
+        return UserOrders.findOne({
             where: {
-                userOrderId: userOrder.id
+                userId: req.userId,
+                status: 'pending'
             }
         })
-    }).then(function (cartItems) {
-        res.send(cartItems);
-    }).catch(next);
+    }).then(function(cart){
+        return OrderDetails.findAll({
+            where: {
+                userOrderId: cart.id
+            }
+        })
+    }).then(function(orders){
+        res.send(orders)
+    })
+    .catch(next)
 
 });
 
