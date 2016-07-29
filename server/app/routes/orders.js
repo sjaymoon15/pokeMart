@@ -3,12 +3,13 @@
 var router = require('express').Router();
 var UserOrders = require('../../db/models/userOrders');
 var OrderDetails = require('../../db/models/orderDetails');
+var Product = require('../../db/models/product');
 
 // req.session.orderId =
 router.use(function (req, res, next) {
-    req.searchObj = (!req.user) ?
-                    {id: req.session.orderId, status: 'pending'} :
-                    {userId: req.user.id, status: 'pending'}
+    req.userId = (!req.user) ?
+                    req.session.orderId : 
+                    req.user.id;
     next();
 })
 
@@ -41,27 +42,16 @@ router.get('/cart', function (req, res, next) {
  //    quantity
  // }
 
-router.post('/cart', function (req, res, next) {
+router.post('/cart/:productId', function (req, res, next) {
 
     // OB/SB: hopefully this could be simplified maybe either using an association method `req.cart.createOrderDetails(...)` or a custom method
-    UserOrders.findOne({
-        where: req.searchObj // user order entry is not created
-    }).then(function (userOrder) {
-        if (!userOrder) {
-            return UserOrders.create({status: 'pending'})
-        } else {
-            return userOrder;
-        }
-    })
-    .then(function (userOrder) {
-        if (!req.session.orderId) req.session.orderId = userOrder.id;
-        return OrderDetails.create(req.body)
-        .then(function (orderDetail) { // OB/SB: avoid nested .thens
-            return orderDetail.setUserOrder(userOrder.id)
-        })
-    }).then(function (orderDetail) {
-        res.send(orderDetail)
+
+    Product.findById(req.params.productId)
+    .then(function(product){
+        return product.addToOrder(req.body.quantity, req.userId);
     }).catch(next);
+
+ 
 });
 
 // OB/SB: /cart/:productId
