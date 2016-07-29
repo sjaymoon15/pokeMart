@@ -139,4 +139,24 @@ router.get('/fulfilled', function (req, res, next) {
     }).catch(next);
 });
 
+router.get('/checkout', function(req, res, next) {
+    return UserOrders.findOne({
+            where: {
+                userId: req.userId,
+                status: 'pending'
+            }
+        }).then(function(cart){
+            return cart.update({status: 'paid'})
+        }).then(function(){
+            return UserOrders.create({})
+            .then(function (newCart){
+                return newCart.setUser(req.userId)
+            })
+            
+        }).then(function() {
+            res.sendStatus(201)
+        })
+})
+
+
 module.exports = router;
