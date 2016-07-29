@@ -4,6 +4,7 @@ app.directive('productCard', function () {
         templateUrl: 'js/common/directives/product-card/product-card.html',
         scope: {
             products: '='
-        }
+        },
+        controller: 'ProductCardCtrl'
     }
 })
