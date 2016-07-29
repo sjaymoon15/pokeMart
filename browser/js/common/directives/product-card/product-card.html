@@ -1,6 +1,8 @@
-<select ng-model="selected">
-    <option ng-repeat="category in categories">{{category.name}}</option>
-</select>
+<div class="row">
+    <select class="col-md-4" ng-model="selected" material-select>
+        <option ng-repeat="category in categories">{{category.name}}</option>
+    </select>
+</div>
 
 
 <li class="card col-md-4 col-sm-6 col-xs-12" ng-repeat="product in products | filter:filter(selected)" ui-sref="product({productId:product.id})">
