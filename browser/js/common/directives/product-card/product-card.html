@@ -1,11 +1,11 @@
 <div class="row">
-    <select class="col-md-4" ng-model="selected" material-select>
+    <select class="col s4" ng-model="selected" material-select>
         <option ng-repeat="category in categories">{{category.name}}</option>
     </select>
 </div>
 
-
-<li class="card col-md-4 col-sm-6 col-xs-12" ng-repeat="product in products | filter:filter(selected)" ui-sref="product({productId:product.id})">
+<div class="row">
+<li class="card col l4 m6 s12" ng-repeat="product in products | filter:filter(selected)" ui-sref="product({productId:product.id})">
   <div class="pokemon-img">
     <img src="{{product.imageUrl}}">
   </div>
@@ -14,3 +14,4 @@
     <p>${{product.price}}</p>
   </div>
 </li>
+</div>
