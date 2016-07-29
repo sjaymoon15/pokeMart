@@ -30,23 +30,17 @@
         <div ng-message="required" class="alert alert-warning">Please enter a title</div>
         <div ng-message="maxlength" class="alert alert-warning">Title is too long</div>
       </div> -->
-      <div class="form-group">
-        <label for="subject" class="col-xs-2 control-label">Title</label>
-        <div class="col-xs-10">
-          <input class="form-control" name="subject" type="text" ng-model="newReview.subject" required ng-maxlength="30">
-        </div>
+      <div input-field>
+        <input name="subject" type="text" ng-model="newReview.subject" required length="30">
+        <label for="subject">Title</label>
       </div>
-      <div class="form-group">
-        <label for="content" class="col-xs-2 control-label">Description</label>
-        <div class="col-xs-10">
-          <input class="form-control" name="content" type="text" ng-model="newReview.content" required ng-maxlength="300">
-        </div>
+      <div input-field>
+        <textarea class="materialize-textarea" name="content" type="text" ng-model="newReview.content" required length="300"></textarea>
+        <label for="content">Description</label>
       </div>
-      <div class="form-group">
-        <label for="rating" class="col-xs-2 control-label">Rating</label>
-        <div class="col-xs-10">
-          <input class="form-control" name="rating" type="text" ng-model="newReview.rating" required>
-        </div>
+      <div input-field>
+        <input name="rating" type="text" ng-model="newReview.rating" required>
+        <label for="rating">Rating</label>
       </div>
       <button type="submit" class="btn btn-default" ng-disabled="reviewForm.$invalid">Submit</button>
     </form>
