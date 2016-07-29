@@ -2,6 +2,7 @@
 
 var router = require('express').Router();
 var Products=require('../../db/models/product');
+var HttpError = require('../../utils/HttpError');
 
 router.get('/', function(req, res, next) {
   Products.findAll()
@@ -28,21 +29,22 @@ router.get('/category/:category', function(req, res, next) {
 
 // OB/SB: check out express router.param—will dry out routes with repeated logic
 
-/*
-router.param('id', function (req, res, next, theId) {
-  // attach req.product = ...
-  // throw 404 if not product
-  // call next()
-});
-*/
-
-router.get('/:id', function(req,res,next){
-	var id=req.params.id;
-	Products.findById(id)
-	.then(function(oneProduct){
-		res.send(oneProduct);
+router.param('id', function(req, res, next, theId){
+	Products.findById(theId)
+	.then(function(product){
+		if(product){
+			req.product = product;
+			next();
+			return null;
+		}else{
+			throw HttpError(404);
+		}
 	})
 	.catch(next);
+})
+
+router.get('/:id', function(req,res,next){
+	res.send(req.product);
 })
 
 router.post('/', function(req,res,next){
@@ -58,13 +60,13 @@ router.put('/:id', function(req,res,next){
 	Products.findById(id)
 	.then(function(product){
 		if (!product){
-			res.status(404).send(); // OB/SB: consider throwing error
+			throw HttpError(404);
+			// res.status(404).send(); // OB/SB: consider throwing error
 		}
 		else {
 			return product.update(req.body);
 		}
 	})
-	
 	.then(function(updatedProduct){
 		res.send(updatedProduct);
 	})
@@ -72,26 +74,12 @@ router.put('/:id', function(req,res,next){
 })
 
 router.delete('/:id', function(req,res,next){
-	var id=req.params.id;
-
-Products.findById(id)
-.then(function(product){
-	if (!product){
-		res.status(404).send();
-	}
-	else {
-		product.destroy({
-	where: {
-		id:req.params.id
-	} 
-})
-.then(function(){
-	res.status(204).end();
-})
-	}
-})
-
-  .catch(next);
+	req.product.destroy()
+	.then(function(){
+		res.status(204).end();
+	})
+	.catch(next);
+	// 
 })
 
 module.exports = router;
