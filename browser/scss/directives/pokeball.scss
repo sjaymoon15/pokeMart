@@ -1,0 +1,21 @@
+.pokeball {
+  i {
+    background: url('http://orig13.deviantart.net/0e99/f/2013/122/d/b/all_poke_balls___free_icons_by_tamarinfrog-d63ovp6.png');
+    background-repeat: no-repeat;
+    display: block;
+    zoom:0.4;
+    -moz-transform:scale(0.4);
+    -moz-transform-origin: 0 0;
+    width: 144px;
+    height: 142px;
+    &.original {
+      background-position: 3px -8px;
+    }
+    &.great {
+      background-position: -289px -9px;
+    }
+    &.ultra {
+      background-position: -440px -10px;
+    }
+  }
+}

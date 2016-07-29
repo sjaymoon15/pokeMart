@@ -1,16 +1,18 @@
-<nav class="navbar navbar-static-top">
-    <div class="container">
-        <div class="navbar-header">
+<nav class="navbar">
+        <!-- <div class="navbar-header"> -->
+        <div>
+            <span class="logo">P<i class="pokeball">
+            <i class="great"></i></i>KEMART</span>
         </div>
-        <ul class="nav navbar-nav">
-            <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
+        <!-- </div> -->
+        <!-- <ul> -->
+            <span ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
-            </li>
-        </ul>
+            </span>
+        <!-- </ul> -->
         <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
-        <div ng-show="user" class="welcome">
+        <span ng-show="user" class="welcome">
             <span>Welcome, {{ user.email }}!</span>
             <a ng-click="logout()">Logout</a>
-        </div>
-    </div>
+        </span>
 </nav>
