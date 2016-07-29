@@ -2,6 +2,13 @@
     <select class="col s4" ng-model="selected" material-select>
         <option ng-repeat="category in categories">{{category.name}}</option>
     </select>
+
+    	<select class="col s4" ng-model="sortStyle" material-select>
+    		<option>Default</option>
+			<option value="low">Low to High</option>
+			<option value="high">High to Low</option>
+	</select>
+
 </div>
 
 <search-bar></search-bar>
@@ -11,8 +18,15 @@
 <input ng-model="max" type="number" placeholder ='Max $$'></input>
 </div>
 
+<!-- <div>
+	<select class="col s4" ng-model="sortStyle">
+<option value="ascending">ghetrteg</option>
+<option value="descending">hteghth</option>
+	</select>
+</div> -->
+
 <div class="row">
-<li class="card col l4 m6 s12" ng-repeat="product in products | filter:filter(selected) | filter: searchFilter(name) | filter:priceRangeFilter(min,max)" ui-sref="product({productId:product.id})">
+<li class="card col l4 m6 s12" ng-repeat="product in products | orderBy:sortingFunc(sortStyle) | filter:filter(selected) | filter: searchFilter(name) | filter:priceRangeFilter(min,max)" ui-sref="product({productId:product.id})">
 
   <div class="pokemon-img">
     <img src="{{product.imageUrl}}">

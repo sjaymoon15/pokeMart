@@ -42,5 +42,10 @@ app.controller('ProductCardCtrl', function($scope){
             return product.price>=min && product.price<=max;
         }
     }
+    $scope.sortingFunc=function(sortType="untouched"){
+        if (sortType==="untouched") return null;
+        else if (sortType==="low") return 'price'
+        else if (sortType==='high') return '-price'
+        }
 })
 
