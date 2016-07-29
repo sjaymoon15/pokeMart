@@ -5,7 +5,9 @@ var Products=require('../../db/models/product');
 var HttpError = require('../../utils/HttpError');
 
 router.get('/', function(req, res, next) {
-  Products.findAll()
+  Products.findAll({ 
+    where: req.query
+  })
   .then(function(allProducts){
   	res.send(allProducts);
   })
@@ -14,18 +16,18 @@ router.get('/', function(req, res, next) {
 
 // OB/SB: recommend query string, e.g. ?category=foo
 // OB/SB: if so you could probably delete this one and fold the logic into the above route handler
-router.get('/category/:category', function(req, res, next) {
-  Products.findAll({
-  	where:{
-  		category:req.params.category
-  	}
-  })
+// router.get('/category/', function(req, res, next) {
+//   Products.findAll({
+//   	where:{
+//   		category:req.params.category
+//   	}
+//   })
 
-  .then(function(foundProducts){
-  	res.send(foundProducts);
-  })
-  .catch(next);
-});
+//   .then(function(foundProducts){
+//   	res.send(foundProducts);
+//   })
+//   .catch(next);
+// });
 
 // OB/SB: check out express router.param—will dry out routes with repeated logic
 
@@ -57,29 +59,44 @@ router.post('/', function(req,res,next){
 
 router.put('/:id', function(req,res,next){
 	var id=req.params.id;
-	Products.findById(id)
-	.then(function(product){
-		if (!product){
-			throw HttpError(404);
-			// res.status(404).send(); // OB/SB: consider throwing error
-		}
-		else {
-			return product.update(req.body);
-		}
-	})
-	.then(function(updatedProduct){
-		res.send(updatedProduct);
-	})
-	.catch(next);
+  if (!req.user.isAdmin){
+    Products.findById(id)
+    .then(function(product){
+      if (!product){
+        throw HttpError(404);
+      // res.status(404).send(); // OB/SB: consider throwing error
+    }
+    else {
+      return product.update(req.body);
+    }
+  })
+    .then(function(updatedProduct){
+      res.send(updatedProduct);
+    })
+    .catch(next);
+  }
+  else {
+    res.staus(401);
+    res.send('no access')
+  }
 })
 
 router.delete('/:id', function(req,res,next){
-	req.product.destroy()
-	.then(function(){
-		res.status(204).end();
-	})
-	.catch(next);
-	// 
+ if (!req.user.isAdmin) {	
+  Product.findById(req.params.id)
+  .then(function(product) { 
+    return product.destroy() 
+  })
+  .then(function(){
+    res.status(204).end();
+  })
+  .catch(next);
+}
+
+else {
+  res.status(401);
+  res.send('unauothrized')
+}
 })
 
 module.exports = router;
