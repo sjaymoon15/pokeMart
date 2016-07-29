@@ -6,9 +6,13 @@
 
 <search-bar></search-bar>
 
+<div>
+<input ng-model="min" type="number" placeholder ='Min $$'></input>
+<input ng-model="max" type="number" placeholder ='Max $$'></input>
+</div>
 
 <div class="row">
-<li class="card col l4 m6 s12" ng-repeat="product in products | filter:filter(selected) | filter: searchFilter(name)" ui-sref="product({productId:product.id})">
+<li class="card col l4 m6 s12" ng-repeat="product in products | filter:filter(selected) | filter: searchFilter(name) | filter:priceRangeFilter(min,max)" ui-sref="product({productId:product.id})">
 
   <div class="pokemon-img">
     <img src="{{product.imageUrl}}">
