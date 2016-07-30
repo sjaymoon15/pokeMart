@@ -1,0 +1,22 @@
+    <div>
+
+    	<div ng-repeat="cart in cartContent">
+
+    		<div style = 'border: 1px solid black'>
+
+    			<img src='{{cart.photoUrl}}'>
+    			<p>Title: {{cart.title}}</p>
+    			<p>Category: {{cart.category}}</p>
+    			<button ng-click="changeQuantity(cart.id,cart.quantity,'subtract')">-</button>
+    			Quantity {{cart.quantity}}
+    			<button ng-click="changeQuantity(cart.id,cart.quantity,'add')">+</button>
+    			<p>Price: {{cart.price * cart.quantity}}</p>
+    			<button ng-click="remove(cart.id)">Remove from Cart</button>
+
+
+    		</div>
+    	</div>
+</div>
+
+
+
