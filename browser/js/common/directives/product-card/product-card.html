@@ -1,21 +1,25 @@
 <div class="row">
-    <select class="col s4" ng-model="selected" material-select>
+    <select class="col s2" ng-model="selected" material-select>
         <option ng-repeat="category in categories">{{category.name}}</option>
     </select>
-
-    	<select class="col s4" ng-model="sortStyle" material-select>
-    		<option>Default</option>
-			<option value="low">Low to High</option>
-			<option value="high">High to Low</option>
-	</select>
-
+    <select class="col s2" ng-model="sortStyle" material-select>
+      <option>Default</option>
+      <option value="low">Low to High</option>
+      <option value="high">High to Low</option>
+    </select>
+    <div>
+      <input name="min-price" class="col s2" ng-model="min" type="number" placeholder ='Min $$'></input>
+    </div>
+    <div>
+      <input name="max-price" class="col s2" ng-model="max" type="number" placeholder ='Max $$'></input>
+    </div>
+    <search-bar class="col s3"></search-bar>
 </div>
 
-<search-bar></search-bar>
+
 
 <div>
-<input ng-model="min" type="number" placeholder ='Min $$'></input>
-<input ng-model="max" type="number" placeholder ='Max $$'></input>
+
 </div>
 
 <!-- <div>

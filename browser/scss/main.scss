@@ -26,6 +26,18 @@ body {
   margin: 0 auto;
 }
 
+@media (min-width: 993px) {
+  .container {
+      width: 80%;
+  }
+}
+
+// filter form
+input[name="min-price"] {
+    margin: 0 0.75rem;
+    padding: 0;
+}
+
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
