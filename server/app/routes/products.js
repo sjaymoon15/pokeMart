@@ -78,7 +78,6 @@ router.put('/:id', function(req,res,next){
 })
 
 router.delete('/:id', function(req,res,next){
-  console.log('----rawrrrrrrrr---',req.params.id)
  if (req.user.isAdmin) {
   Products.findById(req.params.id)
   .then(function(product) {

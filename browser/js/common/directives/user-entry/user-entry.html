@@ -1,0 +1,20 @@
+<form name="userEntryUpdateForm">
+    <div class="col s2">
+        <input name="firstName" value="{{user.firstName}}" type="text" ng-model="ngModel.firstName" required />
+    </div>
+    <div class="col s2">
+        <input name="lastName" value="{{user.lastName}}" type="text" ng-model="ngModel.lastName" required />
+    </div>
+    <div class="col s2">
+        <input name="email" value="{{user.email}}" type="text" ng-model="ngModel.email" required />
+    </div>
+    <div class="col s2">
+        <input name="zipCode" value="{{user.zipCode}}" type="text" ng-model="ngModel.zipCode" required />
+    </div>
+    <div class="col s2">
+        <input name="isAdmin" value="{{user.isAdmin}}" type="text" ng-model="ngModel.isAdmin" required />
+    </div>
+    <a class="col s1 btn waves-effect waves-light" ng-click="submitUpdate(user.id)">{{update}}</a>
+    <a class="col s1 btn red" ng-click="deleteUser(user.id)">{{delete}}</a>
+</form>
+

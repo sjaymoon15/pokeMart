@@ -12,6 +12,7 @@
     <div class="col s2">
         <input name="quantity" value="{{product.quantity}}" type="text" ng-model="ngModel.quantity" required />
     </div>
-    <a class="col s1 btn waves-effect waves-light" ng-click="submitUpdate(product.id)">Update</a>
-    <a class="col s1 btn red" ng-click="deleteProduct(product.id)">Delete</a>
+    <a class="col s1 btn waves-effect waves-light" ng-click="submitUpdate(product.id)">{{update}}</a>
+    <a class="col s1 btn red" ng-click="deleteProduct(product.id)">{{delete}}</a>
 </form>
+

@@ -1,38 +1,40 @@
-<section class="product-table-wrapper">
-    <div class="row valign-wrapper product-table-header">
-        <h6 class="col s2 product-thumbnail">Pokemon</h6>
-        <h6 class="col s2">Name</h6>
-        <h6 class="col s2">Type</h6>
-        <h6 class="col s2">Price</h6>
-        <h6 class="col s2">Inventory</h6>
-        <h6 class="col s2"></h6>
+<div class="row">
+    <div class="col s12">
+        <ul tabs reload="allTabContentLoaded">
+            <li class="tab col s4"><a class="active" href="#product-management">Product Management</a></li>
+            <li class="tab col s4"><a href="#order-management">Order Management</a></li>
+            <li class="tab col s4"><a href="#user-management">User Management</a></li>
+        </ul>
     </div>
-    <div class="row valign-wrapper" ng-repeat="product in products">
+</div>
+<div class="row">
+    <section id="product-management" class="product-table-wrapper col s12">
+        <div class="row valign-wrapper">
+            <h6 class="col s2 product-thumbnail">Pokemon</h6>
+            <h6 class="col s2">Name</h6>
+            <h6 class="col s2">Type</h6>
+            <h6 class="col s2">Price</h6>
+            <h6 class="col s2">Inventory</h6>
+            <h6 class="col s2"></h6>
+        </div>
+        <div class="row valign-wrapper" ng-repeat="product in products">
+            <product-entry class="col s12" product="product" ng-model="product"></product-entry>
+        </div>
+    </section>
 
-        <product-entry product="product" ng-model="product"></product-entry>
+    <section id="order-management">
+    </section>
 
-
-
-        <!-- <div id="{{product.title}}Modal" class="modal">
-            <form name="productUpdateForm">
-                <div input-field>
-                    <input value="{{product.title}}" name="title" type="text" ng-model="productUpdate.title" required length="30" />
-                    <label for="title">Name</label>
-                </div>
-                <div input-field>
-                    <input value="{{product.category}}" name="category" type="text" ng-model="productUpdate.category" required/>
-                    <label for="category">Type</label>
-                </div>
-                <div input-field>
-                    <input value="{{product.price}}" name="price" type="text" ng-model="productUpdate.price" required/>
-                    <label for="price">Price</label>
-                </div>
-                <div input-field>
-                    <input value="{{product.quantity}}" name="quantity" type="text" ng-model="productUpdate.quantity" required/>
-                    <label for="quantity">Inventory</label>
-                </div>
-            </form>
-        </div> -->
-    </div>
-
-</section>
+    <section id="user-management">
+        <div class="row valign-wrapper">
+            <h6 class="col s3">Last Name</h6>
+            <h6 class="col s3">First Name</h6>
+            <h6 class="col s3">Email</h6>
+            <h6 class="col s3">Zip Code</h6>
+            <h6 class="col s3">Site Privilege</h6>
+        </div>
+        <div class="row valign-wrapper" ng-repeat="user in users">
+            <!-- <user-entry class="col s12" user="user" ng-model="user"></user-entry> -->
+        </div>
+    </section>
+</div>
