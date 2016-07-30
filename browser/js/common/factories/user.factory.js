@@ -1,4 +1,4 @@
-app.factory('UserFactory', function ($scope) {
+app.factory('UserFactory', function ($http) {
     var UserFactory = {};
 
     var cachedUsers = [];
@@ -20,7 +20,6 @@ app.factory('UserFactory', function ($scope) {
     UserFactory.updateUser = function (id, data) {
         return $http.put(baseUrl + id, data)
                 .then(getData)
-                .then(UserFactory.convert)
                 .then(function (user) {
                     var updatedInd = cachedUsers.findIndex(function (user) {
                         return user.id === id;

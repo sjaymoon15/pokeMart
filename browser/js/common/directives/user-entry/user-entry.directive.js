@@ -5,16 +5,16 @@ app.directive('userEntry', function (UserFactory) {
         scope: {
             user: '=',
             ngModel: '='
+        },
+        link: function (scope, elem, attr) {
+            scope.update = 'Update';
+            scope.delete = 'Delete';
+            scope.submitUpdate = function (id) {
+                UserFactory.updateUser(id, scope.ngModel)
+            };
+            scope.deleteProduct = function (id) {
+                UserFactory.deleteUser(id)
+            };
         }
-        // link: function (scope, elem, attr) {
-        //     scope.update = 'Update';
-        //     scope.delete = 'Delete';
-        //     scope.submitUpdate = function (id) {
-        //         UserFactory.updateUser(id, scope.ngModel)
-        //     };
-        //     scope.deleteProduct = function (id) {
-        //         UserFactory.deleteUser(id)
-        //     };
-        // }
     }
 })

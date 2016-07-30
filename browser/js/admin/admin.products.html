@@ -1,0 +1,11 @@
+<div class="row valign-wrapper">
+    <h6 class="col s2 product-thumbnail">Pokemon</h6>
+    <h6 class="col s2">Name</h6>
+    <h6 class="col s2">Type</h6>
+    <h6 class="col s2">Price</h6>
+    <h6 class="col s2">Inventory</h6>
+    <h6 class="col s2"></h6>
+</div>
+<div class="row valign-wrapper" ng-repeat="product in products">
+    <product-entry class="col s12" product="product" ng-model="product"></product-entry>
+</div>

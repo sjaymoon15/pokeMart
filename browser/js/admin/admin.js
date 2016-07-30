@@ -1,13 +1,15 @@
 app.config(function ($stateProvider) {
-    $stateProvider.state('admin', {
+    $stateProvider
+    .state('admin', {
         url: '/admin',
         templateUrl: 'js/admin/admin.html',
         controller: 'AdminCtrl',
         resolve: {
             allProducts: function (ProductFactory) {
-                return ProductFactory.fetchAll().catch(function (err) {
-                    console.error(err);
-                })
+                return ProductFactory.fetchAll();
+            },
+            allUsers: function (UserFactory) {
+                return UserFactory.fetchAll();
             }
         }
     })
