@@ -5,7 +5,7 @@ var Products=require('../../db/models/product');
 var HttpError = require('../../utils/HttpError');
 
 router.get('/', function(req, res, next) {
-  Products.findAll({ 
+  Products.findAll({
     where: req.query
   })
   .then(function(allProducts){
@@ -59,33 +59,30 @@ router.post('/', function(req,res,next){
 
 router.put('/:id', function(req,res,next){
 	var id=req.params.id;
-  if (!req.user.isAdmin){
+  if (req.user.isAdmin) {
     Products.findById(id)
     .then(function(product){
       if (!product){
         throw HttpError(404);
-      // res.status(404).send(); // OB/SB: consider throwing error
-    }
-    else {
-      return product.update(req.body);
-    }
-  })
-    .then(function(updatedProduct){
+      } else {
+        return product.update(req.body)
+      }
+    }).then(function(updatedProduct){
       res.send(updatedProduct);
-    })
-    .catch(next);
+    }).catch(next);
   }
   else {
-    res.staus(401);
+    res.status(401);
     res.send('no access')
   }
 })
 
 router.delete('/:id', function(req,res,next){
- if (!req.user.isAdmin) {	
-  Product.findById(req.params.id)
-  .then(function(product) { 
-    return product.destroy() 
+  console.log('----rawrrrrrrrr---',req.params.id)
+ if (req.user.isAdmin) {
+  Products.findById(req.params.id)
+  .then(function(product) {
+    return product.destroy()
   })
   .then(function(){
     res.status(204).end();
