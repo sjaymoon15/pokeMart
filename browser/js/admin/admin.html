@@ -4,20 +4,35 @@
         <h6 class="col s2">Name</h6>
         <h6 class="col s2">Type</h6>
         <h6 class="col s2">Price</h6>
-        <h6 class="col s2">Quantity</h6>
+        <h6 class="col s2">Inventory</h6>
         <h6 class="col s2"></h6>
     </div>
     <div class="row valign-wrapper" ng-repeat="product in products">
-        <img class="col s2 product-thumbnail" src="{{product.photoUrl}}">
-        <h6 class="col s2">{{product.title}}</h6>
-        <h6 class="col s2">{{product.category}}</h6>
-        <h6 class="col s2">{{product.price}}</h6>
-        <h6 class="col s2">{{product.quantity}}</h6>
-        <a class="col s2 btn" href="#{{product.title}}Modal" modal>Update</a>
 
-        <div id="{{product.title}}Modal" class="modal">
+        <product-entry product="product" ng-model="product"></product-entry>
 
-        </div>
+
+
+        <!-- <div id="{{product.title}}Modal" class="modal">
+            <form name="productUpdateForm">
+                <div input-field>
+                    <input value="{{product.title}}" name="title" type="text" ng-model="productUpdate.title" required length="30" />
+                    <label for="title">Name</label>
+                </div>
+                <div input-field>
+                    <input value="{{product.category}}" name="category" type="text" ng-model="productUpdate.category" required/>
+                    <label for="category">Type</label>
+                </div>
+                <div input-field>
+                    <input value="{{product.price}}" name="price" type="text" ng-model="productUpdate.price" required/>
+                    <label for="price">Price</label>
+                </div>
+                <div input-field>
+                    <input value="{{product.quantity}}" name="quantity" type="text" ng-model="productUpdate.quantity" required/>
+                    <label for="quantity">Inventory</label>
+                </div>
+            </form>
+        </div> -->
     </div>
 
 </section>

@@ -1,0 +1,17 @@
+<img class="col s2 product-thumbnail" src="{{product.photoUrl}}">
+<form name="productEntryUpdateForm">
+    <div class="col s2">
+        <input name="title" value="{{product.title}}" type="text" ng-model="ngModel.title" required />
+    </div>
+    <div class="col s2">
+        <input name="category" value="{{product.category}}" type="text" ng-model="ngModel.category" required />
+    </div>
+    <div class="col s2">
+        <input name="price" value="{{product.price}}" type="text" ng-model="ngModel.price" required />
+    </div>
+    <div class="col s2">
+        <input name="quantity" value="{{product.quantity}}" type="text" ng-model="ngModel.quantity" required />
+    </div>
+    <a class="col s1 btn waves-effect waves-light" ng-click="submitUpdate(product.id)">Update</a>
+    <a class="col s1 btn red" ng-click="deleteProduct(product.id)">Delete</a>
+</form>
