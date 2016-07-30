@@ -13,6 +13,14 @@ app.factory('CartFactory', function ($http) {
             })
     }
 
+    CartFactory.deleteItem = function(productId){
+        return $http.delete(baseUrl + productId)
+            .then(function(response){
+                angular.copy(response.data, cachedCart)
+                return cachedCart;
+            })
+    }
+
     CartFactory.addToCart = function (productId, quantity) {
         return $http.post(baseUrl + productId, {quantity: quantity})
             .then(function (response) {
