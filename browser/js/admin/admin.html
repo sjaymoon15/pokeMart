@@ -1,0 +1,23 @@
+<section class="product-table-wrapper">
+    <div class="row valign-wrapper product-table-header">
+        <h6 class="col s2 product-thumbnail">Pokemon</h6>
+        <h6 class="col s2">Name</h6>
+        <h6 class="col s2">Type</h6>
+        <h6 class="col s2">Price</h6>
+        <h6 class="col s2">Quantity</h6>
+        <h6 class="col s2"></h6>
+    </div>
+    <div class="row valign-wrapper" ng-repeat="product in products">
+        <img class="col s2 product-thumbnail" src="{{product.photoUrl}}">
+        <h6 class="col s2">{{product.title}}</h6>
+        <h6 class="col s2">{{product.category}}</h6>
+        <h6 class="col s2">{{product.price}}</h6>
+        <h6 class="col s2">{{product.quantity}}</h6>
+        <a class="col s2 btn" href="#{{product.title}}Modal" modal>Update</a>
+
+        <div id="{{product.title}}Modal" class="modal">
+
+        </div>
+    </div>
+
+</section>
