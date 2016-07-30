@@ -103,22 +103,24 @@ router.get('/paid', function (req, res, next) {
         // each instance will have a .orderDetails property because of the include
     });
     */
-    UserOrders.findAll({
-        where: {
-            userId: req.user.id, // from session/auth
-            status: 'paid'
-        }
-    }).then(function (userOrders) {
-        return userOrders.map(userOrder => {
-            return OrderDetails.findAll({
-                where: {userOrderId: userOrder.id}
-            })
-        });
-    }).then(function (itemPromises) {
-        return Promise.all(itemPromises);
-    }).then(function (paidItemsArr) {
-        res.send(paidItemsArr)
-    }).catch(next);
+    var dates = [];
+   UserOrders.findAll({
+       where: {
+           userId: req.user.id, // from session/auth
+           status: 'paid'
+       }
+   }).then(function (userOrders) {
+       userOrders.forEach(order => dates.push(order.updatedAt))
+       return userOrders.map(userOrder => {
+           return OrderDetails.findAll({
+               where: {userOrderId: userOrder.id}
+           })
+       });
+   }).then(function (itemPromises) {
+       return Promise.all(itemPromises);
+   }).then(function (paidItemsArr) {
+       res.send({paidItems: paidItemsArr, date:dates})
+   }).catch(next);
 });
 
 router.get('/fulfilled', function (req, res, next) {
