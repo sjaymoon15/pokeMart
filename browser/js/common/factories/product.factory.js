@@ -38,7 +38,7 @@ app.factory('ProductFactory', function ($http) {
                 return product.id === id;
             });
             cachedProducts.splice(deletedInd, 1);
-        })
+        });
     }
 
     ProductFactory.fetchById = function (id) {

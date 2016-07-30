@@ -1,8 +1,8 @@
 <div class="row">
-    <select class="col s2" ng-model="selected" material-select>
+    <select class="col s2" ng-model="selected" ng-init="selected=categories[0].name" material-select>
         <option ng-repeat="category in categories">{{category.name}}</option>
     </select>
-    <select class="col s2" ng-model="sortStyle" material-select>
+    <select class="col s2" ng-init="sortStyle='Default'" ng-model="sortStyle" material-select>
       <option>Default</option>
       <option value="low">Low to High</option>
       <option value="high">High to Low</option>
