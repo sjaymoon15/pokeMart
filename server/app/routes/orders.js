@@ -58,7 +58,7 @@ router.post('/cart/:productId', function (req, res, next) {
 });
 
 // OB/SB: /cart/:productId
-router.delete('/:productId', function (req, res, next) {
+router.delete('/cart/:orderId', function (req, res, next) {
     // product id needs to be sent to front end
     UserOrders.findOne({
         where: req.searchObj
@@ -66,7 +66,7 @@ router.delete('/:productId', function (req, res, next) {
         return OrderDetails.destroy({
             where: {
                 userOrderId: userOrder.id,
-                productId: req.params.productId
+                id: req.params.orderId
             }
         })
     }).then(function () {
@@ -80,12 +80,12 @@ router.delete('/:productId', function (req, res, next) {
 
 // req.params.orderDetailId // modified in front end
 // OB/SB: maybe go with productId instead, for consistency
-router.put('/:orderDetailId', function (req, res, next) {
+router.put('/cart/:orderDetailId', function (req, res, next) {
     OrderDetails.findById(req.params.orderDetailId)
     .then(function(orderDetail) {
         return orderDetail.update({quantity: req.body.quantity})
-    }).then(function (updatedOrderDetail) {
-        res.send(updatedOrderDetail)
+    }).then(function () {
+        res.sendStatus(201)
     }).catch(next);
 });
 
