@@ -58,7 +58,7 @@ router.post('/cart/:productId', function (req, res, next) {
 });
 
 // OB/SB: /cart/:productId
-router.delete('/:productId', function (req, res, next) {
+router.delete('/cart/:productId', function (req, res, next) {
     // product id needs to be sent to front end
     UserOrders.findOne({
         where: req.searchObj
