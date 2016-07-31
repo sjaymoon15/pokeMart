@@ -11,31 +11,33 @@ var Session = db.model('Session');
 
 
 router.use(function (req, res, next) {
+    var findOrUpdateUser = function (cart) {
+        if (!cart) {
+            return UserOrders.findByUser(req.user.id)
+        } else {
+            return cart.updateUser(req.user.id);
+        }
+    }
+
+    var createCartOrUpdateSess = function (cart) {
+        if (!cart) return createCart(req.user.id);
+        else return cart.updateSession(req.sessionID);
+    }
+
+    var assignCartId = function (cart) {
+        req.cartId = cart.id;
+        next();
+    }
+
     if (!req.user) {
         UserOrders.findOrCreate({
             where: {sessionId: req.sessionID}
-        }).then(function (cart) {
-            req.cartId = cart[0].id;
-            next();
-        })
+        }).spread(assignCartId) // findOrCreate returns an array
     } else {
-        // check if theres a pending order
-        // check if session id match
-        // if not, update session id
         UserOrders.findBySession(req.sessionID)
-        .then(function (cart) {
-            if (!cart) {
-                return UserOrders.findByUser(req.user.id)
-            } else {
-                return cart.updateUser(req.user.id);
-            }
-        }).then(function (cart) {
-            if (!cart) return createCart(req.user.id);
-            else return cart.updateSession(req.sessionID);
-        }).then(function (cart) {
-            req.cartId = cart.id;
-            next();
-        })
+        .then(findOrUpdateUser)
+        .then(createCartOrUpdateSess)
+        .then(assignCartId)
     }
 })
 
@@ -65,7 +67,6 @@ router.post('/cart/:productId', function (req, res, next) {
     // OB/SB: hopefully this could be simplified maybe either using an association method `req.cart.createOrderDetails(...)` or a custom method
     Product.findById(req.params.productId)
     .then(function(product){
-        console.log('~~~', req.cartId)
         return product.addToOrder(req.body.quantity, req.cartId);
     }).catch(next);
 
