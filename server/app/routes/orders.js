@@ -65,6 +65,8 @@ router.post('/cart/:productId', function (req, res, next) {
     Product.findById(req.params.productId)
     .then(function(product){
         return product.addToOrder(req.body.quantity, req.cartId);
+    }).then(function (newOrder) {
+        res.send(newOrder);
     }).catch(next);
 
 
@@ -94,8 +96,8 @@ router.put('/cart/:orderDetailId', function (req, res, next) {
     OrderDetails.findById(req.params.orderDetailId)
     .then(function(orderDetail) {
         return orderDetail.update({quantity: req.body.quantity})
-    }).then(function () {
-        res.sendStatus(201)
+    }).then(function (updated) {
+        res.send(updated);
     }).catch(next);
 });
 

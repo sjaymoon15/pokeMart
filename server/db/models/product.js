@@ -43,19 +43,16 @@ module.exports = db.define('product', {
             title: this.title,
             quantity: quantity,
             productId: this.id
-        }).then(function(orderDetail){
-            currentOrder=orderDetail;
+        }).then(function(newOrder) {
             var UserOrders = db.model('userOrders');
             return UserOrders.findOne({
                 where:{
                     id: cartId
                 }
+            }).then(function(cart){
+                return newOrder.setUserOrder(cart);
             })
-            .then(function(cart){
-                return currentOrder.setUserOrder(cart);
-            })
-            .catch(console.error);
-        })
+        }).catch(console.error);
 
     }
 }
