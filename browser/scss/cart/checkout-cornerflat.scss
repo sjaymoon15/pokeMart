@@ -1,11 +1,12 @@
 @import 'color';
 
-// .shopping-cart {
-// 	margin: auto 0;
-// }
+.shooping-cart-filler {
+	width: 56px;
+}
 
 .checkout {
-	position: relative;
+	position: fixed;
+    right: 0;
 	z-index: 10;
 	display: block;
 	width: 60px;
