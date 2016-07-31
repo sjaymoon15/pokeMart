@@ -38,6 +38,8 @@ router.use(function (req, res, next) {
     }
 })
 
+
+
 // OB/SB: cart middleware? e.g. req.cart = ... followed by next()
 
 router.get('/cart', function (req, res, next) {
@@ -153,18 +155,38 @@ router.get('/fulfilled', function (req, res, next) {
     }).catch(next);
 });
 
-router.get('/cart/checkout', function(req, res, next) {
-    console.log('=================\n', req.cartId)
-    return UserOrders.findById(req.cartId)
-        .then(function(cart){
-            console.log('========================\n', cart.status)
-            return cart.update({status: 'paid'})
-        }).then(function(){
-            return UserOrders.createCart(req.user.id)
+router.use('/cart/checkout', function (req,res,next){
+    //get pending cart
+    UserOrders.findById(req.cartId)
+    .then(function(cart){
+        return OrderDetails.findAll({
+            where: {
+                userOrderId: req.cartId
+            }
+        })
+    }).then(function(orders){
+        orders.forEach(order => {
+            if (!order.checkQuantity()){
+               throw ('not enough quantity on '+ order.title)
+            }
+        })
+    }).then(function() {
+        next();
+    }).catch(next)
+    
+    
+})
 
-        }).then(function() {
-            res.sendStatus(201)
-        }).catch(next)
+router.get('/cart/checkout', function(req, res, next) {
+    return UserOrders.findById(req.cartId)
+    .then(function(cart){
+        return cart.update({status: 'paid'})
+    }).then(function(){
+        return UserOrders.createCart(req.user.id)
+
+    }).then(function() {
+        res.sendStatus(201)
+    }).catch(next)
 })
 
 
