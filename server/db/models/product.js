@@ -36,25 +36,31 @@ module.exports = db.define('product', {
 },{
     instanceMethods:{
         addToOrder: function (quantity=1,cartId){
-        var currentOrder;
-        var OrderDetails = db.model('orderDetails');
-        return OrderDetails.create({
-            price: this.price,
-            title: this.title,
-            quantity: quantity,
-            productId: this.id
-        }).then(function(newOrder) {
-            var UserOrders = db.model('userOrders');
-            return UserOrders.findOne({
-                where:{
-                    id: cartId
-                }
-            }).then(function(cart){
-                return newOrder.setUserOrder(cart);
-            })
-        }).catch(console.error);
+            var currentOrder;
+            var OrderDetails = db.model('orderDetails');
+            return OrderDetails.create({
+                price: this.price,
+                title: this.title,
+                quantity: quantity,
+                productId: this.id
+            }).then(function(newOrder) {
+                var UserOrders = db.model('userOrders');
+                return UserOrders.findOne({
+                    where:{
+                        id: cartId
+                    }
+                }).then(function(cart){
+                    return newOrder.setUserOrder(cart);
+                })
+            }).catch(console.error);
 
+        },
+        checkForQuantity: function(desiredQuantity){
+            if (desiredQuantity > this.quantity){
+                return false;
+            }
+            return true
+        }
     }
-}
 });
 

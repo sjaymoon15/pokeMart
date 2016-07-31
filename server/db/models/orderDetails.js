@@ -44,17 +44,18 @@ var OrderDetails = db.define('orderDetails', { // OB/SB: singular isntead of plu
                 orderDetails.setProduct(product.id);
             })
         }
+    },
+    instanceMethods: {
+        checkQuantity: function() {
+            let orderQuant = this.quantity;
+            Product.findById(this.productId)
+                .then(function(product){
+                    return orderQuant <= product.quantity;
+                })
+                .catch(console.error)
+        }
     }
-    // hooks: {
-    //     // OB/SB: might as well be a class method, i.e. `.fromProductTitle(...)`
-    //     afterCreate: function (orderDetails) {
-    //         Product.findOne({
-    //             where: {title: orderDetails.title}
-    //         }).then(function (product) {
-    //             orderDetails.setProduct(product.id);
-    //         })
-    //     }
-    // }
+    
 });
 
 module.exports = OrderDetails;
