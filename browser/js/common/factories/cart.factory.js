@@ -26,9 +26,7 @@ app.factory('CartFactory', function ($http, $log) {
     }
 
     CartFactory.checkForDuplicates = function(productId){
-        console.log(this.cachedCart)
         var duplicate = this.cachedCart.filter(item => item.productId === productId);
-        console.log(duplicate);
         return (duplicate.length) ? duplicate[0] : null;
     }
 
@@ -46,26 +44,6 @@ app.factory('CartFactory', function ($http, $log) {
             })
         }
     }
-
-        // return CartFactory.checkForDuplicates(productId)
-        // .then(function(resultObj) {
-        //     if (resultObj.found){
-        //         console.log(resultObj.orderId)
-        //         return CartFactory.changeQuantity(resultObj.orderId, resultObj.quantity, 'add' );
-        //     }
-
-        //     else {
-
-        //     return $http.post(baseUrl + productId, {quantity: quantity})
-        //     .then(function (response) {
-        //         var item = response.data;
-        //         CartFactory.cachedCart.push(item);
-        //         return item;
-        //         })
-        //      }
-        // }).catch($log)
-
-        // }
 
     CartFactory.removeFromCart=function(orderId){
         return $http.delete(baseUrl+orderId)
