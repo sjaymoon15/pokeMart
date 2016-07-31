@@ -13,6 +13,16 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
                 { label: 'Members Only', state: 'membersOnly', auth: true }
             ];
 
+            scope.toggleLogo = function(){
+                $('.pokeball i.great').css('background-position', '-297px -306px')
+
+            }         
+
+            scope.untoggleLogo = function() {
+                $('.pokeball i.great').css('background-position', '-293px -9px')
+
+            }   
+
             scope.user = null;
 
             scope.isLoggedIn = function () {
