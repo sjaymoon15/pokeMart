@@ -155,27 +155,27 @@ router.get('/fulfilled', function (req, res, next) {
     }).catch(next);
 });
 
-router.use('/cart/checkout', function (req,res,next){
-    //get pending cart
-    UserOrders.findById(req.cartId)
-    .then(function(cart){
-        return OrderDetails.findAll({
-            where: {
-                userOrderId: req.cartId
-            }
-        })
-    }).then(function(orders){
-        orders.forEach(order => {
-            if (!order.checkQuantity()){
-               throw ('not enough quantity on '+ order.title)
-            }
-        })
-    }).then(function() {
-        next();
-    }).catch(next)
+// router.use('/cart/checkout', function (req,res,next){
+//     //get pending cart
+//     UserOrders.findById(req.cartId)
+//     .then(function(cart){
+//         return OrderDetails.findAll({
+//             where: {
+//                 userOrderId: req.cartId
+//             }
+//         })
+//     }).then(function(orders){
+//         orders.forEach(order => {
+//             if (!order.checkQuantity()){
+//                throw ('not enough quantity on '+ order.title)
+//             }
+//         })
+//     }).then(function() {
+//         next();
+//     }).catch(next)
     
     
-})
+// })
 
 router.get('/cart/checkout', function(req, res, next) {
     return UserOrders.findById(req.cartId)

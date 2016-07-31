@@ -50,6 +50,7 @@ var OrderDetails = db.define('orderDetails', { // OB/SB: singular isntead of plu
             let orderQuant = this.quantity;
             Product.findById(this.productId)
                 .then(function(product){
+                    console.log(orderQuant, product.quantity)
                     return orderQuant <= product.quantity;
                 })
                 .catch(console.error)
