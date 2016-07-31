@@ -10,7 +10,7 @@
       </div>
       <div>
         <h4>${{product.price}}</h4>
-        <h6>Quantity<select ng-model ='quantity' material-select>
+        <h6>Quantity<select ng-model ='quantity' ng-init="quantity='1'" material-select>
           <option ng-repeat = 'i in arrayMaker(product.quantity)' value ='{{i}}'>{{i}}</option>
 
         </select></h6>
