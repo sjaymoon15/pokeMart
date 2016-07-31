@@ -7,21 +7,19 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
         link: function (scope) {
 
             scope.items = [
-                { label: 'Home', state: 'home' },
-                { label: 'About', state: 'about' },
                 { label: 'Shop', state: 'store' },
-                { label: 'Members Only', state: 'membersOnly', auth: true }
+                // { label: 'Members Only', state: 'membersOnly', auth: true }
             ];
 
             scope.toggleLogo = function(){
                 $('.pokeball i.great').css('background-position', '-297px -306px')
 
-            }         
+            }
 
             scope.untoggleLogo = function() {
                 $('.pokeball i.great').css('background-position', '-293px -9px')
 
-            }   
+            }
 
             scope.user = null;
 

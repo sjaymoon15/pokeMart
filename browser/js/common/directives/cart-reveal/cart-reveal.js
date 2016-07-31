@@ -6,17 +6,17 @@ app.directive('shoppingCart', function(CartFactory) {
             active: '='
         },
         link: function (scope, elem, attr) {
-            scope.class = 'checkout';
+            scope.showCart = 'checkout';
             CartFactory.fetchAllFromCart().then(function (cart) {
                 scope.cart = cart;
             })
 
             scope.revealCart = function () {
-                scope.class = 'checkout checkout--active';
+                scope.showCart = 'checkout checkout--active';
             };
             scope.hideCart = function () {
                 scope.active = 'inactive';
-                scope.class = 'checkout'
+                scope.showCart = 'checkout';
             }
         }
     }
