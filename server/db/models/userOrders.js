@@ -29,7 +29,7 @@ module.exports = db.define('userOrders', { // OB/SB: maybe could just be called 
         },
         findByUser: function (userId) {
             return this.findOne({
-                where: {userId: userId}
+                where: {userId: userId, status: 'pending'}
             })
         }
     },

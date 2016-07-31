@@ -4,7 +4,9 @@
 
     		<div style = 'border: 1px solid black'>
 
-    			<img src='{{cart.photoUrl}}'>
+    			<div style = 'float:left'>
+                <img src = 'http://pokeapi.co/media/img/{{cart.productId}}.png'/>
+                </div>
     			<p>Title: {{cart.title}}</p>
     			<p>Category: {{cart.category}}</p>
     			<button ng-click="changeQuantity(cart.id,cart.quantity,'subtract')">-</button>
@@ -12,11 +14,14 @@
     			<button ng-click="changeQuantity(cart.id,cart.quantity,'add')">+</button>
     			<p>Price: {{cart.price * cart.quantity}}</p>
     			<button ng-click="remove(cart.id)">Remove from Cart</button>
+                
 
-
-    		</div>
+    		      </div>
+                
     	</div>
 </div>
+
+<p><a ui-sref='checkout'><button>Checkout</button></a></p>
 
 
 

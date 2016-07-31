@@ -17,7 +17,7 @@ router.use(function (req, res, next) {
     }
 
     var createCartOrUpdateSess = function (cart) {
-        if (!cart) return createCart(req.user.id);
+        if (!cart) return UserOrders.createCart(req.user.id);
         else return cart.updateSession(req.sessionID);
     }
 
@@ -31,7 +31,7 @@ router.use(function (req, res, next) {
             where: {sessionId: req.sessionID}
         }).spread(assignCartId) // findOrCreate returns an array
     } else {
-        UserOrders.findBySession(req.sessionID)
+        UserOrders.findByUser(req.user.id)
         .then(findOrUpdateUser)
         .then(createCartOrUpdateSess)
         .then(assignCartId)
@@ -59,7 +59,7 @@ router.get('/cart', function (req, res, next) {
  //    quantity
  // }
 
-router.post('/cart/:productId', function (req, res, next) {
+ router.post('/cart/:productId', function (req, res, next) {
 
     // OB/SB: hopefully this could be simplified maybe either using an association method `req.cart.createOrderDetails(...)` or a custom method
     Product.findById(req.params.productId)
@@ -115,23 +115,23 @@ router.get('/paid', function (req, res, next) {
     });
     */
     var dates = [];
-   UserOrders.findAll({
-       where: {
+    UserOrders.findAll({
+     where: {
            userId: req.user.id, // from session/auth
            status: 'paid'
        }
    }).then(function (userOrders) {
-       userOrders.forEach(order => dates.push(order.updatedAt))
-       return userOrders.map(userOrder => {
-           return OrderDetails.findAll({
-               where: {userOrderId: userOrder.id}
-           })
-       });
-   }).then(function (itemPromises) {
-       return Promise.all(itemPromises);
-   }).then(function (paidItemsArr) {
-       res.send({paidItems: paidItemsArr, date:dates})
-   }).catch(next);
+     userOrders.forEach(order => dates.push(order.updatedAt))
+     return userOrders.map(userOrder => {
+         return OrderDetails.findAll({
+             where: {userOrderId: userOrder.id}
+         })
+     });
+ }).then(function (itemPromises) {
+     return Promise.all(itemPromises);
+ }).then(function (paidItemsArr) {
+     res.send({paidItems: paidItemsArr, date:dates})
+ }).catch(next);
 });
 
 router.get('/fulfilled', function (req, res, next) {
@@ -153,23 +153,18 @@ router.get('/fulfilled', function (req, res, next) {
     }).catch(next);
 });
 
-router.get('/checkout', function(req, res, next) {
-    return UserOrders.findOne({
-            where: {
-                userId: req.userId,
-                status: 'pending'
-            }
-        }).then(function(cart){
+router.get('/cart/checkout', function(req, res, next) {
+    console.log('=================\n', req.cartId)
+    return UserOrders.findById(req.cartId)
+        .then(function(cart){
+            console.log('========================\n', cart.status)
             return cart.update({status: 'paid'})
         }).then(function(){
-            return UserOrders.create({})
-            .then(function (newCart){
-                return newCart.setUser(req.userId)
-            })
+            return UserOrders.createCart(req.user.id)
 
         }).then(function() {
             res.sendStatus(201)
-        })
+        }).catch(next)
 })
 
 
