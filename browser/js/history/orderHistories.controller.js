@@ -4,7 +4,7 @@ app.controller('OrderHistoriesCtrl', function ($log, $scope, OrderHistoriesFacto
     .then(function (userOrdersArr) {
 
         userOrdersArr.paidItems.forEach(function(arr, i){
-            arr.date = userOrdersArr.date[i].substr(0,10);
+            arr.date = new Date(userOrdersArr.date[i]).toString();
         })
         
         $scope.userOrders = userOrdersArr.paidItems;
