@@ -1,4 +1,4 @@
-app.controller('ProductCtrl', function ($rootScope, $scope, theProduct, allReviews, ProductFactory, CartFactory) {
+app.controller('ProductCtrl', function ($scope, theProduct, allReviews, ProductFactory, CartFactory) {
     // product
     $scope.newReview = {};
     $scope.product = theProduct;
@@ -10,8 +10,8 @@ app.controller('ProductCtrl', function ($rootScope, $scope, theProduct, allRevie
     }
     // add to cart
     $scope.addToCart = function () {
-        return CartFactory.addToCart($scope.product.id, $scope.quantity).then(function () {
-        })
+        CartFactory.addToCart($scope.product.id, $scope.quantity)
+
     };
 
     $scope.arrayMaker = function (num){

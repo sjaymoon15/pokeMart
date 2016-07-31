@@ -1,9 +1,8 @@
-app.directive('shoppingCart', function(CartFactory, $rootScope) {
+app.directive('shoppingCart', function(CartFactory) {
     return {
         restrict: 'E',
         templateUrl: 'js/common/directives/cart-reveal/cart-reveal.html',
         scope: {
-            // cart: '=',
             active: '='
         },
         link: function (scope, elem, attr) {
@@ -19,12 +18,6 @@ app.directive('shoppingCart', function(CartFactory, $rootScope) {
                 scope.active = 'inactive';
                 scope.class = 'checkout'
             }
-            $rootScope.$on('cartEvent', function (events, args) {
-                console.log('add to cart')
-                CartFactory.fetchAllFromCart().then(function (cart) {
-                    scope.cart = cart;
-                })
-            })
         }
     }
 })

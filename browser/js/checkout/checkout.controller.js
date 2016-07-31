@@ -17,5 +17,6 @@ app.controller('CheckoutCtrl', function ($scope, CartFactory) {
         $scope.total = totalPriceEach.reduce( (prev, curr) => prev + curr );
     })
 
+    $scope.checkout = CartFactory.checkout;
     
 });
