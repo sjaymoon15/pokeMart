@@ -7,9 +7,6 @@ var Product = require('../../db/models/product');
 var User = require('../../db/models/product');
 var db = require('../../db/_db');
 
-var Session = db.model('Session');
-
-
 router.use(function (req, res, next) {
     var findOrUpdateUser = function (cart) {
         if (!cart) {
@@ -77,15 +74,11 @@ router.post('/cart/:productId', function (req, res, next) {
 
 router.delete('/cart/:orderId', function (req, res, next) {
     // product id needs to be sent to front end
-    UserOrders.findOne({
-        where: req.searchObj
-    }).then(function (userOrder) {
-        return OrderDetails.destroy({
-            where: {
-                userOrderId: userOrder.id,
-                id: req.params.orderId
-            }
-        })
+    OrderDetails.destroy({
+        where: {
+            userOrderId: req.cartId,
+            id: req.params.orderId
+        }
     }).then(function () {
         res.status(204).end();
     }).catch(next);

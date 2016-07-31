@@ -5,7 +5,7 @@
  		controller:'CartCtrl',
  		resolve:{
  			cartContent:function(CartFactory){
- 				
+
  				return CartFactory.fetchAllFromCart();
 
  			}

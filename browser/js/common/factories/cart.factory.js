@@ -1,15 +1,16 @@
 app.factory('CartFactory', function ($http, $log) {
 
-    var cachedCart = [];
+
     var baseUrl = '/api/orders/cart/'
     var CartFactory = {};
+    CartFactory.cachedCart = [];
     var getData = res => res.data;
 
     CartFactory.fetchAllFromCart = function () {
         return $http.get(baseUrl)
         .then(function (response) {
-            angular.copy(response.data, cachedCart)
-            return cachedCart.sort(function (a,b){
+            angular.copy(response.data, CartFactory.cachedCart)
+            return CartFactory.cachedCart.sort(function (a,b){
                 return b.id - a.id
             });
         })
@@ -19,8 +20,8 @@ app.factory('CartFactory', function ($http, $log) {
     CartFactory.deleteItem = function(productId){
         return $http.delete(baseUrl + productId)
         .then(function(response){
-            angular.copy(response.data, cachedCart)
-            return cachedCart;
+            angular.copy(response.data, CartFactory.cachedCart)
+            return CartFactory.cachedCart;
         })
     }
 
@@ -58,21 +59,21 @@ app.factory('CartFactory', function ($http, $log) {
             return $http.post(baseUrl + productId, {quantity: quantity})
             .then(function (response) {
                 var item = response.data;
-                cachedCart.push(item);
+                CartFactory.cachedCart.push(item);
                 return item;
                 })
              }
         }).catch($log)
-        
+
         }
 
     CartFactory.removeFromCart=function(orderId){
         return $http.delete(baseUrl+orderId)
         .success(function(){
-         CartFactory.removeFromFrontEndCache(orderId) 
-     })
+            CartFactory.removeFromFrontEndCache(orderId)
+         })
         .then(function() {
-            return cachedCart;
+            return CartFactory.cachedCart;
         })
         .catch($log);
     }
@@ -99,15 +100,15 @@ app.factory('CartFactory', function ($http, $log) {
 
     CartFactory.removeFromFrontEndCache = function(orderId){
         var index;
-        cachedCart.forEach(function(order,i){
+        CartFactory.cachedCart.forEach(function(order,i){
             if (order.id === orderId) index = i;
         })
 
-        cachedCart.splice(index,1);        
+        CartFactory.cachedCart.splice(index,1);
     }
 
     CartFactory.changeFrontEndCacheQuantity = function (orderId,quantity) {
-        cachedCart.forEach(function(order){
+        CartFactory.cachedCart.forEach(function(order){
             if (order.id === orderId) {
                 order.quantity = quantity;
             }

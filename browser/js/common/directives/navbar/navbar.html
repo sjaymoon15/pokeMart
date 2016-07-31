@@ -10,6 +10,9 @@
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </span>
         <!-- </ul> -->
+        <div class="shopping-cart">
+            <shopping-cart active='inactive' cart="cart"></shopping-cart>
+        </div>
         <button ng-show="!user" ui-sref="login" class="btn login-button">Login</button>
         <span ng-show="user" class="welcome">
             <span>Welcome, {{ user.email }}!</span>
