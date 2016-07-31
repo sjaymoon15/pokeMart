@@ -25,47 +25,47 @@ app.factory('CartFactory', function ($http, $log) {
         })
     }
 
-    CartFactory.checkForDuplicates=function(productId){
-        return $http.get(baseUrl)
-        .then(function(response){
-            var result;
-
-            response.data.forEach(function(order){
-                if (order.productId==productId){
-                    console.log('here', order, productId)
-                    result = {
-                        found: true,
-                        orderId : order.id,
-                        quantity: order.quantity
-                    };
-                }
-            })
-             return result || {found: false}
-
-        }).catch($log);
+    CartFactory.checkForDuplicates = function(productId){
+        console.log(this.cachedCart)
+        var duplicate = this.cachedCart.filter(item => item.productId === productId);
+        console.log(duplicate);
+        return (duplicate.length) ? duplicate[0] : null;
     }
 
     CartFactory.addToCart = function (productId, quantity) {
-        return CartFactory.checkForDuplicates(productId)
-        .then(function(resultObj){
-            console.log(resultObj)
-            if (resultObj.found){
-                console.log(resultObj.orderId)
-                return CartFactory.changeQuantity(resultObj.orderId, resultObj.quantity, 'add' );
-            }
-
-            else {
-
+        var duplicate = CartFactory.checkForDuplicates(productId);
+        if (duplicate) {
+            return CartFactory
+            .changeQuantity(duplicate.id, duplicate.quantity, 'add' );
+        } else {
             return $http.post(baseUrl + productId, {quantity: quantity})
             .then(function (response) {
                 var item = response.data;
                 CartFactory.cachedCart.push(item);
                 return item;
-                })
-             }
-        }).catch($log)
-
+            })
         }
+    }
+
+        // return CartFactory.checkForDuplicates(productId)
+        // .then(function(resultObj) {
+        //     if (resultObj.found){
+        //         console.log(resultObj.orderId)
+        //         return CartFactory.changeQuantity(resultObj.orderId, resultObj.quantity, 'add' );
+        //     }
+
+        //     else {
+
+        //     return $http.post(baseUrl + productId, {quantity: quantity})
+        //     .then(function (response) {
+        //         var item = response.data;
+        //         CartFactory.cachedCart.push(item);
+        //         return item;
+        //         })
+        //      }
+        // }).catch($log)
+
+        // }
 
     CartFactory.removeFromCart=function(orderId){
         return $http.delete(baseUrl+orderId)
@@ -88,6 +88,7 @@ app.factory('CartFactory', function ($http, $log) {
             runFunc=true;
         }
         if (runFunc===true) {
+            console.log('update quan')
             return $http.put(baseUrl + orderId, {quantity:quantity})
             .then(function(){
                 CartFactory.changeFrontEndCacheQuantity(orderId,quantity);
