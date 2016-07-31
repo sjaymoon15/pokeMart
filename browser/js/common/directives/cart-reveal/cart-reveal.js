@@ -3,7 +3,7 @@ app.directive('shoppingCart', function(CartFactory) {
         restrict: 'E',
         templateUrl: 'js/common/directives/cart-reveal/cart-reveal.html',
         scope: {
-            cart: '=',
+            // cart: '=',
             active: '='
         },
         link: function (scope, elem, attr) {
