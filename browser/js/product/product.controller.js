@@ -2,7 +2,6 @@ app.controller('ProductCtrl', function ($rootScope, $scope, theProduct, allRevie
     // product
     $scope.newReview = {};
     $scope.product = theProduct;
-    $scope.quantity = 1;
     $scope.reviews = allReviews;
     // review
     $scope.submitReview = function () {
@@ -12,9 +11,16 @@ app.controller('ProductCtrl', function ($rootScope, $scope, theProduct, allRevie
     // add to cart
     $scope.addToCart = function () {
         return CartFactory.addToCart($scope.product.id, $scope.quantity).then(function () {
-            $rootScope.$broadcast('cartEvent');
         })
     };
+
+    $scope.arrayMaker = function (num){
+        var arr = [];
+        for (var i = 1; i <=num; i ++){
+            arr.push(i)
+        }
+        return arr;
+    }
 
 })
 
