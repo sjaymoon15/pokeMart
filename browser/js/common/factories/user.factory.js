@@ -8,7 +8,6 @@ app.factory('UserFactory', function ($http) {
     UserFactory.fetchAll = function () {
         return $http.get(baseUrl).then(getData)
                 .then(function (users) {
-                    console.log('in factory', users)
                     angular.copy(users, cachedUsers); // why angular copy alters array order!!!!!!!
                     cachedUsers.sort(function (a, b) {
                         return a.id - b.id;

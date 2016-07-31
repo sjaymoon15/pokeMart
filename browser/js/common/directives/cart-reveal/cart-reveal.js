@@ -1,4 +1,4 @@
-app.directive('shoppingCart', function(CartFactory) {
+app.directive('shoppingCart', function(CartFactory, $rootScope) {
     return {
         restrict: 'E',
         templateUrl: 'js/common/directives/cart-reveal/cart-reveal.html',
@@ -11,6 +11,7 @@ app.directive('shoppingCart', function(CartFactory) {
             CartFactory.fetchAllFromCart().then(function (cart) {
                 scope.cart = cart;
             })
+
             scope.revealCart = function () {
                 scope.class = 'checkout checkout--active';
             };
@@ -19,6 +20,7 @@ app.directive('shoppingCart', function(CartFactory) {
                 scope.class = 'checkout'
             }
             $rootScope.$on('cartEvent', function (events, args) {
+                console.log('add to cart')
                 CartFactory.fetchAllFromCart().then(function (cart) {
                     scope.cart = cart;
                 })
