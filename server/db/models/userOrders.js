@@ -15,7 +15,32 @@ module.exports = db.define('userOrders', { // OB/SB: maybe could just be called 
     } // maybe in local storage
 }, {
     //class methods
-    //instance methods
+    classMethods: {
+        createCart: function(userId) {
+            return this.create({})
+            .then(function (newCart){
+                return newCart.setUser(userId);
+            })
+        },
+        findBySession: function (sessionId) {
+            return this.findOne({
+                where: {sessionId: sessionId}
+            })
+        },
+        findByUser: function (userId) {
+            return this.findOne({
+                where: {userId: userId}
+            })
+        }
+    },
+    instanceMethods: {
+        updateUser: function (userId) {
+            return this.setUser(userId);
+        },
+        updateSession: function (sessionId) {
+            return this.update({sessionId: sessionId});
+        }
+    }
     // onUpdate status, go update orderDetails
 });
 

@@ -5,33 +5,48 @@ var UserOrders = require('../../db/models/userOrders');
 var OrderDetails = require('../../db/models/orderDetails');
 var Product = require('../../db/models/product');
 var User = require('../../db/models/product');
+var db = require('../../db/_db');
 
-// req.session.orderId =
+var Session = db.model('Session');
+
+
 router.use(function (req, res, next) {
-    req.userId = (!req.user) ?
-                    req.session.orderId : 
-                    req.user.id;
-    next();
+    if (!req.user) {
+        UserOrders.findOrCreate({
+            where: {sessionId: req.sessionID}
+        }).then(function (cart) {
+            req.cartId = cart[0].id;
+            next();
+        })
+    } else {
+        // check if theres a pending order
+        // check if session id match
+        // if not, update session id
+        UserOrders.findBySession(req.sessionID)
+        .then(function (cart) {
+            if (!cart) {
+                return UserOrders.findByUser(req.user.id)
+            } else {
+                return cart.updateUser(req.user.id);
+            }
+        }).then(function (cart) {
+            if (!cart) return createCart(req.user.id);
+            else return cart.updateSession(req.sessionID);
+        }).then(function (cart) {
+            req.cartId = cart.id;
+            next();
+        })
+    }
 })
 
 // OB/SB: cart middleware? e.g. req.cart = ... followed by next()
 
 router.get('/cart', function (req, res, next) {
 
-    User.findById(req.userId)
-    .then(function(user){
-        return UserOrders.findOne({
-            where: {
-                userId: req.userId,
-                status: 'pending'
-            }
-        })
-    }).then(function(cart){
-        return OrderDetails.findAll({
-            where: {
-                userOrderId: cart.id
-            }
-        })
+    OrderDetails.findAll({
+        where: {
+            userOrderId: req.cartId
+        }
     }).then(function(orders){
         res.send(orders)
     })
@@ -48,13 +63,13 @@ router.get('/cart', function (req, res, next) {
 router.post('/cart/:productId', function (req, res, next) {
 
     // OB/SB: hopefully this could be simplified maybe either using an association method `req.cart.createOrderDetails(...)` or a custom method
-
     Product.findById(req.params.productId)
     .then(function(product){
-        return product.addToOrder(req.body.quantity, req.userId);
+        console.log('~~~', req.cartId)
+        return product.addToOrder(req.body.quantity, req.cartId);
     }).catch(next);
 
- 
+
 });
 
 // OB/SB: /cart/:productId
@@ -153,7 +168,7 @@ router.get('/checkout', function(req, res, next) {
             .then(function (newCart){
                 return newCart.setUser(req.userId)
             })
-            
+
         }).then(function() {
             res.sendStatus(201)
         })

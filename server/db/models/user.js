@@ -63,7 +63,7 @@ google_id: {
         },
         correctPassword: function (candidatePassword) {
             return this.Model.encryptPassword(candidatePassword, this.salt) === this.password;
-        },  
+        }
     },
     classMethods: {
         generateSalt: function () {
@@ -82,14 +82,6 @@ google_id: {
                 user.salt = user.Model.generateSalt();
                 user.password = user.Model.encryptPassword(user.password, user.salt);
             }
-        },
-        afterCreate: function(user) {
-            var UserOrders = db.model('userOrders');
-            return UserOrders.create({})
-            .then(function (newCart){
-                return newCart.setUser(user)
-            }).catch(console.error)
-
         }
     }
 });
