@@ -1,4 +1,4 @@
-app.factory('CartFactory', function ($http, $log) {
+app.factory('CartFactory', function ($http, $log, $state) {
 
 
     var baseUrl = '/api/orders/cart/'
@@ -118,6 +118,7 @@ app.factory('CartFactory', function ($http, $log) {
 
     CartFactory.checkout = function(){
         return $http.get(baseUrl + 'checkout')
+        .success(function() { $state.go('orderHistories') } )
         .catch($log)
     }
 
