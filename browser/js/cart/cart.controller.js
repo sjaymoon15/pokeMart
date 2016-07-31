@@ -9,5 +9,7 @@
  	}
  	
  	$scope.changeQuantity=CartFactory.changeQuantity;
+
+  $scope.checkout = CartFactory.checkout;
  })
 

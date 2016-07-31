@@ -115,6 +115,11 @@ app.factory('CartFactory', function ($http, $log) {
         })
     }
 
+    CartFactory.checkout = function(){
+        return $http.get(baseUrl + 'checkout')
+        .catch($log)
+    }
+
     return CartFactory;
 
 });
