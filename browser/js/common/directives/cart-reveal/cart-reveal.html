@@ -1,6 +1,6 @@
 <li class="{{showCart}}">
     <a class="checkout__button" ng-click="revealCart()">
-        <i class="medium material-icons">shopping_cart</i>
+        <i class="medium material-icons" id="cart-icon">shopping_cart</i>
     </a>
     <div class="checkout__order" clickAnywhereButHere="hideCart()">
         <div class="checkout__order-inner">
@@ -15,7 +15,7 @@
                     <tr ng-repeat="item in cart"><td>{{item.title}} <span class="light-blue-text text-lighten-1">quantity: {{item.quantity}}</span></td><td>${{item.price}}</td></tr>
                 </tbody>
             </table><!-- /checkout__summary -->
-            <a class="checkout__option checkout__option--silent checkout__cancel" ng-click="hideCart()"><i class="fa fa-angle-left"></i> Continue Shopping</a>
+            <a class="checkout__option checkout__option--silent checkout__cancel" ng-click="hideCart()">Continue Shopping</a>
             <a class="checkout__option btn light-blue darken-1">Buy</a>
             <a class="checkout__close checkout__cancel" ng-click="hideCart()">x</a>
         </div><!-- /checkout__order-inner -->

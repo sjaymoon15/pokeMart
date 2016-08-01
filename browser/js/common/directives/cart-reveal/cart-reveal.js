@@ -9,8 +9,7 @@ app.directive('shoppingCart', function(CartFactory) {
             scope.showCart = 'checkout';
             CartFactory.fetchAllFromCart().then(function (cart) {
                 scope.cart = cart;
-            })
-
+            });
             scope.revealCart = function () {
                 scope.showCart = 'checkout checkout--active';
             };

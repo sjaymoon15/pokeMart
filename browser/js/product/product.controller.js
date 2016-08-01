@@ -13,7 +13,6 @@ app.controller('ProductCtrl', function ($scope, theProduct, allReviews, ProductF
         CartFactory.addToCart($scope.product.id, $scope.quantity)
 
     };
-
     $scope.arrayMaker = function (num){
         var arr = [];
         for (var i = 1; i <=num; i ++){
@@ -21,6 +20,5 @@ app.controller('ProductCtrl', function ($scope, theProduct, allReviews, ProductF
         }
         return arr;
     }
-
 })
 
