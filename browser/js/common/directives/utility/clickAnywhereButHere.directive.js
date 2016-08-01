@@ -1,46 +1,30 @@
-app.factory('clickAnywhereButHereService', function($document){
-  var tracker = [];
 
-  return function($scope, expr) {
-    var i, t, len;
-    for(i = 0, len = tracker.length; i < len; i++) {
-      t = tracker[i];
-      if(t.expr === expr && t.scope === $scope) {
-        return t;
-      }
-    }
-    var handler = function() {
-      $scope.$apply(expr);
-    };
-
-    $document.on('click', handler);
-
-    // IMPORTANT! Tear down this event handler when the scope is destroyed.
-    $scope.$on('$destroy', function(){
-      $document.off('click', handler);
-    });
-
-    t = { scope: $scope, expr: expr };
-    tracker.push(t);
-    return t;
-  };
-});
-
-app.directive('clickAnywhereButHere', function($document, clickAnywhereButHereService){
+app.directive('clickAnywhereButHere', function($document){
   return {
-    restrict: 'A',
-    link: function(scope, elem, attr, ctrl) {
-      var handler = function(e) {
-        console.log('handling')
-        e.stopPropagation();
-      };
-      elem.on('click', handler);
+           restrict: 'A',
+           scope: {
+               clickAnywhereButHere: '&'
+           },
+           link: function (scope, el, attr) {
 
-      scope.$on('$destroy', function(){
-        elem.off('click', handler);
-      });
+               $('.logo').on('click', function(e){
+                e.stopPropagation();
+               })
 
-      clickAnywhereButHereService(scope, attr.clickAnywhereButHere);
-    }
-  };
+         
+
+               $document.on('click', function (e) {
+                if (e.target.id !== 'cart-icon' && e.target.id !== 'add-to-cart-button') {
+                   if (el !== e.target && !el[0].contains(e.target) ) {
+                    console.log(el[0].id)
+                        scope.$apply(function () {
+
+                            scope.$eval(scope.clickAnywhereButHere);
+                        });
+                    }
+                  }
+               });
+
+           }
+        }
 });
