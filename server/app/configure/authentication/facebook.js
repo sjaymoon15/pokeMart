@@ -26,7 +26,8 @@ module.exports = function (app, db) {
                     return user;
                 } else {
                     return User.create({
-                        facebook_id: profile.id
+                        facebook_id: profile.id,
+                        email: profile.id + '@fake.email'
                     });
                 }
             })
