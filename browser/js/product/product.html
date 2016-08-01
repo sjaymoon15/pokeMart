@@ -1,6 +1,6 @@
-<section>
+<section class="product-page">
   <div class="product-wrapper">
-    <div class="pokemon-img">
+    <div class="pokemon-product-img">
       <img src="{{product.imageUrl}}">
     </div>
     <div class="product-info">
@@ -12,10 +12,8 @@
         <h4>${{product.price}}</h4>
         <h6>Quantity<select ng-model ='quantity' ng-init="quantity='1'" material-select>
           <option ng-repeat = 'i in arrayMaker(product.quantity)' value ='{{i}}'>{{i}}</option>
-
         </select></h6>
       </div>
-      <button id="add-to-cart-btn" ng-click="addToCart()">Add To Cart</button>
     </div>
   </div>
 
@@ -27,7 +25,7 @@
     </div>
   </div>
 
-  <div class="review-form-wrapper">
+  <div class="review-form-wrapper" ng-hide="true">
     <form name="reviewForm" ng-submit="submitReview()">
       <!-- <div ng-messages="reviewForm.subject.$error" ng-hide="reviewForm.subject.$pristine" role="alert">
         <div ng-message="required" class="alert alert-warning">Please enter a title</div>
@@ -51,3 +49,5 @@
 
 
 </section>
+
+<a class="add-to-cart-btn btn col s5" ng-click="addToCart()">Add To Cart</a>
