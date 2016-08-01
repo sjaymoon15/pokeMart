@@ -14,6 +14,7 @@ app.directive('shoppingCart', function(CartFactory) {
                 scope.showCart = 'checkout checkout--active';
             };
             scope.hideCart = function () {
+                
                 scope.active = 'inactive';
                 scope.showCart = 'checkout';
             }
