@@ -12,7 +12,7 @@
     			<button ng-click="changeQuantity(cart.id,cart.quantity,'subtract')">-</button>
     			Quantity {{cart.quantity}}
     			<button ng-click="changeQuantity(cart.id,cart.quantity,'add')">+</button>
-    			<p>Price: {{cart.price * cart.quantity}}</p>
+    			<p>Price: ${{cart.price * cart.quantity}}</p>
     			<button ng-click="remove(cart.id)">Remove from Cart</button>
                 
 
@@ -21,6 +21,7 @@
     	</div>
 </div>
 
+<div>Total: $ {{total()}}</div>
 <p><a ui-sref='checkout'><button>Checkout</button></a></p>
 
 
