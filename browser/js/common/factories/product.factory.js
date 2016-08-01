@@ -62,10 +62,6 @@ app.factory('ProductFactory', function ($http) {
                 var review = response.data;
                 cachedReviews.push(review);
                 return review;
-            }).then(function () {
-                Materialize.toast('Thank you!', 1000);
-            }).catch(function () {
-                Materialize.toast('Something went wrong', 1000);
             });
     }
 

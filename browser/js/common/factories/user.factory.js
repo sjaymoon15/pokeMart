@@ -16,6 +16,10 @@ app.factory('UserFactory', function ($http) {
                 })
     };
 
+    UserFactory.signup = function (signupInfo) {
+        return $http.post(baseUrl, signupInfo).then(getData);
+    },
+
     UserFactory.updateUser = function (id, data) {
         return $http.put(baseUrl + id, data)
                 .then(getData)

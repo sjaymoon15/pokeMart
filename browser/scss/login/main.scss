@@ -1,4 +1,27 @@
-#login-form {
-  width: 60%;
-  margin: 0 auto;
+@import '../color';
+
+.login-wrapper, .signup-wrapper {
+    margin-top: 50px;
 }
+
+.login-btn-group, .signup-btn-group {
+    width: 100%;
+}
+
+.btn-social {
+    width: 100%;
+}
+
+.btn-google {
+    background-color: #f44336;
+}
+
+.btn-twitter {
+    background-color: #42a5f5;
+}
+
+.btn-github {
+    background-color: black;
+}
+
+
