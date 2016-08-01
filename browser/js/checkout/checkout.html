@@ -1,12 +1,13 @@
+<div class="row">
+	<div class="checkout-container red lighten-5 card col l4 m6 s12" ng-repeat="item in items">
+			<img src = 'http://pokeapi.co/media/img/{{item.productId}}.png'/>
+	    <h6>Item: {{item.title}}</h6>
+	    <h6>Price: ${{item.price}}</h6>
+	    <h6>Quantity: {{item.quantity}}</h6>
+	</div>
+</div>			
 
-<div ng-repeat="item in items">
-		<img src="{{item.imageUrl}}">
-    <h6>Item: {{item.title}}</h6>
-    <h6>Price: ${{item.price}}</h6>
-    <h6>Quantity: {{item.quantity}}</h6>
-   	<div>_____________(prettify this later)__________________</div>
-</div>
-		<div>Total: ${{total}}</div>
+		<div class="card">Total: ${{total}}</div>
 
     <a ui-sref="cart" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Go Back To Cart</a>
 
