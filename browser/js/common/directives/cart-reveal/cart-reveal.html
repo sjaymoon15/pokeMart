@@ -9,7 +9,7 @@
                     <tr class="white-text"><th>Your Order</th><th>Price</th></tr>
                 </thead>
                 <tfoot>
-                    <tr><th colspan="2">Total <span class="checkout__total">$56.20</span></th></tr>
+                    <tr><th colspan="2">Total <span class="checkout__total">${{ total() }}</span></th></tr>
                 </tfoot>
                 <tbody>
                     <tr ng-repeat="item in cart"><td>{{item.title}} <span class="light-blue-text text-lighten-1">quantity: {{item.quantity}}</span></td><td>${{item.price}}</td></tr>

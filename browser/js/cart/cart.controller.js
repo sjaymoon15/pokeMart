@@ -13,7 +13,6 @@
   $scope.checkout = CartFactory.checkout;
 
   $scope.total = function() {
-    console.log(cartContent)
     var total = 0;
     cartContent.forEach(cart => total += (cart.price * cart.quantity))
     
