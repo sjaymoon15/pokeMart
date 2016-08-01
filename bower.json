@@ -2,9 +2,6 @@
   "name": "FullstackGeneratedApp",
   "description": "A generated project at Fullstack Academy",
   "main": "server/start.js",
-  "authors": [
-    "Yuriy Ivanyuk <ivanyyuk@gmail.com>"
-  ],
   "license": "MIT",
   "homepage": "https://github.com/sjaymoon15/pokeMart",
   "ignore": [
@@ -16,6 +13,7 @@
   ],
   "dependencies": {
     "angular-input-stars-directive": "angular-input-stars#^1.6.0",
+    "font-awesome": "^4.6.3",
     "angular-ui-router-styles": "^1.1.0"
   }
 }

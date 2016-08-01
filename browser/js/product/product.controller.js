@@ -8,6 +8,7 @@ app.controller('ProductCtrl', function ($scope, theProduct, allReviews, ProductF
         $scope.newReview.productId = $scope.product.id;
         ProductFactory.createReview($scope.product.id, $scope.newReview);
     }
+    $scope.rating = 5;
     // add to cart
     $scope.addToCart = function () {
         CartFactory.addToCart($scope.product.id, $scope.quantity)

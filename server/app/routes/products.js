@@ -2,7 +2,9 @@
 
 var router = require('express').Router();
 var Products=require('../../db/models/product');
+var Image = require('../../db/models/image');
 var HttpError = require('../../utils/HttpError');
+const mime = require('mime');
 
 router.get('/', function(req, res, next) {
   Products.findAll({
@@ -94,5 +96,15 @@ else {
   res.send('unauothrized')
 }
 })
+
+router.get('/:productId/image', function (req, res, next) {
+
+  Image.findById(req.params.productId).then(function (img) {
+    res.set('Content-Type', mime.lookup('png'));
+    res.send(img.data);
+  })
+
+});
+
 
 module.exports = router;

@@ -51,7 +51,7 @@ app.factory('ProductFactory', function ($http) {
     };
 
     ProductFactory.convert = function (product) {
-        product.imageUrl = '/images/' + product.id + '.png';
+        product.imageUrl = baseUrl + product.id + '/image';
         return product;
     };
 

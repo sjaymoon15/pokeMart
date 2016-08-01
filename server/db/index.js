@@ -7,6 +7,7 @@ var Product = require('./models/product');
 var Review = require('./models/review');
 var UserOrders = require('./models/userOrders');
 var OrderDetails = require('./models/orderDetails');
+var Image = require('./models/image')
 
 UserOrders.belongsTo(User)
 
