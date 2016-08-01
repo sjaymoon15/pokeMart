@@ -11,5 +11,12 @@
  	$scope.changeQuantity=CartFactory.changeQuantity;
 
   $scope.checkout = CartFactory.checkout;
+
+  $scope.total = function() {
+    var total = 0;
+    cartContent.forEach(cart => total += (cart.price * cart.quantity))
+    
+    return total;
+  }
  })
 
