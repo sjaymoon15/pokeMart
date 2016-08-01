@@ -12,9 +12,9 @@ module.exports = {
     "callbackURL": "INSERT_FACEBOOK_CALLBACK_HERE"
   },
   "GOOGLE": {
-    "clientID": "INSERT_GOOGLE_CLIENTID_HERE",
-    "clientSecret": "INSERT_GOOGLE_CLIENT_SECRET_HERE",
-    "callbackURL": "INSERT_GOOGLE_CALLBACK_HERE"
+    "clientID": "993297288033-ivgp3pftq448c8commubrrosrh1ndkor.apps.googleusercontent.com",
+    "clientSecret": "hIUsAssL9_jftLyGqvGZV7KX",
+    "callbackURL": "http://localhost:1337/auth/google/callback"
   },
   "LOGGING": true
 };

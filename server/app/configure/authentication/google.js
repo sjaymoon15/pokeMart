@@ -16,7 +16,8 @@ module.exports = function (app, db) {
     };
 
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
-
+        // profile is a json object, don't trust console.log(profile)...
+        // stringify it first, is there another way????
         User.findOne({
                 where: {
                     google_id: profile.id
@@ -27,7 +28,10 @@ module.exports = function (app, db) {
                     return user;
                 } else {
                     return User.create({
-                        google_id: profile.id
+                        google_id: profile.id,
+                        email: (profile.emails[0].value) ? profile.emails[0].value : profile.displayName + '@fake.com',
+                        firstName: profile.name.givenName,
+                        lastName: profile.name.familyName
                     });
                 }
             })

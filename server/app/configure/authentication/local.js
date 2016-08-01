@@ -28,6 +28,27 @@ module.exports = function (app, db) {
 
     passport.use(new LocalStrategy({usernameField: 'email', passwordField: 'password'}, strategyFn));
 
+    app.post('/signup', function(req, res, next) {
+        User.findOne({
+            where: {
+              email: req.body.email // OB/SB: alternative: set field to be unique in the model
+            }
+        }).then(function(userOrNull){
+            if (userOrNull){
+              res.send('email exists already')
+            } else{
+              User.create(req.body)
+              .then(function(user) {
+                req.login(user, function (err) {
+                    if (err) console.log(err);
+                    res.redirect('/');
+                })
+              })
+            }
+        })
+    });
+
+
     // A POST /login route is created to handle login.
     app.post('/login', function (req, res, next) {
 
@@ -57,5 +78,12 @@ module.exports = function (app, db) {
         passport.authenticate('local', authCb)(req, res, next);
 
     });
+
+    // app.use('/auth/google', require('./google'));
+
+    // router.use('/twitter', require('./twitter.oauth'));
+
+    // router.use('/github', require('./github.oauth'));
+
 
 };
