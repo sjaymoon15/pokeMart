@@ -8,9 +8,17 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('SignupCtrl', function ($scope, UserFactory) {
+app.controller('SignupCtrl', function ($scope, AuthFactory, $state) {
     $scope.signup = {};
     $scope.sendSignup = function (signupInfo) {
-        UserFactory.signup(signupInfo);
+        AuthFactory.signup(signupInfo)
+        .then(function (response) {
+            if (response === 'email exists already') {
+                Materialize.toast('User already exists', 2000);
+            } else {
+                $state.go('store');
+            }
+        })
     }
+    $scope.googleSignup = AuthFactory.googleSignup;
 });
