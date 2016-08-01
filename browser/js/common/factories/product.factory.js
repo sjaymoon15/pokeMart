@@ -34,7 +34,7 @@ app.factory('ProductFactory', function ($http) {
     }
 
     ProductFactory.deleteProduct = function (id) {
-        return $http.delete(baseUrl + id).success(function() {
+        return $http.delete(baseUrl + id).success(function() { //JA-SB: Use .then
             Materialize.toast('Deleted', 1000);
             var deletedInd = cachedProducts.findIndex(function (product) {
                 return product.id === id;
@@ -55,6 +55,7 @@ app.factory('ProductFactory', function ($http) {
         return product;
     };
 
+    //JA-SB: Consider creating a makeHttpPost function to dry out your code.
     ProductFactory.createReview = function (productId, data) {
         return $http.post('/api/reviews/' + productId, data)
             .then(getData); // add a cache for reviews?

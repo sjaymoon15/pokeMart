@@ -4,7 +4,7 @@ app.directive('userEntry', function (UserFactory) {
         templateUrl: 'js/common/directives/user-entry/user-entry.html',
         scope: {
             user: '=',
-            ngModel: '='
+            ngModel: '=' //JA-SB: Same as product-card.directive.js
         },
         link: function (scope, elem, attr) {
             scope.update = 'Update';

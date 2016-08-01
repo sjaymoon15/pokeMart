@@ -13,7 +13,8 @@ app.factory('CartFactory', function ($http, $log, $state) {
                 return b.id - a.id
             });
         })
-        .catch($log);
+        .catch($log);   //JA-SB: Don't want to catch errors here. If a factory method returns a promise to another part of the
+                        //application, handle the error there. Also it's $log.error, not $log
     }
 
     CartFactory.deleteItem = function(productId){
@@ -54,14 +55,14 @@ app.factory('CartFactory', function ($http, $log, $state) {
         .then(function() {
             return CartFactory.cachedCart;
         })
-        .catch($log);
+        .catch($log); //JA-SB: Don't catch here, use $log.error
     }
     CartFactory.changeQuantity=function(orderId, quantity, addOrSubtr, amount = 1){
         var runFunc=false;
         if (addOrSubtr==='add') {
             addSuccessAnimation()
             quantity+= +amount;
-            runFunc=true;
+            runFunc=true; //JA-SB: Consider refactoring to check for skipping conditions first
         }
         else if (addOrSubtr==='subtract' && quantity>1) {
             addRemoveAnimation();
@@ -99,13 +100,14 @@ app.factory('CartFactory', function ($http, $log, $state) {
     CartFactory.checkout = function(){
         return $http.get(baseUrl + 'checkout')
         .success(function() { $state.go('orderHistories') } )
-        .catch($log)
+        .catch($log) // JA-SB: Don't catch here.
     }
 
 
     var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
 
-    function addSuccessAnimation() {
+    function addSuccessAnimation() {    //JA-SB: Does not belong in a factory. Could broadcast event from factory,
+                                        //but any change in the DOM should be handled in a controller.
         $('#cart-icon').addClass('animated rubberBand').one(animationEnd, function () {
             $('#cart-icon').removeClass('animated rubberBand');
         })

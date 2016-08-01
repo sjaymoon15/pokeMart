@@ -11,7 +11,7 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
                 // { label: 'Members Only', state: 'membersOnly', auth: true }
             ];
 
-            scope.toggleLogo = function(){
+            scope.toggleLogo = function(){ //JA-SB: Should be a CSS pseudo-class rule. Want to avoid direct DOM manipulation!
                 $('.pokeball i.great').css('background-position', '-297px -306px')
 
             }

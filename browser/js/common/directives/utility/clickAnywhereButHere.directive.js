@@ -26,6 +26,8 @@ app.factory('clickAnywhereButHereService', function($document){
   };
 });
 
+//JA-SB: Instead of copy and pasting code that you'll have to maintain, try to find a library that solves this problem (maybe angular-off-click). Easier to maintain and update.
+//If can't find module that does it, you should build it!
 app.directive('clickAnywhereButHere', function($document, clickAnywhereButHereService){
   return {
     restrict: 'A',

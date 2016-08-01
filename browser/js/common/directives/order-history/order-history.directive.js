@@ -5,6 +5,6 @@ app.directive('orderHistory', function () {
         scope: {
             histories: '='
         },
-        controller: 'OrderHistoryCtrl'
+        controller: 'OrderHistoryCtrl' //JA-SB: Controller is empty, do you need it? Why not use a link function?
     }
 })

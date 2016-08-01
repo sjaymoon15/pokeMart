@@ -1,6 +1,6 @@
 app.controller('ProductCardCtrl', function($scope){
 
-
+    //JA-SB: Consider storing in a factory so they can be reused elsewhere.
     $scope.categories = [
         {name: 'All'},
         {name: 'Fire'},
@@ -20,6 +20,7 @@ app.controller('ProductCardCtrl', function($scope){
         {name: 'Poison'}
     ]
 
+    //JA-SB: These filters look great, but try building a custom builder with app.filter that composes all three of these.
     $scope.filter = function (category) {
         return function (product) {
             if (!category || category === 'All') return true
@@ -28,7 +29,7 @@ app.controller('ProductCardCtrl', function($scope){
     };
     $scope.searchFilter=function(searchingName) {
         return function (product) {
-            if (!searchingName) return true;           
+            if (!searchingName) return true;
             else {
                 var len = searchingName.length
                 console.log('product', product.title)
