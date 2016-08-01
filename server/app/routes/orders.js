@@ -165,14 +165,17 @@ router.get('/fulfilled', function (req, res, next) {
 //             }
 //         })
 //     }).then(function(orders){
-//         orders.forEach(order => {
-//             if (!order.checkQuantity()){
-//                throw ('not enough quantity on '+ order.title)
-//             }
-//         })
-//     }).then(function() {
-//         next();
-//     }).catch(next)
+//         var ordersPromise = orders.map(order => {
+//             return order.checkQuantity
+//             .then(function (bool){
+//                 if (!bool)
+//                    throw ('not enough quantity on '+ order.title)
+//             })
+//           })
+//     }).then(function(promiseArray) {
+//         return Promise.all(promiseArray)
+//     }).then(function() { next() } )
+//     .catch(next)
     
     
 // })
