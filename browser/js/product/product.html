@@ -1,4 +1,5 @@
 <section class="product-page">
+
   <div class="product-wrapper">
     <div class="pokemon-product-img">
       <img src="{{product.imageUrl}}">
@@ -17,6 +18,10 @@
     </div>
   </div>
 
+  <div class="stars-wrapper">
+    <input-stars ng-model="rating" max="5"></input-stars>
+  </div>
+
   <div class="review-wrapper">
     <div ng-repeat="review in reviews">
       <h6>{{review.subject}}</h6>
@@ -27,10 +32,6 @@
 
   <div class="review-form-wrapper" ng-hide="true">
     <form name="reviewForm" ng-submit="submitReview()">
-      <!-- <div ng-messages="reviewForm.subject.$error" ng-hide="reviewForm.subject.$pristine" role="alert">
-        <div ng-message="required" class="alert alert-warning">Please enter a title</div>
-        <div ng-message="maxlength" class="alert alert-warning">Title is too long</div>
-      </div> -->
       <div input-field>
         <input name="title" type="text" ng-model="newReview.title" required length="30" />
         <label for="title">Title</label>

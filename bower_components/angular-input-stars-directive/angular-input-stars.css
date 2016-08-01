@@ -1,6 +1,10 @@
 /* <input-star></input-star> directive */
+.stars-wrapper {
+	text-align: center;
+}
+
 .angular-input-stars {
-	
+
 	display: inline-block;
 	padding: 0;
 	margin-left: -5px;
@@ -9,13 +13,9 @@
 }
 
 .angular-input-stars > li {
-		
-	font-size: 17px;
 
+	font-size: 30px;
 	display: inline-block;
-	padding-right: 5px;
-	padding-left: 5px;
-	
 	cursor: pointer;
 
 }
@@ -27,7 +27,7 @@
 .angular-input-stars > li .active {
 
 		color: #FDE35E;
-		text-shadow: black 0 0 1px, 0 0 1px ;	
+		text-shadow: black 0 0 1px, 0 0 1px ;
 
 }
 
