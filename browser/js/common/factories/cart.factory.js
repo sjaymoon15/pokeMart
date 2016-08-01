@@ -33,7 +33,7 @@ app.factory('CartFactory', function ($http, $log, $state) {
         var duplicate = CartFactory.checkForDuplicates(productId);
         if (duplicate) {
             return CartFactory
-            .changeQuantity(duplicate.id, duplicate.quantity, 'add' );
+            .changeQuantity(duplicate.id, duplicate.quantity, 'add', quantity );
         } else {
             addSuccessAnimation()
             return $http.post(baseUrl + productId, {quantity: quantity})
@@ -56,16 +56,16 @@ app.factory('CartFactory', function ($http, $log, $state) {
         })
         .catch($log);
     }
-    CartFactory.changeQuantity=function(orderId, quantity, addOrSubtr){
+    CartFactory.changeQuantity=function(orderId, quantity, addOrSubtr, amount = 1){
         var runFunc=false;
         if (addOrSubtr==='add') {
             addSuccessAnimation()
-            quantity++;
+            quantity+= +amount;
             runFunc=true;
         }
         else if (addOrSubtr==='subtract' && quantity>1) {
             addRemoveAnimation();
-            quantity--;
+            quantity-= +amount;
             runFunc=true;
         }
         if (runFunc===true) {
