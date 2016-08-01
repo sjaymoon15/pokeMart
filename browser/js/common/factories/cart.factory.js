@@ -1,10 +1,9 @@
 app.factory('CartFactory', function ($http, $log, $state) {
 
-
-    var baseUrl = '/api/orders/cart/'
+    var getData = res => res.data;
+    var baseUrl = '/api/orders/cart/';
     var CartFactory = {};
     CartFactory.cachedCart = [];
-    var getData = res => res.data;
 
     CartFactory.fetchAllFromCart = function () {
         return $http.get(baseUrl)
@@ -36,6 +35,7 @@ app.factory('CartFactory', function ($http, $log, $state) {
             return CartFactory
             .changeQuantity(duplicate.id, duplicate.quantity, 'add' );
         } else {
+            addSuccessAnimation()
             return $http.post(baseUrl + productId, {quantity: quantity})
             .then(function (response) {
                 var item = response.data;
@@ -46,6 +46,7 @@ app.factory('CartFactory', function ($http, $log, $state) {
     }
 
     CartFactory.removeFromCart=function(orderId){
+        addRemoveAnimation();
         return $http.delete(baseUrl+orderId)
         .success(function(){
             CartFactory.removeFromFrontEndCache(orderId)
@@ -58,15 +59,16 @@ app.factory('CartFactory', function ($http, $log, $state) {
     CartFactory.changeQuantity=function(orderId, quantity, addOrSubtr){
         var runFunc=false;
         if (addOrSubtr==='add') {
+            addSuccessAnimation()
             quantity++;
             runFunc=true;
         }
         else if (addOrSubtr==='subtract' && quantity>1) {
+            addRemoveAnimation();
             quantity--;
             runFunc=true;
         }
         if (runFunc===true) {
-            console.log('update quan')
             return $http.put(baseUrl + orderId, {quantity:quantity})
             .then(function(){
                 CartFactory.changeFrontEndCacheQuantity(orderId,quantity);
@@ -98,6 +100,21 @@ app.factory('CartFactory', function ($http, $log, $state) {
         return $http.get(baseUrl + 'checkout')
         .success(function() { $state.go('orderHistories') } )
         .catch($log)
+    }
+
+
+    var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
+
+    function addSuccessAnimation() {
+        $('#cart-icon').addClass('animated tada').one(animationEnd, function () {
+            $('#cart-icon').removeClass('animated tada');
+        })
+    }
+
+    function addRemoveAnimation() {
+        $('#cart-icon').addClass('animated shake').one(animationEnd, function () {
+            $('#cart-icon').removeClass('animated shake');
+        })
     }
 
     return CartFactory;
