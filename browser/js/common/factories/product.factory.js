@@ -35,7 +35,7 @@ app.factory('ProductFactory', function ($http) {
 
     ProductFactory.deleteProduct = function (id) {
         return $http.delete(baseUrl + id).success(function() {
-            Materialize.toast('Deleted', 1000)
+            Materialize.toast('Deleted', 1000);
             var deletedInd = cachedProducts.findIndex(function (product) {
                 return product.id === id;
             });
