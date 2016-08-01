@@ -17,6 +17,13 @@ app.directive('shoppingCart', function(CartFactory) {
                 scope.active = 'inactive';
                 scope.showCart = 'checkout';
             }
-        }
+            scope.total = function() {
+                var total = 0;
+                if(scope.cart)
+                scope.cart.forEach(item => total += (item.price * item.quantity))
+
+                return total;
+            }
+        }   
     }
 })
