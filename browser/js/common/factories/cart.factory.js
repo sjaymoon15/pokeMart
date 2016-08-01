@@ -106,8 +106,8 @@ app.factory('CartFactory', function ($http, $log, $state) {
     var animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
 
     function addSuccessAnimation() {
-        $('#cart-icon').addClass('animated tada').one(animationEnd, function () {
-            $('#cart-icon').removeClass('animated tada');
+        $('#cart-icon').addClass('animated rubberBand').one(animationEnd, function () {
+            $('#cart-icon').removeClass('animated rubberBand');
         })
     }
 

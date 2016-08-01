@@ -1,8 +1,8 @@
 'use strict';
 
-window.app = angular.module('FullstackGeneratedApp', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'ui.materialize']);
+window.app = angular.module('FullstackGeneratedApp', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'ui.materialize', 'angular-input-stars']);
 
-app.config(function ($urlRouterProvider, $locationProvider) {
+app.config(function ($urlRouterProvider, $locationProvider, $uiViewScrollProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
     $locationProvider.html5Mode(true);
     // If we go to a URL that ui-router doesn't have registered, go to the "/" url.
@@ -11,6 +11,8 @@ app.config(function ($urlRouterProvider, $locationProvider) {
     $urlRouterProvider.when('/auth/:provider', function () {
         window.location.reload();
     });
+    $uiViewScrollProvider.useAnchorScroll();
+
 });
 
 // This app.run is for controlling access to specific states.

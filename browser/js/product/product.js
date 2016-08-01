@@ -1,5 +1,6 @@
 app.config(function ($stateProvider) {
     $stateProvider.state('product', {
+        autoscroll='true',
         url: '/products/:productId',
         templateUrl: 'js/product/product.html',
         controller: 'ProductCtrl',

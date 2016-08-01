@@ -24,6 +24,7 @@ app.factory('ProductFactory', function ($http) {
                 .then(getData)
                 .then(ProductFactory.convert)
                 .then(function (product) {
+                    Materialize.toast('Updated', 1000);
                     var updatedInd = cachedProducts.findIndex(function (product) {
                         return product.id === id;
                     });
@@ -34,6 +35,7 @@ app.factory('ProductFactory', function ($http) {
 
     ProductFactory.deleteProduct = function (id) {
         return $http.delete(baseUrl + id).success(function() {
+            Materialize.toast('Deleted', 1000)
             var deletedInd = cachedProducts.findIndex(function (product) {
                 return product.id === id;
             });

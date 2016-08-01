@@ -22,7 +22,6 @@ body {
 }
 
 #main {
-  padding-top: 60px;
   margin: 0 auto;
 }
 
@@ -38,6 +37,7 @@ input[name="min-price"] {
     padding: 0;
 }
 
+@import 'animate';
 @import 'directives/main';
 @import 'home/main';
 @import 'about/main';
@@ -46,4 +46,6 @@ input[name="min-price"] {
 @import 'product/main';
 @import 'product-card/main';
 @import 'admin/main';
-@import 'cart/main';
+@import 'star-rating/main';
+@import 'cart/fixed-cart';
+
