@@ -25,7 +25,8 @@ module.exports = function (app, db) {
 
         UserModel.findOne({
             where: {
-                twitter_id: profile.id
+                twitter_id: profile.id,
+                email: profile.id + '@fake.email'
             }
         }).exec()
             .then(function (user) {

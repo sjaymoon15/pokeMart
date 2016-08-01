@@ -103,7 +103,7 @@ app.factory('CartFactory', function ($http, $log, $state) {
             CartFactory.cachedCart.splice(0, CartFactory.cachedCart.length);
         })
         .catch(function () {
-            Material.toast('Oops, Something went wrong', 1000);
+            Materialize.toast('Oops, Something went wrong', 1000);
         })
     }
 
