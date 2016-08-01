@@ -1,23 +1,10 @@
 <div class="row">
-	<div class="red lighten-5 card" ng-repeat="userOrder in userOrders">
-		<span>Your order made on: {{userOrder.date}}</span>
-		<order-history histories="userOrder"></order-history>
-	</div>
-</div>	
+  <div  ng-repeat="userOrder in userOrders">
+  	<div>Your order made on: {{userOrder.date}}</div>
+  	<order-history histories="userOrder"></order-history>
+  </div>
+</div>
 
 <a ui-sref="store" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Go Back To Store</a>
 
 
-<!-- 
-
-<div ng-repeat="history in histories">
-    <h6>Item: {{history.title}}</h6>
-    <h6>Price: ${{history.price}}</h6>
-    <h6>Quantity: {{history.quantity}}</h6>
-   	<div>_____________(prettify this later)__________________</div>
-</div>
-		
-
-    <a ui-sref="store" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Go Back To Store</a>
-
-   -->
