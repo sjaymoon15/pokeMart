@@ -7,7 +7,7 @@ angular.module('angular-input-stars', [])
             restrict: 'EA',
             replace: true,
             template: '<ul ng-class="listClass">' +
-            '<li ng-touch="paintStars($index)" ng-mouseenter="paintStars($index, true)" ng-mouseleave="unpaintStars($index, false)" ng-repeat="item in items track by $index">' +
+            '<li modal href="#review-form" ng-touch="paintStars($index)" ng-mouseenter="paintStars($index, true)" ng-mouseleave="unpaintStars($index, false)" ng-repeat="item in items track by $index">' +
             '<i  ng-class="getClass($index)" ng-click="setValue($index, $event)"></i>' +
             '</li>' +
             '</ul>',
@@ -61,7 +61,7 @@ angular.module('angular-input-stars', [])
                     var $star = angular.element(items[index]);
 
                     if ($index >= index) {
-                        
+
                         $star.removeClass(emptyIcon);
                         $star.addClass(fullIcon);
                         $star.addClass('active');
@@ -96,7 +96,7 @@ angular.module('angular-input-stars', [])
                 }
 
                 ngModelCtrl.$setViewValue(scope.last_value);
-                
+
                 //Execute custom trigger function if there is one
                 if(attrs.onStarClick){
 			scope.$eval(attrs.onStarClick);

@@ -4,11 +4,11 @@ app.controller('ProductCtrl', function ($scope, theProduct, allReviews, ProductF
     $scope.product = theProduct;
     $scope.reviews = allReviews;
     // review
+    $scope.modalOpen = false;
     $scope.submitReview = function () {
         $scope.newReview.productId = $scope.product.id;
         ProductFactory.createReview($scope.product.id, $scope.newReview);
     }
-    $scope.rating = 5;
     // add to cart
     $scope.addToCart = function () {
         CartFactory.addToCart($scope.product.id, $scope.quantity)

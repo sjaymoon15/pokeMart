@@ -18,8 +18,8 @@
     </div>
   </div>
 
-  <div class="stars-wrapper">
-    <input-stars ng-model="rating" max="5"></input-stars>
+  <div class="stars-wrapper" ng-click="modalOpen=!modalOpen">
+    <input-stars ng-model="newReview.rating" max="5"></input-stars>
   </div>
 
   <div class="review-wrapper">
@@ -30,21 +30,18 @@
     </div>
   </div>
 
-  <div class="review-form-wrapper" ng-hide="true">
+  <div class="review-form-wrapper modal" id="review-form" open="modalOpen">
     <form name="reviewForm" ng-submit="submitReview()">
-      <div input-field>
+      <div input-field class="review-form-field">
         <input name="title" type="text" ng-model="newReview.title" required length="30" />
         <label for="title">Title</label>
       </div>
-      <div input-field>
+      <div input-field class="review-form-field">
         <textarea class="materialize-textarea" name="content" type="text" ng-model="newReview.content" required length="300"></textarea>
         <label for="content">Description</label>
       </div>
-      <div input-field>
-        <input name="rating" type="text" ng-model="newReview.rating" required />
-        <label for="rating">Rating</label>
-      </div>
-      <button type="submit" class="btn btn-default" ng-disabled="reviewForm.$invalid">Submit</button>
+      <div class="review-form-field"><input-stars ng-model="newReview.rating" max="5"></input-stars></div>
+      <button type="submit" class="review-form-field btn btn-default" ng-disabled="reviewForm.$invalid">Submit</button>
     </form>
   </div>
 
