@@ -1,8 +1,9 @@
-
-<div ng-repeat="userOrder in userOrders">
-	<h4>Your order made on: {{userOrder.date}}</h4>
-	<order-history histories="userOrder"></order-history>
-</div>
+<div class="row">
+	<div class="red lighten-5 card" ng-repeat="userOrder in userOrders">
+		<span>Your order made on: {{userOrder.date}}</span>
+		<order-history histories="userOrder"></order-history>
+	</div>
+</div>	
 
 <a ui-sref="store" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Go Back To Store</a>
 
