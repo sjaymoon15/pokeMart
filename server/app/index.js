@@ -13,7 +13,7 @@ module.exports = function (db) {
     // /api so they are isolated from our GET /* wildcard.
     app.use('/api', require('./routes'));
 
-
+    app.use('/payments', require('./routes/payments'))
     /*
      This middleware will catch any URLs resembling a file extension
      for example: .js, .html, .css
