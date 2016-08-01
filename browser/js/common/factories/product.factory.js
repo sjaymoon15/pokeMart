@@ -1,6 +1,7 @@
 app.factory('ProductFactory', function ($http) {
 
     var cachedProducts = [];
+    var cachedReviews = [];
     var baseUrl = '/api/products/';
     var getData = res => res.data;
 
@@ -57,11 +58,23 @@ app.factory('ProductFactory', function ($http) {
 
     ProductFactory.createReview = function (productId, data) {
         return $http.post('/api/reviews/' + productId, data)
-            .then(getData); // add a cache for reviews?
+            .then(function (response) {
+                var review = response.data;
+                cachedReviews.push(review);
+                return review;
+            }).then(function () {
+                Materialize.toast('Thank you!', 1000);
+            }).catch(function () {
+                Materialize.toast('Something went wrong', 1000);
+            });
     }
 
     ProductFactory.fetchAllReviews = function (productId) {
-        return $http.get('/api/reviews/' + productId).then(getData)
+        return $http.get('/api/reviews/' + productId)
+            .then(function (response) {
+                angular.copy(response.data, cachedReviews);
+                return cachedReviews
+            })
     }
 
     return ProductFactory;
