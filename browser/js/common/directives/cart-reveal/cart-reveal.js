@@ -8,13 +8,14 @@ app.directive('shoppingCart', function(CartFactory) {
         link: function (scope, elem, attr) {
             scope.showCart = 'checkout';
             CartFactory.fetchAllFromCart().then(function (cart) {
+                console.log(CartFactory.cachedCart);
                 scope.cart = cart;
             });
             scope.revealCart = function () {
                 scope.showCart = 'checkout checkout--active';
             };
             scope.hideCart = function () {
-                
+
                 scope.active = 'inactive';
                 scope.showCart = 'checkout';
             }
@@ -25,6 +26,6 @@ app.directive('shoppingCart', function(CartFactory) {
 
                 return total;
             }
-        }   
+        }
     }
 })

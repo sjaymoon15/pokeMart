@@ -11,10 +11,10 @@
     <div class="col s2">
         <input name="zipCode" value="{{user.zipCode}}" type="text" ng-model="ngModel.zipCode" required />
     </div>
-    <div class="col s2">
+    <div class="col s1">
         <input name="isAdmin" value="{{user.isAdmin}}" type="text" ng-model="ngModel.isAdmin" required />
     </div>
-    <a class="col s1 btn waves-effect waves-light" ng-click="submitUpdate(user.id)">{{update}}</a>
-    <a class="col s1 btn red waves-effect waves-light" ng-click="deleteUser(user.id)">{{delete}}</a>
+    <a class="col s2 btn waves-effect waves-light" ng-click="resetPassword(user.id)">Password reset</a>
+    <a class="col s1 btn red waves-effect waves-light" ng-click="deleteUser(user.id)">x</a>
 </form>
 

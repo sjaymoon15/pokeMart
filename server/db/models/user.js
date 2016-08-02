@@ -48,6 +48,9 @@ password: {
 salt: {
     type: Sequelize.STRING
 },
+resetPasswordToken: {
+    type: Sequelize.STRING
+},
 twitter_id: {
     type: Sequelize.STRING
 },
@@ -63,6 +66,7 @@ google_id: {
             return _.omit(this.toJSON(), ['password', 'salt']);
         },
         correctPassword: function (candidatePassword) {
+            console.log('new encryptPassword',this.Model.encryptPassword(candidatePassword, this.salt))
             return this.Model.encryptPassword(candidatePassword, this.salt) === this.password;
         },
         addInfo: function(updateObj){
@@ -78,10 +82,14 @@ google_id: {
             hash.update(plainText);
             hash.update(salt);
             return hash.digest('hex');
-        }
+        },
     },
     hooks: {
-        beforeValidate: function (user) {
+        beforeCreate: function (user) {
+            user.salt = user.Model.generateSalt();
+            user.password = user.Model.encryptPassword(user.password, user.salt);
+        },
+        beforeUpdate: function (user) {
             if (user.changed('password')) {
                 user.salt = user.Model.generateSalt();
                 user.password = user.Model.encryptPassword(user.password, user.salt);

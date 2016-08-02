@@ -13,5 +13,13 @@ app.factory('AuthFactory',  function($http){
         return $http.get('/auth/google');
     }
 
+    AuthFactory.resetPassword = function (token, login) {
+        return $http.post('/reset/password/' + token, login);
+    }
+
+    AuthFactory.forgetPassword = function (login) {
+        return $http.post('/forgot', login);
+    }
+
     return AuthFactory;
 });

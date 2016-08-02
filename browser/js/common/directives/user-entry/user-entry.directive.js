@@ -1,4 +1,4 @@
-app.directive('userEntry', function (UserFactory) {
+app.directive('userEntry', function (UserFactory, AuthFactory) {
     return {
         restrict: 'E',
         templateUrl: 'js/common/directives/user-entry/user-entry.html',
@@ -7,14 +7,8 @@ app.directive('userEntry', function (UserFactory) {
             ngModel: '='
         },
         link: function (scope, elem, attr) {
-            scope.update = 'Update';
-            scope.delete = 'Delete';
-            scope.submitUpdate = function (id) {
-                UserFactory.updateUser(id, scope.ngModel)
-            };
-            scope.deleteProduct = function (id) {
-                UserFactory.deleteUser(id)
-            };
+            scope.resetPassword = AuthFactory.resetPassword;
+            scope.deleteUser = UserFactory.deleteUser;
         }
     }
 })
