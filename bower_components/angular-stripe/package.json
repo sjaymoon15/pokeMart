@@ -1,0 +1,57 @@
+{
+  "name": "angular-stripe",
+  "version": "4.2.12",
+  "description": "Angular service provider for interacting with Stripe",
+  "main": "./src",
+  "scripts": {
+    "test": "standard && zuul --phantom -- test/*.js",
+    "umd": "browserify -e . -s angularStripe -g [ exposify --expose [ --angular=angular ] ] -p derequire/plugin > ./release/angular-stripe.js",
+    "preversion": "npm run umd && git add -A ./release/*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bendrucker/angular-stripe.git"
+  },
+  "keywords": [
+    "angular",
+    "stripe",
+    "promise",
+    "wrapper"
+  ],
+  "author": "Ben Drucker <bvdrucker@gmail.com> (http://www.bendrucker.me)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bendrucker/angular-stripe/issues"
+  },
+  "homepage": "https://github.com/bendrucker/angular-stripe",
+  "devDependencies": {
+    "angular": "~1.4.9",
+    "angular-mocks": "~1.4.9",
+    "browserify": "~13.0.0",
+    "chai": "~3.5.0",
+    "derequire": "~2.0.0",
+    "exposify": "~0.5.0",
+    "phantomjs": "~2.1.3",
+    "sinon": "~1.17.3",
+    "sinon-chai": "~2.8.0",
+    "standard": "~5.4.1",
+    "stripe-debug": "~2.0.0",
+    "zuul": "~3.9.0"
+  },
+  "peerDependencies": {
+    "angular": ">=1.3 <=1.5"
+  },
+  "dependencies": {
+    "angular-assert-q-constructor": "~1.0.1",
+    "stripe-as-promised": "~2.0.0"
+  },
+  "files": [
+    "src/*.js",
+    "readme.md"
+  ],
+  "standard": {
+    "ignore": [
+      "release/"
+    ]
+  }
+}

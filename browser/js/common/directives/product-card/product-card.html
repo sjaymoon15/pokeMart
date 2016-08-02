@@ -16,13 +16,6 @@
     <search-bar class="col s3"></search-bar>
 </div>
 
-<!-- <div>
-	<select class="col s4" ng-model="sortStyle">
-<option value="ascending">ghetrteg</option>
-<option value="descending">hteghth</option>
-	</select>
-</div> -->
-
 <div class="row">
 <li class="card col l4 m6 s12" ng-repeat="product in products | orderBy:sortingFunc(sortStyle) | filter:filter(selected) | filter: searchFilter(name) | filter:priceRangeFilter(min,max)" ui-sref="product({productId:product.id})">
 

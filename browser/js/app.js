@@ -1,8 +1,8 @@
 'use strict';
 
-window.app = angular.module('FullstackGeneratedApp', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'ui.materialize', 'angular-input-stars']);
+window.app = angular.module('FullstackGeneratedApp', ['fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'ui.materialize', 'angular-input-stars','angular-stripe']);
 
-app.config(function ($urlRouterProvider, $locationProvider, $uiViewScrollProvider) {
+app.config(function ($urlRouterProvider, $locationProvider, $uiViewScrollProvider,stripeProvider) {
     // This turns off hashbang urls (/#about) and changes it to something normal (/about)
     $locationProvider.html5Mode(true);
     // If we go to a URL that ui-router doesn't have registered, go to the "/" url.
@@ -12,6 +12,8 @@ app.config(function ($urlRouterProvider, $locationProvider, $uiViewScrollProvide
         window.location.reload();
     });
     $uiViewScrollProvider.useAnchorScroll();
+
+    // stripeProvider.setPublishableKey('my_key');
 
 });
 

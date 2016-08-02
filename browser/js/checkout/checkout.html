@@ -1,16 +1,22 @@
+<h5 class="total-amount">Total: ${{total}}</h5>
 <div class="row">
-	<div class="checkout-container red lighten-5 card col l4 m6 s12" ng-repeat="item in items">
-			<img src = 'http://pokeapi.co/media/img/{{item.productId}}.png'/>
-	    <h6>Item: {{item.title}}</h6>
-	    <h6>Price: ${{item.price}}</h6>
-	    <h6>Quantity: {{item.quantity}}</h6>
-	</div>
-</div>			
+    <a ui-sref='payment' class="col s12 m12 l3 pay-btn btn">Pay Now</a>
+    <a ui-sref="cart" class="col s12 m12 l3 pay-btn btn">Go Back To Cart</a>
+</div>
+<ul class="row">
+    <li class="card col l4 m6 s12" ng-repeat="item in items">
 
-		<div class="card">Total: ${{total}}</div>
+      <div class="pokemon-img">
+        <img src="{{item.imageUrl}}">
+      </div>
+      <div class="card-content">
+        <h3 class="pokemon-name">{{item.title}}</h3>
+        <p>${{item.price}}</p>
+        <p>Quantity: {{item.quantity}}</p>
+      </div>
+    </li>
+</ul>
 
-    <a ui-sref="cart" class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Go Back To Cart</a>
 
-   <a ng-click = 'checkout()' class="btn btn-primary btn-block"><span class="glyphicon glyphicon-plus"></span> Pay Now</a>
 
 

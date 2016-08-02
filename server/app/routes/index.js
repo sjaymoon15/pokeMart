@@ -3,11 +3,11 @@ var router = require('express').Router();
 module.exports = router;
 
 router.use('/members', require('./members'));
-router.use('/products', require('./products'));
-router.use('/users', require('./users'));
-router.use('/reviews', require('./reviews'));
+router.use('/products', require('./products'))
+router.use('/users', require('./users'))
+router.use('/reviews', require('./reviews'))
 router.use('/orders', require('./orders'));
-router.use('/manageOrders', require('./manageOrders'));
+router.use('/manageOrders', require('./manageOrders'))
 
 // Make sure this is after all of
 // the registered routes!

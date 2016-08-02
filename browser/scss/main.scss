@@ -37,6 +37,14 @@ input[name="min-price"] {
     padding: 0;
 }
 
+.back-to-store-btn {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+@import 'mixins';
 @import 'animate';
 @import 'directives/main';
 @import 'home/main';
@@ -47,5 +55,5 @@ input[name="min-price"] {
 @import 'product-card/main';
 @import 'admin/main';
 @import 'star-rating/main';
-@import 'cart/fixed-cart';
+@import 'cart/main';
 @import 'checkout/main';

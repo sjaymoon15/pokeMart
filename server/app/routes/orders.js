@@ -188,7 +188,8 @@ router.get('/cart/checkout', function(req, res, next) {
         return UserOrders.createCart(req.user.id)
 
     }).then(function() {
-        res.sendStatus(201)
+        res.status(200);
+        res.redirect('/histories')
     }).catch(next)
 })
 

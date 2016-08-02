@@ -1,6 +1,20 @@
+@import 'cart/fixed-cart';
 @import 'checkout-cornerflat';
 
-.checkout {
-  position: absolute;
-  right: 0;
+// // cart page
+.cart-entry-wrapper {
+    // text-align: center;
+
+}
+.cart-entry-item {
+    margin-top: 50px;
+    @include wearable {
+        margin-top: 10px;
+    }
+    @include phone {
+        margin-top: 5px;
+    }
+    @include tablet {
+        margin-top: 5px;
+    }
 }

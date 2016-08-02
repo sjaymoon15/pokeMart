@@ -1,28 +1,23 @@
-    <div>
-
-    	<div ng-repeat="cart in cartContent">
-
-    		<div style = 'border: 1px solid black'>
-
-    			<div style = 'float:left'>
-                <img src = 'http://pokeapi.co/media/img/{{cart.productId}}.png'/>
-                </div>
-    			<p>Title: {{cart.title}}</p>
-    			<p>Category: {{cart.category}}</p>
-    			<button ng-click="changeQuantity(cart.id,cart.quantity,'subtract')">-</button>
-    			Quantity {{cart.quantity}}
-    			<button ng-click="changeQuantity(cart.id,cart.quantity,'add')">+</button>
-    			<p>Price: ${{cart.price * cart.quantity}}</p>
-    			<button ng-click="remove(cart.id)">Remove from Cart</button>
-                
-
-    		      </div>
-                
-    	</div>
+<div>
+	<div ng-repeat="cart in cartContent" class="row cart-entry-wrapper">
+		<div class="col s12 m12 l2 center">
+            <img class="cart-thumbnail" src='http://pokeapi.co/media/img/{{cart.productId}}.png'/>
+        </div>
+		<h6 class="cart-entry-item col s12 m12 l2 center">{{cart.title}}</h6>
+        <div class="col s12 m12 l2 center quantity-btn">
+			<h6 class="cart-entry-item"><span class="btn-small" ng-click="changeQuantity(cart.id,cart.quantity,'subtract')">-</span>
+			{{cart.quantity}}
+			<span class="btn-small" ng-click="changeQuantity(cart.id,cart.quantity,'add')">+</span></h6>
+        </div>
+		<h6 class="cart-entry-item col s12 m12 l2 center">${{cart.price * cart.quantity}}</h6>
+		<button class="cart-entry-item col s12 m12 l4 center btn" ng-click="remove(cart.id)">Remove from Cart</button>
+	</div>
 </div>
 
-<div>Total: $ {{total()}}</div>
-<p><a ui-sref='checkout'><button>Checkout</button></a></p>
-
+<div class="row">
+    <div class="col s12 m12 l8"></div>
+    <h5 class=" col s12 m12 l2 center">Total: $ {{total()}}</h5>
+    <a ui-sref='checkout' class="btn red lighten-2 col s12 m12 l2">Checkout</a>
+</div>
 
 

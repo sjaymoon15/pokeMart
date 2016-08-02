@@ -1,8 +1,8 @@
-
-<div class="red lighten-5 card col l4 m6 s12" ng-repeat="history in histories">
-		<img src = 'http://pokeapi.co/media/img/{{history.productId}}.png'/>
-    <div>Item: {{history.title}}</div>
-    <div>Price: ${{history.price}}</div>
-    <div>Quantity: {{history.quantity}}</div>
+<div ng-repeat="history in histories" class="row cart-entry-wrapper">
+    <div class="col s12 m3 l3 center">
+        <img class="cart-thumbnail" src='http://pokeapi.co/media/img/{{history.productId}}.png'/>
+    </div>
+    <h6 class="cart-entry-item col s12 m3 l3 center">{{history.title}}</h6>
+    <h6 class="cart-entry-item col s12 m3 l3 center">{{history.quantity}}</h6>
+    <h6 class="cart-entry-item col s12 m3 l3 center">${{history.price}}</h6>
 </div>
-		
