@@ -70,28 +70,33 @@ module.exports = function (app, db) {
 
     app.post('/forgot', function(req, res, next) {
         var token = crypto.randomBytes(16).toString('hex');
+        var sendEmail = function () {
+            var smtpTransport = nodemailer.createTransport('smtps://ytcdeveloper@gmail.com:ytcdeveloper123@smtp.gmail.com');
+            var mailOptions = {
+                to: req.body.email,
+                from: 'passwordreset@pokemart.com',
+                subject: 'Password Reset',
+                text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+                  'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+                  'http://' + req.headers.host + '/reset/password/' + token + '\n\n' +
+                  'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+            };
+            smtpTransport.sendMail(mailOptions, function(err) {
+                console.log('info', 'An e-mail has been sent to ' + 'req.user.email' + ' with further instructions.');
+            });
+        }
+
         User.findOne({
             where: { email: req.body.email }
         })
         .then(function (user) {
             if (!user) {
-                req.flash('error', 'No account with that email address exists.');
                 return res.redirect('/forgot');
             } else {
-                user.update({resetPasswordToken:token});
-                var smtpTransport = nodemailer.createTransport('smtps://ytcdeveloper@gmail.com:ytcdeveloper123@smtp.gmail.com');
-                var mailOptions = {
-                    to: req.body.email,
-                    from: 'passwordreset@pokemart.com',
-                    subject: 'Password Reset',
-                    text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-                      'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-                      'http://' + req.headers.host + '/reset/password/' + token + '\n\n' +
-                      'If you did not request this, please ignore this email and your password will remain unchanged.\n'
-                };
-                smtpTransport.sendMail(mailOptions, function(err) {
-                    console.log('info', 'An e-mail has been sent to ' + 'req.user.email' + ' with further instructions.');
+                user.update({resetPasswordToken:token}).then(sendEmail).then(function () {
+                    res.sendStatus(200);
                 });
+
             }
         })
     });
@@ -122,7 +127,7 @@ module.exports = function (app, db) {
             else {
                 req.logIn(user, function (err) {
                     if (err) console.log(err);
-                    res.redirect('/');
+                    res.sendStatus(200);
                 });
             }
         })
