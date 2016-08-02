@@ -1,10 +1,5 @@
-app.controller('AdminCtrl', function ($scope, allUserOrders, $log, allProducts, allUsers, allOrderDetails, ManageOrdersFactory, AuthInterceptor) {
 
-    console.log(AuthInterceptor);
-    $scope.hide = true;
-    if (AuthInterceptor.status === 401) {
-        $scope.hide = false;
-    }
+app.controller('AdminCtrl', function ($scope, allUserOrders, $log, allProducts, allUsers, allOrderDetails, ManageOrdersFactory) {
 
     $scope.products = allProducts;
     $scope.users = allUsers;
