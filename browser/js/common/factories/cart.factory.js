@@ -105,13 +105,25 @@ app.factory('CartFactory', function ($http, $log, $state) {
 
     CartFactory.checkout = function(){
         return $http.get(baseUrl + 'checkout')
-        .success(function() {
+        .then(function() {
             $state.go('orderHistories');
             CartFactory.cachedCart.splice(0, CartFactory.cachedCart.length);
         })
         .catch(function () {
             Materialize.toast('Oops, Something went wrong', 1000);
         })
+    }
+
+    CartFactory.getTotalCost = function(){
+        var total = 0;
+         return CartFactory.fetchAllFromCart()
+            .then(function(cart){
+                console.log(cart)
+                cart.forEach(item => total += (item.price*item.quantity) )
+                console.log('tota', total)
+                return total;
+            })
+            .catch($log.error)
     }
 
 

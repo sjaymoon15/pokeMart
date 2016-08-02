@@ -38,7 +38,8 @@ state: {
     type: Sequelize.STRING
 },
 country: {
-    type: Sequelize.STRING
+    type: Sequelize.STRING,
+    defaultValue: 'USA'
 },
 password: {
     type: Sequelize.STRING,
@@ -63,6 +64,9 @@ google_id: {
         },
         correctPassword: function (candidatePassword) {
             return this.Model.encryptPassword(candidatePassword, this.salt) === this.password;
+        },
+        addInfo: function(updateObj){
+            this.update(updateObj).catch(console.error)
         }
     },
     classMethods: {
