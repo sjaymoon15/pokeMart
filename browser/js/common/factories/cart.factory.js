@@ -81,7 +81,6 @@ app.factory('CartFactory', function ($http, $log, $state) {
             .then(function(){
                 CartFactory.changeFrontEndCacheQuantity(orderId,quantity);
             })
-            .catch($log);
         }
 
 
