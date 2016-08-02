@@ -11,7 +11,7 @@
 
             <li ng-show="!user" ui-sref="login" class="login-button"><a>Login</a></li>
             <li ng-show="user" class="welcome">
-                <a class="dropdown-button" data-activates='userDropdown' dropdown data-hover="true"><i class="medium material-icons"> perm_identity {{user.firstName}}</i></a>
+                <a class="dropdown-button" data-activates='userDropdown' dropdown data-hover="true"><i class="medium material-icons"> perm_identity</i></a>
                 <ul id='userDropdown' class='dropdown-content'>
                     <li><a>Profile</a></li>
                     <li><a ui-sref="orderHistories">Order History</a></li>

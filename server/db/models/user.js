@@ -43,7 +43,7 @@ country: {
 },
 password: {
     type: Sequelize.STRING,
-    allowNull: false
+    // allowNull: false
 },
 salt: {
     type: Sequelize.STRING

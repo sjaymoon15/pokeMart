@@ -10,6 +10,9 @@ app.config(function ($stateProvider) {
             },
             allUsers: function (UserFactory) {
                 return UserFactory.fetchAll();
+            },
+            allOrderDetails: function(ManageOrdersFactory){
+                return ManageOrdersFactory.fetchAll();
             }
         }
     })

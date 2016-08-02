@@ -99,10 +99,11 @@ app.factory('CartFactory', function ($http, $log, $state) {
     CartFactory.checkout = function(){
         return $http.get(baseUrl + 'checkout')
         .success(function() {
+            $state.go('orderHistories');
             CartFactory.cachedCart.splice(0, CartFactory.cachedCart.length);
         })
         .catch(function () {
-            Material.toast('Oops, Something went wrong', 1000);
+            Materialize.toast('Oops, Something went wrong', 1000);
         })
     }
 

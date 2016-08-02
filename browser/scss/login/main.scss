@@ -1,4 +1,31 @@
-#login-form {
-  width: 60%;
-  margin: 0 auto;
+@import '../color';
+
+.login-wrapper, .signup-wrapper {
+    margin-top: 80px;
 }
+
+.login-btn-group {
+    width: 100%;
+}
+
+.auth-btn-group {
+    width: 100%;
+}
+
+.btn-social {
+    width: 100%;
+}
+
+.btn-google {
+    background-color: #f44336;
+}
+
+.btn-twitter {
+    background-color: #42a5f5;
+}
+
+.btn-facebook {
+    background-color: #0d47a1;
+}
+
+
