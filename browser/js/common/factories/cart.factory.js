@@ -1,4 +1,4 @@
-app.factory('CartFactory', function ($http, $log, $state) {
+app.factory('CartFactory', function ($http, $log, $state, $rootScope) {
 
     var getData = res => res.data;
     var baseUrl = '/api/orders/cart/';
@@ -19,6 +19,7 @@ app.factory('CartFactory', function ($http, $log, $state) {
         })
         .then(function (items) {
             CartFactory.cachedCart = items.map(convert);
+            $rootScope.$emit('updateCart', CartFactory.cachedCart);
             return items.map(convert);
         })
     }
