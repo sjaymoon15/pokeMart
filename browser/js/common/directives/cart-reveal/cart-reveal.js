@@ -24,7 +24,6 @@ app.directive('shoppingCart', function(CartFactory, $rootScope) {
                 var total = 0;
                 if(scope.cart)
                 scope.cart.forEach(item => total += (item.price * item.quantity))
-
                 return total;
             }
         }
