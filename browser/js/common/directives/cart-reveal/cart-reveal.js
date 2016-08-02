@@ -8,8 +8,7 @@ app.directive('shoppingCart', function(CartFactory) {
         link: function (scope, elem, attr) {
             scope.showCart = 'checkout';
             CartFactory.fetchAllFromCart().then(function (cart) {
-                console.log(CartFactory.cachedCart);
-                scope.cart = cart;
+                scope.cart = CartFactory.cachedCart;
             });
             scope.revealCart = function () {
                 scope.showCart = 'checkout checkout--active';
