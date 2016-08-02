@@ -18,6 +18,7 @@ app.factory('CartFactory', function ($http, $log, $state) {
             });
         })
         .then(function (items) {
+            CartFactory.cachedCart = items.map(convert);
             return items.map(convert);
         })
     }
@@ -48,7 +49,7 @@ app.factory('CartFactory', function ($http, $log, $state) {
                 CartFactory.cachedCart.push(item);
                 return item;
             })
-            .then(convert)
+            // .then(convert)
         }
     }
 
@@ -76,11 +77,10 @@ app.factory('CartFactory', function ($http, $log, $state) {
         }
         if (runFunc===true) {
             return $http.put(baseUrl + orderId, {quantity:quantity})
-            .then(convert)
+            // .then(convert)
             .then(function(){
                 CartFactory.changeFrontEndCacheQuantity(orderId,quantity);
             })
-            .catch($log);
         }
 
 
@@ -96,11 +96,13 @@ app.factory('CartFactory', function ($http, $log, $state) {
     }
 
     CartFactory.changeFrontEndCacheQuantity = function (orderId,quantity) {
-        CartFactory.cachedCart.forEach(function(order){
-            if (order.id === orderId) {
-                order.quantity = quantity;
-            }
-        })
+        var i = CartFactory.cachedCart.findIndex(function(order){
+            // if (order.id === orderId) {
+            //     order.quantity = quantity;
+            // }
+            return order.id === orderId;
+        });
+        CartFactory.cachedCart[i].quantity = quantity
     }
 
     CartFactory.checkout = function(){

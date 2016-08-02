@@ -28,7 +28,7 @@ router.use(function (req, res, next) {
 
     if (!req.user) {
         UserOrders.findOrCreate({
-            where: {sessionId: req.sessionID}
+            where: {sessionId: req.sessionID, status: 'pending', userId: null}
         }).spread(assignCartId) // findOrCreate returns an array
     } else {
         UserOrders.findByUser(req.user.id)
@@ -63,7 +63,7 @@ router.get('/cart', function (req, res, next) {
 
  router.post('/cart/:productId', function (req, res, next) {
 
-    // OB/SB: hopefully this could be simplified maybe either using an association method `req.cart.createOrderDetails(...)` or a custom method
+
     Product.findById(req.params.productId)
     .then(function(product){
         return product.addToOrder(req.body.quantity, req.cartId);
@@ -74,7 +74,7 @@ router.get('/cart', function (req, res, next) {
 
 });
 
-// OB/SB: /cart/:productId
+
 
 router.delete('/cart/:orderId', function (req, res, next) {
     // product id needs to be sent to front end
@@ -88,12 +88,8 @@ router.delete('/cart/:orderId', function (req, res, next) {
     }).catch(next);
 });
 
-// req.body = {
-//     quantity
-// }
 
-// req.params.orderDetailId // modified in front end
-// OB/SB: maybe go with productId instead, for consistency
+
 router.put('/cart/:orderDetailId', function (req, res, next) {
     OrderDetails.findById(req.params.orderDetailId)
     .then(function(orderDetail) {
@@ -102,27 +98,17 @@ router.put('/cart/:orderDetailId', function (req, res, next) {
         res.send(updated);
     }).catch(next);
 });
-
-// OB/SB: alternative /api/users/me/orders
 router.get('/paid', function (req, res, next) {
-    // OB/SB: try to move all this to some model method
-    /*
-    req.user.getOrders({
-        where: {status: 'paid'},
-        include: [OrderDetails]
-    })
-    .then(function (orders) {
-        // orders: array of order instances
-        // each instance will have a .orderDetails property because of the include
-    });
-    */
+    
     var dates = [];
+    if(req.user) {
     UserOrders.findAll({
      where: {
-           userId: req.user.id, // from session/auth
+           userId: req.user.id, 
            status: 'paid'
        }
-   }).then(function (userOrders) {
+   })
+    .then(function (userOrders) {
      userOrders.forEach(order => dates.push(order.updatedAt))
      return userOrders.map(userOrder => {
          return OrderDetails.findAll({
@@ -134,6 +120,28 @@ router.get('/paid', function (req, res, next) {
  }).then(function (paidItemsArr) {
      res.send({paidItems: paidItemsArr, date:dates})
  }).catch(next);
+}
+
+else {
+    UserOrders.findAll({
+     where: {
+           sessionId: req.session.id, 
+           status: 'paid'
+       }
+   })
+    .then(function (userOrders) {
+     userOrders.forEach(order => dates.push(order.updatedAt))
+     return userOrders.map(userOrder => {
+         return OrderDetails.findAll({
+             where: {userOrderId: userOrder.id}
+         })
+     });
+ }).then(function (itemPromises) {
+     return Promise.all(itemPromises);
+ }).then(function (paidItemsArr) {
+     res.send({paidItems: paidItemsArr, date:dates})
+ }).catch(next);
+}
 });
 
 router.get('/fulfilled', function (req, res, next) {
@@ -155,42 +163,23 @@ router.get('/fulfilled', function (req, res, next) {
     }).catch(next);
 });
 
-// router.use('/cart/checkout', function (req,res,next){
-//     //get pending cart
-//     UserOrders.findById(req.cartId)
-//     .then(function(cart){
-//         return OrderDetails.findAll({
-//             where: {
-//                 userOrderId: req.cartId
-//             }
-//         })
-//     }).then(function(orders){
-//         var ordersPromise = orders.map(order => {
-//             return order.checkQuantity
-//             .then(function (bool){
-//                 if (!bool)
-//                    throw ('not enough quantity on '+ order.title)
-//             })
-//           })
-//     }).then(function(promiseArray) {
-//         return Promise.all(promiseArray)
-//     }).then(function() { next() } )
-//     .catch(next)
-    
-    
-// })
 
 router.get('/cart/checkout', function(req, res, next) {
     return UserOrders.findById(req.cartId)
     .then(function(cart){
         return cart.update({status: 'paid'})
-    }).then(function(){
-        return UserOrders.createCart(req.user.id)
-
-    }).then(function() {
+    })
+    .then(function() {
+        if(req.user)
+            return UserOrders.createCart(req.user.id);
+        else
+            return UserOrders.create({sessionId: req.sessionID})
+    })
+    .then(function() {
         res.status(200);
         res.redirect('/histories')
-    }).catch(next)
+    })
+    .catch(next)
 })
 
 

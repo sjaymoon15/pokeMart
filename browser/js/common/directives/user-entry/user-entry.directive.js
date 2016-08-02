@@ -1,4 +1,4 @@
-app.directive('userEntry', function (UserFactory) {
+app.directive('userEntry', function (UserFactory, AuthFactory) {
     return {
         restrict: 'E',
         templateUrl: 'js/common/directives/user-entry/user-entry.html',
@@ -7,14 +7,20 @@ app.directive('userEntry', function (UserFactory) {
             ngModel: '='
         },
         link: function (scope, elem, attr) {
-            scope.update = 'Update';
-            scope.delete = 'Delete';
-            scope.submitUpdate = function (id) {
-                UserFactory.updateUser(id, scope.ngModel)
+            scope.forgetPassword = function (email) {
+                AuthFactory.forgetPassword({email: email}).then(function () {
+                    Materialize.toast('Done', 1000);
+                }).catch(function () {
+                    Materialize.toast('Oops, something went wrong', 1000)
+                })
             };
-            scope.deleteProduct = function (id) {
-                UserFactory.deleteUser(id)
-            };
+            scope.deleteUser = function (userId) {
+                 UserFactory.deleteUser(userId).then(function () {
+                    Materialize.toast('Erase from planet Earth', 1000);
+                }).catch(function () {
+                    Materialize.toast('Oops, something went wrong', 1000)
+                })
+            }
         }
     }
 })
