@@ -12,7 +12,10 @@ module.exports = db.define('userOrders', { // OB/SB: maybe could just be called 
     },
     sessionId: {
         type: Sequelize.STRING
-    } // maybe in local storage
+    },
+    shipTo: {
+        type: Sequelize.STRING
+    }
 }, {
     //class methods
     classMethods: {
@@ -39,6 +42,9 @@ module.exports = db.define('userOrders', { // OB/SB: maybe could just be called 
         },
         updateSession: function (sessionId) {
             return this.update({sessionId: sessionId});
+        },
+        updateShipping: function(infoObj) {
+            //add after fixing session
         }
     }
     // onUpdate status, go update orderDetails

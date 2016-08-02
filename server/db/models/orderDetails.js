@@ -15,17 +15,10 @@ var OrderDetails = db.define('orderDetails', { // OB/SB: singular isntead of plu
     quantity: {
         type: Sequelize.INTEGER,
         defaultValue: 1
-        // OB/SB: maybe default to 1
     },
     title: {
         type: Sequelize.STRING,
         allowNull: false
-    },
-    photoUrl: {
-        type: Sequelize.STRING,
-        validate: {
-            //isUrl:true
-        }
     }
 }, {
     //class methods

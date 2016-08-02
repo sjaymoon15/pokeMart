@@ -79,7 +79,8 @@ else {
   amount: result.total, // amount in cents, again
   currency: "usd",
   source: stripeToken,
-  description: result.description
+  description: result.description,
+  
 }, function(err, charge) {
   if (err && err.type === 'StripeCardError') {
     // The card has been declined
