@@ -1,7 +1,51 @@
 @import 'color';
 
-.shooping-cart-filler {
+shopping-cart {
+	@include phone() {
+      	display: none;
+    }
+    @include wearable() {
+      	display: none;
+    }
+}
+
+.shopping-cart-corner {
+	@include desktop() {
+		display: none;
+	}
+	@include tablet() {
+		display: none;
+	}
+	@include phone() {
+      	display: block;
+      	position: fixed;
+      	bottom: 0;
+      	right: 0;
+      	z-index: 99999;
+      	background-color: #009688;
+      	color: white;
+      	font-size: 1rem;
+      	padding: 5px;
+    }
+    @include wearable() {
+      	display: block;
+      	position: absolute;
+      	bottom: 0;
+      	right: 0;
+      	z-index: 99999;
+      	background-color: #009688;
+      	color: white;
+      	font-size: 1rem;
+      	padding: 5px;
+    }
+}
+
+.shopping-cart-dummy {
 	width: 60px;
+	cursor: pointer;
+	i {
+		margin: 0 7px;
+	}
 }
 
 .checkout {

@@ -1,3 +1,45 @@
 .checkout-container {
-	
+
+}
+
+.pay-btn {
+    @include desktop {
+        margin: 20px 5px;
+    }
+    @include tablet {
+        margin: 5px 2px;
+    }
+    @include phone {
+        margin: 3px 2px;
+    }
+    @include wearable {
+        margin: 3px 0;
+    }
+}
+
+.pokemon-name {
+    margin-bottom: 3px;
+}
+
+.total-amount {
+    @include desktop {
+        position: relative;
+        top: 20px;
+        right: 10px;
+    }
+    @include tablet {
+        position: relative;
+        top: 0;
+        right: 10px;
+    }
+    @include phone {
+        position: relative;
+        top: 0;
+        right: 10px;
+    }
+    @include wearable {
+        position: relative;
+        top: 0;
+        right: 10px;
+    }
 }
