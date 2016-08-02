@@ -1,7 +1,10 @@
-app.controller('AdminCtrl', function ($scope, $log, allProducts, allUsers, allOrderDetails, ManageOrdersFactory) {
+app.controller('AdminCtrl', function ($scope, allUserOrders, $log, allProducts, allUsers, allOrderDetails, ManageOrdersFactory) {
     $scope.products = allProducts;
     $scope.users = allUsers;
-    
+    $scope.userOrders = allUserOrders;
+   
+    console.log(allUserOrders);
+
     //adding status to each orderDetail 
     allOrderDetails.forEach(function(orderDetail){
     	ManageOrdersFactory.findStatus(orderDetail.userOrderId)
@@ -18,6 +21,5 @@ app.controller('AdminCtrl', function ($scope, $log, allProducts, allUsers, allOr
     	}).catch($log.error);
     })
     $scope.orders = allOrderDetails;
-    console.log(allOrderDetails);
-
+   
 });

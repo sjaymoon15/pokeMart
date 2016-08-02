@@ -13,6 +13,9 @@ app.config(function ($stateProvider) {
             },
             allOrderDetails: function(ManageOrdersFactory){
                 return ManageOrdersFactory.fetchAll();
+            },
+            allUserOrders: function(ManageOrdersFactory){
+                return ManageOrdersFactory.fetchAllUserOrders();
             }
         }
     })

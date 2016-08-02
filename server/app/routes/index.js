@@ -9,7 +9,6 @@ router.use('/reviews', require('./reviews'))
 router.use('/orders', require('./orders'));
 router.use('/manageOrders', require('./manageOrders'))
 
-
 // Make sure this is after all of
 // the registered routes!
 router.use(function (req, res) {
