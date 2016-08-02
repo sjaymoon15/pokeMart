@@ -20,13 +20,21 @@
 
   <div class="stars-wrapper" ng-click="modalOpen=!modalOpen">
     <input-stars ng-model="newReview.rating" max="5"></input-stars>
+    <h6></h6>
   </div>
 
   <div class="review-wrapper">
     <div ng-repeat="review in reviews">
-      <h6>{{review.subject}}</h6>
+      <h5>
+        <span>
+          <div class="review-entry-stars">
+            <input-stars ng-model="review.rating" max="5"></input-stars>
+          </div>
+          {{review.title}}
+        </span>
+      </h5>
+      <p>{{review.date}}</p>
       <h6>{{review.content}}</h6>
-      <h6>{{review.rating}}</h6>
     </div>
   </div>
 
@@ -37,7 +45,7 @@
         <label for="title">Title</label>
       </div>
       <div input-field class="review-form-field">
-        <textarea class="materialize-textarea" name="content" type="text" ng-model="newReview.content" required length="300"></textarea>
+        <textarea class="materialize-textarea" name="content" type="text" ng-model="newReview.content" required length="500"></textarea>
         <label for="content">Description</label>
       </div>
       <div class="review-form-field"><input-stars ng-model="newReview.rating" max="5"></input-stars></div>
