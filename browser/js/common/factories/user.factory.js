@@ -41,7 +41,12 @@ app.factory('UserFactory', function ($http) {
         return $http.get(baseUrl + 'getLoggedInUserId')
             .then(getData)
             .then(function(user){
-                UserFactory.updateUser(user.id,infoObj)
+                if(user.id === 'session'){
+                return $http.put(baseUrl + 'updateSession', infoObj)
+                }
+                else{
+                return UserFactory.updateUser(user.id,infoObj)
+            }
             })
     }
 

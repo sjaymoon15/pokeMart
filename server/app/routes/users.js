@@ -19,7 +19,9 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/getLoggedInUserId', function(req,res,next){
-    res.send(req.user)
+    if(req.user) res.send(req.user)
+    else res.send({id: 'session'})
+
 })
 
 
@@ -39,6 +41,12 @@ else {
 }
 
 });
+
+router.put('/updateSession', function(req,res,next){
+  req.session.userInfo = res.body;
+  console.log(req.session.userInfo)
+  res.sendStatus(201)
+})
 
 
 

@@ -10,32 +10,33 @@ var db = require('../../db/_db');
 
 router.post('/', function(req,res,next){
 	
-var stripeToken = req.body.stripeToken;
-var totalPrice = 0;
-var descriptionString = [];
-
-UserOrders.findOne({
-  where: {
-    userId: req.user.id,
-    status: 'pending'
-  }
-}).then(function(cart){
-  return OrderDetails.findAll({
-    where: {
-      userOrderId: cart.id
-    }
-  })
-  .then(function(arrayOfOrders){
-    arrayOfOrders.forEach(order => {
-      totalPrice += (order.price * order.quantity);
-      descriptionString.push(order.title)
-    })
-    return {total: totalPrice,
-            description: descriptionString.join(',')
-          }
-  })
-}).then(function(result){
-  var charge = stripe.charges.create({
+  var stripeToken = req.body.stripeToken;
+  var totalPrice = 0;
+  var descriptionString = [];
+console.log(req.session)
+if (req.user){
+    UserOrders.findOne({
+      where: {
+        userId: req.user.id,
+        status: 'pending'
+      }
+    }).then(function(cart){
+      return OrderDetails.findAll({
+        where: {
+          userOrderId: cart.id
+        }
+      })
+      .then(function(arrayOfOrders){
+        arrayOfOrders.forEach(order => {
+          totalPrice += (order.price * order.quantity);
+          descriptionString.push(order.title)
+        })
+        return {total: totalPrice,
+          description: descriptionString.join(',')
+        }
+      })
+    }).then(function(result){
+      var charge = stripe.charges.create({
   amount: result.total, // amount in cents, again
   currency: "usd",
   source: stripeToken,
@@ -47,9 +48,49 @@ UserOrders.findOne({
   else{
     console.log(charge)
     res.redirect('/api/orders/cart/checkout')  }
-});
-})
+  });
+    })
 
+}
+
+else {
+    UserOrders.findOne({
+      where: {
+        sessionId:req.session.id,
+        status: 'pending'
+      }
+    }).then(function(cart){
+      return OrderDetails.findAll({
+        where: {
+          userOrderId: cart.id
+        }
+      })
+      .then(function(arrayOfOrders){
+        arrayOfOrders.forEach(order => {
+          totalPrice += (order.price * order.quantity);
+          descriptionString.push(order.title)
+        })
+        return {total: totalPrice,
+          description: descriptionString.join(',')
+        }
+      })
+    }).then(function(result){
+      var charge = stripe.charges.create({
+  amount: result.total, // amount in cents, again
+  currency: "usd",
+  source: stripeToken,
+  description: result.description
+}, function(err, charge) {
+  if (err && err.type === 'StripeCardError') {
+    // The card has been declined
+  }
+  else{
+    console.log(charge)
+    res.redirect('/api/orders/cart/checkout')  }
+  });
+    })
+
+}
 
 
 
