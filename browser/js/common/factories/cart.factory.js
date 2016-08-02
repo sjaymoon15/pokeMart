@@ -98,13 +98,31 @@ app.factory('CartFactory', function ($http, $log, $state) {
 
     CartFactory.checkout = function(){
         return $http.get(baseUrl + 'checkout')
-        .success(function() {
+        .then(function() {
             $state.go('orderHistories');
             CartFactory.cachedCart.splice(0, CartFactory.cachedCart.length);
         })
         .catch(function () {
             Materialize.toast('Oops, Something went wrong', 1000);
         })
+    }
+
+    CartFactory.getTotalCost = function(){
+        var total = 0;
+        return CartFactory.fetchAllFromCart()
+            .then(function(cart){
+                cart.forEach(item => total += item.price)
+                return total;
+            })
+    }
+
+    CartFactory.cartItemsToString = function() { 
+        var cartStr = []
+        return CartFactory.fetchAllFromCart()
+            .then(function(cart) {
+                cart.forEach(cart => cartStr.push(cart.title))
+                return cartStr.join(',')
+            })
     }
 
 

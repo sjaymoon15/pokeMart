@@ -66,8 +66,8 @@
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-    data-amount="2333"
-    data-name="Stripe.com"
+    data-amount={{getTotalCost()}}
+    data-name={{cartItemsToString()}}
     data-description="Widget"
     data-image="/img/documentation/checkout/marketplace.png"
     data-locale="auto">

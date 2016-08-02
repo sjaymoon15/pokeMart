@@ -1,4 +1,4 @@
-app.controller('PaymentCtrl', function($scope,UserFactory, $log){
+app.controller('PaymentCtrl', function($scope,UserFactory, $log, CartFactory){
   $scope.info = {};
   $scope.validateUser= function () {
     console.log($scope.info)
@@ -8,4 +8,8 @@ app.controller('PaymentCtrl', function($scope,UserFactory, $log){
         }).catch($log.error)
         
   }
+
+  $scope.getTotalCost = CartFactory.getTotalCost().catch($log.error)
+
+  $scope.cartItemsToString = CartFactory.cartItemsToString().catch($log.error)
 })
