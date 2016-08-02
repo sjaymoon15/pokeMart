@@ -1,0 +1,27 @@
+<img class="col s2 order-thumbnail" src='http://pokeapi.co/media/img/{{order.productId}}.png'/>
+<form name="orderEntryUpdateForm">
+     <div class="col s1">
+     {{order.userOrderId}}
+    </div>
+    
+    <div class="col s2">
+    {{order.title}}
+    </div>
+
+    <div class="col s1">
+    {{order.status}}
+    </div>
+
+    <div class="col s2">
+    {{order.price}}
+    </div>
+
+    <div class="col s1">
+    {{order.quantity}}
+    </div>
+
+    <div class="col s2">
+    {{order.user.firstName +' '+ order.user.lastName }}
+    </div>
+
+</form>
