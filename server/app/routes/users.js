@@ -18,6 +18,12 @@ router.get('/', function (req, res, next) {
 	}
 });
 
+router.get('/getLoggedInUserId', function(req,res,next){
+  console.log('userIDIDIDIDIDID', req.user.id)
+    res.send(req.user)
+})
+
+
 router.get('/:id', function(req, res, next){
 	if(req.params.id==req.user.id || req.user.isAdmin) { // OB/SB: consider making auth utility
   User.findOne({
@@ -34,6 +40,8 @@ else {
 }
 
 });
+
+
 
 router.post('/', function(req,res,next){
   User.findOne({

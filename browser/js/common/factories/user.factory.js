@@ -37,5 +37,14 @@ app.factory('UserFactory', function ($http) {
         });
     }
 
+    UserFactory.updateUserBeforePayment = function (infoObj){
+        return $http.get(baseUrl + 'getLoggedInUserId')
+            .then(getData)
+            .then(function(user){
+                console.log('userId: ', user.id)
+                UserFactory.updateUser(user.id,infoObj)
+            })
+    }
+
     return UserFactory;
 })

@@ -1,13 +1,12 @@
 <div>
-<form action="payments" method="POST">
-	<input placeholder= 'First Name'></input>
-	<input placeholder= 'Last Name'></input>
-	<input placeholder= 'Address'></input>
-	<input placeholder= 'APT'></input>
-	<input placeholder= 'City' type='text'></input>
+<form action="/payments" method="POST">
+	<input placeholder= 'First Name' ng-model = "info.firstName"></input>
+	<input placeholder= 'Last Name' ng-model = "info.lastName"></input>
+	<input placeholder= 'Address' ng-model = "info.address"></input>
+	<input placeholder= 'City' type='text' ng-model = "info.city"></input>
 
  
-<select material-select>
+<select material-select ng-model = "info.state">
     <option value="AL">Alabama</option>
     <option value="AK">Alaska</option>
     <option value="AZ">Arizon </option>
@@ -60,17 +59,23 @@
     <option value="WI">Wisconsin</option>
     <option value="WY">Wyoming</option>
 </select>
-<input placeholder='Zip Code'></input>
-   
+<input placeholder='Zip Code' ng-model ='info.zipCode'></input>
+
+  
+<div ng-show = 'showCC'>
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-    data-amount="999"
+    data-amount="2333"
     data-name="Stripe.com"
     data-description="Widget"
     data-image="/img/documentation/checkout/marketplace.png"
     data-locale="auto">
   </script>
+</div>
+
 </form>
+
+<button ng-hide ='showCC' ng-click='validateUser()' material>Validate Info</button> 
 
 </div>
