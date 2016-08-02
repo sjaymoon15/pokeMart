@@ -8,10 +8,17 @@
 }
 
 .logo {
+  cursor: pointer;
   color: white;
   font-family: 'Josefin Slab', sans-serif;
   font-size: 4.0em;
   margin: 0;
+  @include phone() {
+    display: none;
+  }
+  @include wearable() {
+    display: none;
+  }
 }
 
 .pikachu {
@@ -29,6 +36,12 @@
     right: 4px;
     margin-left: 4px;
     margin-right: -2px;
+    @include phone() {
+      display: block;
+    }
+    @include wearable() {
+      display: block;
+    }
 }
 
 .navbar {

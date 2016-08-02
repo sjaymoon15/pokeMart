@@ -2,8 +2,9 @@ app.controller('CheckoutCtrl', function ($scope, CartFactory) {
 
     CartFactory.fetchAllFromCart()
     .then(function (items) {
+        console.log(items)
         $scope.items = items;
-  			
+
   			//calculating total price and put that into $scope.total
         var itemsArr = items;
         var totalPriceEach = [];
@@ -14,5 +15,5 @@ app.controller('CheckoutCtrl', function ($scope, CartFactory) {
     })
 
     $scope.checkout = CartFactory.checkout;
-    
+
 });

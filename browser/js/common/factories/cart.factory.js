@@ -2,6 +2,10 @@ app.factory('CartFactory', function ($http, $log, $state) {
 
     var getData = res => res.data;
     var baseUrl = '/api/orders/cart/';
+    var convert = function (item) {
+        item.imageUrl = '/api/products/' + item.productId + '/image';
+        return item;
+    }
     var CartFactory = {};
     CartFactory.cachedCart = [];
 
@@ -13,7 +17,9 @@ app.factory('CartFactory', function ($http, $log, $state) {
                 return b.id - a.id
             });
         })
-        .catch($log);
+        .then(function (items) {
+            return items.map(convert);
+        })
     }
 
     CartFactory.deleteItem = function(productId){
@@ -42,6 +48,7 @@ app.factory('CartFactory', function ($http, $log, $state) {
                 CartFactory.cachedCart.push(item);
                 return item;
             })
+            .then(convert)
         }
     }
 
@@ -54,7 +61,6 @@ app.factory('CartFactory', function ($http, $log, $state) {
         .then(function() {
             return CartFactory.cachedCart;
         })
-        .catch($log);
     }
     CartFactory.changeQuantity=function(orderId, quantity, addOrSubtr, amount = 1){
         var runFunc=false;
@@ -70,6 +76,7 @@ app.factory('CartFactory', function ($http, $log, $state) {
         }
         if (runFunc===true) {
             return $http.put(baseUrl + orderId, {quantity:quantity})
+            .then(convert)
             .then(function(){
                 CartFactory.changeFrontEndCacheQuantity(orderId,quantity);
             })
