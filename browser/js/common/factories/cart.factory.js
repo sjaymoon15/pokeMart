@@ -109,20 +109,14 @@ app.factory('CartFactory', function ($http, $log, $state) {
 
     CartFactory.getTotalCost = function(){
         var total = 0;
-        return CartFactory.fetchAllFromCart()
+         return CartFactory.fetchAllFromCart()
             .then(function(cart){
-                cart.forEach(item => total += item.price)
+                console.log(cart)
+                cart.forEach(item => total += (item.price*item.quantity) )
+                console.log('tota', total)
                 return total;
             })
-    }
-
-    CartFactory.cartItemsToString = function() { 
-        var cartStr = []
-        return CartFactory.fetchAllFromCart()
-            .then(function(cart) {
-                cart.forEach(cart => cartStr.push(cart.title))
-                return cartStr.join(',')
-            })
+            .catch($log.error)
     }
 
 

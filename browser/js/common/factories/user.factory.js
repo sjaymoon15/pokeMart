@@ -41,7 +41,6 @@ app.factory('UserFactory', function ($http) {
         return $http.get(baseUrl + 'getLoggedInUserId')
             .then(getData)
             .then(function(user){
-                console.log('userId: ', user.id)
                 UserFactory.updateUser(user.id,infoObj)
             })
     }

@@ -1,11 +1,14 @@
 <div>
+
+<p>Your total cost will be : $ {{totalCost}}</p>
+For <ul><li ng-repeat='item in arrayOfItems'>{{item.quantity}} {{item.title}}, Price: ${{item.price * item.quantity}}</li></ul>
+
+
 <form action="/payments" method="POST">
 	<input placeholder= 'First Name' ng-model = "info.firstName"></input>
 	<input placeholder= 'Last Name' ng-model = "info.lastName"></input>
 	<input placeholder= 'Address' ng-model = "info.address"></input>
-	<input placeholder= 'City' type='text' ng-model = "info.city"></input>
-
- 
+	<input placeholder= 'City' type='text' ng-model = "info.city"></input> 
 <select material-select ng-model = "info.state">
     <option value="AL">Alabama</option>
     <option value="AK">Alaska</option>
@@ -66,8 +69,8 @@
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-    data-amount={{getTotalCost()}}
-    data-name={{cartItemsToString()}}
+    data-amount='{{totalCost}}'
+    data-name='{{stringOfItems}}'
     data-description="Widget"
     data-image="/img/documentation/checkout/marketplace.png"
     data-locale="auto">

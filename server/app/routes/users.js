@@ -19,7 +19,6 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/getLoggedInUserId', function(req,res,next){
-  console.log('userIDIDIDIDIDID', req.user.id)
     res.send(req.user)
 })
 

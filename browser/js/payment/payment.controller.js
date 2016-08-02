@@ -1,15 +1,15 @@
-app.controller('PaymentCtrl', function($scope,UserFactory, $log, CartFactory){
+app.controller('PaymentCtrl', function($scope,UserFactory, $log, CartFactory, totalCost, arrayOfItems){
   $scope.info = {};
+  
   $scope.validateUser= function () {
-    console.log($scope.info)
+
         UserFactory.updateUserBeforePayment($scope.info)
         .then(function() {
           $scope.showCC = true;
         }).catch($log.error)
         
   }
-
-  $scope.getTotalCost = CartFactory.getTotalCost().catch($log.error)
-
-  $scope.cartItemsToString = CartFactory.cartItemsToString().catch($log.error)
+  $scope.totalCost = totalCost;
+  $scope.arrayOfItems = arrayOfItems;
+  $scope.stringOfItems = arrayOfItems.map(item => item.title).join(',')
 })
