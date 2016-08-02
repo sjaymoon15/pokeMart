@@ -102,27 +102,17 @@ router.put('/cart/:orderDetailId', function (req, res, next) {
         res.send(updated);
     }).catch(next);
 });
-
-// OB/SB: alternative /api/users/me/orders
 router.get('/paid', function (req, res, next) {
-    // OB/SB: try to move all this to some model method
-    /*
-    req.user.getOrders({
-        where: {status: 'paid'},
-        include: [OrderDetails]
-    })
-    .then(function (orders) {
-        // orders: array of order instances
-        // each instance will have a .orderDetails property because of the include
-    });
-    */
+    
     var dates = [];
+    if(req.user) {
     UserOrders.findAll({
      where: {
-           userId: req.user.id, // from session/auth
+           userId: req.user.id, 
            status: 'paid'
        }
-   }).then(function (userOrders) {
+   })
+    .then(function (userOrders) {
      userOrders.forEach(order => dates.push(order.updatedAt))
      return userOrders.map(userOrder => {
          return OrderDetails.findAll({
@@ -134,6 +124,28 @@ router.get('/paid', function (req, res, next) {
  }).then(function (paidItemsArr) {
      res.send({paidItems: paidItemsArr, date:dates})
  }).catch(next);
+}
+
+else {
+    UserOrders.findAll({
+     where: {
+           sessionId: req.session.id, 
+           status: 'paid'
+       }
+   })
+    .then(function (userOrders) {
+     userOrders.forEach(order => dates.push(order.updatedAt))
+     return userOrders.map(userOrder => {
+         return OrderDetails.findAll({
+             where: {userOrderId: userOrder.id}
+         })
+     });
+ }).then(function (itemPromises) {
+     return Promise.all(itemPromises);
+ }).then(function (paidItemsArr) {
+     res.send({paidItems: paidItemsArr, date:dates})
+ }).catch(next);
+}
 });
 
 router.get('/fulfilled', function (req, res, next) {
@@ -184,9 +196,6 @@ router.get('/cart/checkout', function(req, res, next) {
     return UserOrders.findById(req.cartId)
     .then(function(cart){
         return cart.update({status: 'paid'})
-    }).then(function(){
-        return UserOrders.createCart(req.user.id)
-
     }).then(function() {
         res.status(200);
         res.redirect('/histories')
