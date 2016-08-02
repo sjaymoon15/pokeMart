@@ -69,7 +69,7 @@ For <ul><li ng-repeat='item in arrayOfItems'>{{item.quantity}} {{item.title}}, P
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-    data-amount='{{totalCost}}'
+    data-amount='{{totalCost*100}}'
     data-name='{{stringOfItems}}'
     data-description="Widget"
     data-image="/img/documentation/checkout/marketplace.png"
