@@ -1,4 +1,4 @@
-app.directive('shoppingCart', function(CartFactory) {
+app.directive('shoppingCart', function(CartFactory, $rootScope) {
     return {
         restrict: 'E',
         templateUrl: 'js/common/directives/cart-reveal/cart-reveal.html',
@@ -10,11 +10,13 @@ app.directive('shoppingCart', function(CartFactory) {
             CartFactory.fetchAllFromCart().then(function (cart) {
                 scope.cart = CartFactory.cachedCart;
             });
+            $rootScope.$on('updateCart', function (event, cart) {
+                scope.cart = cart;
+            })
             scope.revealCart = function () {
                 scope.showCart = 'checkout checkout--active';
             };
             scope.hideCart = function () {
-
                 scope.active = 'inactive';
                 scope.showCart = 'checkout';
             }

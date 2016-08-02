@@ -1,11 +1,18 @@
-app.controller('AdminCtrl', function ($scope, allUserOrders, $log, allProducts, allUsers, allOrderDetails, ManageOrdersFactory) {
+app.controller('AdminCtrl', function ($scope, allUserOrders, $log, allProducts, allUsers, allOrderDetails, ManageOrdersFactory, AuthInterceptor) {
+
+    console.log(AuthInterceptor);
+    $scope.hide = true;
+    if (AuthInterceptor.status === 401) {
+        $scope.hide = false;
+    }
+
     $scope.products = allProducts;
     $scope.users = allUsers;
     $scope.userOrders = allUserOrders;
-   
+
     console.log(allUserOrders);
 
-    //adding status to each orderDetail 
+    //adding status to each orderDetail
     allOrderDetails.forEach(function(orderDetail){
     	ManageOrdersFactory.findStatus(orderDetail.userOrderId)
     	.then(function(status){
@@ -21,5 +28,5 @@ app.controller('AdminCtrl', function ($scope, allUserOrders, $log, allProducts, 
     	}).catch($log.error);
     })
     $scope.orders = allOrderDetails;
-   
+
 });
