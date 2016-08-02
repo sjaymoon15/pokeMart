@@ -1,4 +1,5 @@
 app.controller('AdminCtrl', function ($scope, allUserOrders, $log, allProducts, allUsers, allOrderDetails, ManageOrdersFactory) {
+    
     $scope.products = allProducts;
     $scope.users = allUsers;
     $scope.userOrders = allUserOrders;
@@ -21,5 +22,5 @@ app.controller('AdminCtrl', function ($scope, allUserOrders, $log, allProducts, 
     	}).catch($log.error);
     })
     $scope.orders = allOrderDetails;
-   
+    
 });

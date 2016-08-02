@@ -2,23 +2,20 @@
 <form name="userOrderStatusUpdateForm">
     <div class="col s1"></div>
     <div class="col s1">
-        {{ngModel.id}}
+        <input name="id" type="text" ng-model="ngModel.id" required/>
     </div>
     <div class="col s1">
-        {{ngModel.userId}}
+        <input name="userId" type="text" ng-model="ngModel.userId" required/>
     </div>
     <div class="col s3">
-        {{ngModel.updatedAt}}
+        <input name="date" type="text" ng-model="ngModel.updatedAt" required/>
     </div>
-    <div class="col s1">
-        <ul id='userDropdown' class='dropdown-content'>
-            <li><a>Pending</a></li>
-            <li><a>Paid</a></li>
-            <li><a>Fullfilled</a></li>
-        </ul>
+    
+    <div class="col 1">
         <input name="status" type="text" ng-model="ngModel.status" required/>
     </div>
-
+    <div class="col s1"></div>
     <a class="col s1 btn waves-effect waves-light" ng-click="updateStatus(ngModel.id)">update</a>
     <a class="col s1 btn waves-effect waves-light red" ng-click="deleteUserOrder(ngModel.id)">delete</a>
 </form>
+
