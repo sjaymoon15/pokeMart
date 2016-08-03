@@ -59,7 +59,8 @@ var seedUsers = function () {
     },
     {
         email: 'ross@gmail.com',
-        password: 'pivot'
+        password: 'pivot',
+        isAdmin: true
     }
     ];
 
@@ -77,25 +78,21 @@ var seedUsers = function () {
     {
         content:'worst pokemon ever' ,
         title:'dont buy',
-        rating: 4,
-        //productId: 4
+        rating: 2
     },
     {
-        content:'asdijalsdijalsd best POKERMON ever',
+        content:'best POKERMON ever',
         title:'I love it',
-        rating: 4,
-        //productId: 1
+        rating: 4
    },{
-        content:'great value, dont get it wet ' ,
-        title:'caution',
-        rating: 5,
-        //productId: 3
+        content:'never like grass type pokemon' ,
+        title:'meh',
+        rating: 3
     },
     {
-        content:'too expensive for me ',
-        title:'Bad choice ',
-        rating: 2,
-        //productId: 2
+        content:'the one no one ever picks',
+        title:'no love',
+        rating: 2
    }
    ];
 
@@ -104,6 +101,8 @@ var seedUsers = function () {
                 .then(function(review) {
                     console.log(i)
                     return review.setAuthor((i%2) + 1)
+                }).then(function(review) {
+                    return review.setProduct(1);
                 })
     });
 

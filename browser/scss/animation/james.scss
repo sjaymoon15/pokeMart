@@ -1,0 +1,47 @@
+.james {
+
+    &.move {
+        animation: james-right-move 7s 1s linear forwards 1;
+    }
+
+
+    i {
+        background: url("http://orig05.deviantart.net/1fdc/f/2016/112/5/e/james__white_uniform__overworld_bw_by_jikaroriginal-d9zvy77.png"); // 98px x 134px
+        background-repeat: no-repeat;
+        display: block;
+        width: 50px;
+        height: 64px;
+        &.james-down {
+            left: 24%;
+            background-position: -73px -4px;
+            animation: james-down 0.7s infinite steps(1);
+        }
+        &.james-right {
+            left: 24%;
+            background-position: -10px -152px;
+            animation: james-right 0.7s infinite steps(1);
+        }
+    }
+}
+
+@keyframes james-down {
+    0% { background-position: -73px -4px; }
+    50% { background-position: -217px -4px; }
+}
+
+@keyframes james-right {
+    0% { background-position: -10px -152px; }
+    25% { background-position: -77px -152px; }
+    50% { background-position: -10px -152px; }
+    75% { background-position:  -215px -152px; }
+}
+
+@keyframes james-right-move {
+    0% { opacity: 0; transform: translateX(0); }
+    2% { opacity: 1; }
+    12% { transform: translateX(15vw); animation-timing-function: ease-out; }
+    35% { transform: translateX(20vw) scaleX(1); animation-timing-function: ease-in; }
+    44% { opacity: 1; }
+    55% { transform: translateX(60vw); opacity: 0; }
+    100% { opacity: 0; }
+}

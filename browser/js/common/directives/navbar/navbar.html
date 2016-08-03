@@ -9,6 +9,8 @@
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
 
+            <li ng-show="admin" ui-sref="admin"><a>Admin</a></li>
+
             <li ng-show="!user" ui-sref="login" class="login-button"><a>Login</a></li>
             <li ng-show="user" class="welcome">
                 <a class="dropdown-button" data-activates='userDropdown' dropdown data-hover="true"><i class="medium material-icons"> perm_identity</i></a>

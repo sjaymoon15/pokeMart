@@ -3,8 +3,10 @@ app.directive('orderEntry', function (ManageOrdersFactory) {
         restrict: 'E',
         templateUrl: 'js/common/directives/order-entry/order-entry.html',
         scope: {
-            order: '=',
-            ngModel: '='
+            orderDetails: '='
+        },
+        link: function (s, e, a) {
+            console.log(s.orderDetails);
         }
     }
 })

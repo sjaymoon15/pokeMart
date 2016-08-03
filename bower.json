@@ -15,6 +15,7 @@
     "angular-input-stars-directive": "angular-input-stars#^1.6.0",
     "font-awesome": "^4.6.3",
     "angular-ui-router-styles": "^1.1.0",
-    "angular-stripe": "^4.2.12"
+    "angular-stripe": "^4.2.12",
+    "angular-breadcrumb": "^0.4.1"
   }
 }

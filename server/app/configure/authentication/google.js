@@ -31,7 +31,8 @@ module.exports = function (app, db) {
                         google_id: profile.id,
                         email: (profile.emails[0].value) ? profile.emails[0].value : profile.displayName + '@fake.com',
                         firstName: profile.name.givenName,
-                        lastName: profile.name.familyName
+                        lastName: profile.name.familyName,
+                        password: 'dummy'
                     });
                 }
             })

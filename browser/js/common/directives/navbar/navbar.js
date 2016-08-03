@@ -22,6 +22,7 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
             }
 
             scope.user = null;
+            scope.admin = null;
 
             scope.isLoggedIn = function () {
                 return AuthService.isAuthenticated();
@@ -43,7 +44,15 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
                 scope.user = null;
             };
 
+            var setAdmin = function () {
+                // console.log(AuthInterceptor);
+                AuthService.getLoggedInUser().then(function (user) {
+                    scope.admin = AuthService.isAdmin(user);
+                });
+            };
+
             setUser();
+            setAdmin();
 
             $rootScope.$on(AUTH_EVENTS.loginSuccess, setUser);
             $rootScope.$on(AUTH_EVENTS.logoutSuccess, removeUser);
