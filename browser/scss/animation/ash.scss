@@ -1,0 +1,94 @@
+.ash {
+
+    &.move {
+        animation: ash-right-move 5s 1s linear forwards 1;
+    }
+
+    i {
+        background: url("http://orig07.deviantart.net/8ae9/f/2015/265/8/6/red_classic_version_overworld_bw_by_jikaroriginal-d9ais0h.png"); // 98px x 134px
+        background-repeat: no-repeat;
+        display: block;
+        width: 50px;
+        height: 58px;
+        &.ash-down {
+            left: 24%;
+            background-position: -73px -13px;
+            animation: ash-down 0.7s infinite steps(1);
+        }
+        &.ash-right {
+            left: 24%;
+            background-position: -10px -156px;
+            animation: ash-right 0.7s infinite steps(1);
+        }
+    }
+}
+
+@keyframes ash-down {
+    0% { background-position: -73px -13px; }
+    50% { background-position: -217px -13px; }
+}
+
+@keyframes ash-right {
+    0% { background-position: -10px -156px; }
+    25% { background-position: -77px -156px; }
+    50% { background-position: -10px -156px; }
+    75% { background-position:  -215px -156px; }
+}
+
+@keyframes ash-right-move {
+    0% { opacity: 0; transform: translateX(0); }
+    2% { opacity: 1; }
+    12% { transform: translateX(15vw); animation-timing-function: ease-out; }
+    35% { transform: translateX(20vw) scaleX(1); animation-timing-function: ease-in; }
+    44% { opacity: 1; }
+    55% { transform: translateX(60vw); opacity: 0; }
+    100% { opacity: 0; }
+}
+
+.ash-green-bag {
+
+    &.move {
+        animation: ash-green-bag-right-move 10s 1s linear forwards 1;
+    }
+
+    i {
+        background: url("http://orig15.deviantart.net/b4ea/f/2015/277/6/0/ash_classic_version_overworld_bw_by_jikaroriginal-d9bybsh.png"); // 98px x 134px
+        background-repeat: no-repeat;
+        display: block;
+        width: 50px;
+        height: 58px;
+        &.ash-green-bag-down {
+            left: 24%;
+            background-position: -73px -13px;
+            animation: ash-green-bag-down 0.7s infinite steps(1);
+        }
+        &.ash-green-bag-right {
+            left: 24%;
+            background-position: -10px -156px;
+            animation: ash-green-bag-right 0.7s infinite steps(1);
+        }
+    }
+}
+
+@keyframes ash-green-bag-down {
+    0% { background-position: -73px -13px; }
+    50% { background-position: -217px -13px; }
+}
+
+@keyframes ash-green-bag-right {
+    0% { background-position: -10px -156px; }
+    25% { background-position: -77px -156px; }
+    50% { background-position: -10px -156px; }
+    75% { background-position:  -215px -156px; }
+}
+
+@keyframes ash-green-bag-right-move {
+    0% { opacity: 0; transform: translateX(0); }
+    2% { opacity: 1; }
+    12% { transform: translateX(15vw); animation-timing-function: ease-out; }
+    35% { transform: translateX(20vw) scaleX(1); animation-timing-function: ease-in; }
+    44% { opacity: 1; }
+    55% { transform: translateX(60vw); opacity: 0; }
+    100% { opacity: 0; }
+}
+

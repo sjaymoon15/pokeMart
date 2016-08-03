@@ -1,0 +1,46 @@
+@import 'quote';
+@import 'cassidy';
+@import 'ash';
+@import 'james';
+@import 'jessie';
+@import 'pikachu';
+
+
+
+#home {
+    // border: 5px solid black; // dev enabled
+    height: 94%;
+    position: relative;
+    top: 0;
+    left: 0;
+    text-align: center;
+    width: 95vw;
+    margin: 1.5% 2% 2% 2%;
+    height: 100vh;
+}
+
+
+
+.running-animation {
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    // display: none; // dev disabled
+}
+
+
+
+.opening-scene {
+    position: absolute;
+    bottom: 30%;
+    left: 25%;
+    opacity: 0;
+}
+
+.pikachu {
+    position: absolute;
+    top: 60%;
+}
