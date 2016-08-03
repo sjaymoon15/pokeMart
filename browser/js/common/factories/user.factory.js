@@ -42,11 +42,14 @@ app.factory('UserFactory', function ($http) {
             .then(getData)
             .then(function(user){
                 if(user.id === 'session'){
-                return $http.put(baseUrl + 'updateSession', infoObj)
+                return $http.put('api/orders/cart/updateSessionCart', infoObj)
                 }
                 else{
                 return UserFactory.updateUser(user.id,infoObj)
-            }
+                    .then(function () {
+                        return $http.put('api/orders/cart/updateUserCart', infoObj)
+                    })
+                }
             })
     }
 

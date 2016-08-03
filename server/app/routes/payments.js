@@ -9,11 +9,9 @@ var db = require('../../db/_db');
 
 
 router.post('/', function(req,res,next){
-	
   var stripeToken = req.body.stripeToken;
   var totalPrice = 0;
   var descriptionString = [];
-console.log(req.session)
 if (req.user){
     UserOrders.findOne({
       where: {
@@ -60,6 +58,7 @@ else {
         status: 'pending'
       }
     }).then(function(cart){
+      cartBeingUsed = cart;
       return OrderDetails.findAll({
         where: {
           userOrderId: cart.id
@@ -86,7 +85,6 @@ else {
     // The card has been declined
   }
   else{
-    console.log(charge)
     res.redirect('/api/orders/cart/checkout')  }
   });
     })
