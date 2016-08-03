@@ -18,11 +18,6 @@ module.exports = function (app, db) {
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
         // profile is a json object, don't trust console.log(profile)...
         // stringify it first, is there another way????
-        console.log('here??????????')
-        console.log(profile.id);
-        console.log(profile.emails[0].value);
-        console.log(profile.name.givenName)
-        console.log(profile.name.familyName)
         User.findOne({
                 where: {
                     google_id: profile.id
