@@ -57,6 +57,10 @@
             return data.user;
         }
 
+        this.isAdmin = function (user) {
+            return user.isAdmin;
+        }
+
         // Uses the session factory to see if an
         // authenticated user is currently registered.
         this.isAuthenticated = function () {
