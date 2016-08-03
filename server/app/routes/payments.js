@@ -60,7 +60,7 @@ if (req.user){
               }
             })
           }
-    sendEmail();
+    sendEmail()
     res.redirect('/api/orders/cart/checkout')  }
   });
     })
