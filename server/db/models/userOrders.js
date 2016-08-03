@@ -27,7 +27,7 @@ module.exports = db.define('userOrders', { // OB/SB: maybe could just be called 
         },
         findBySession: function (sessionId) {
             return this.findOne({
-                where: {sessionId: sessionId}
+                where: {sessionId: sessionId, status: 'pending'}
             })
         },
         findByUser: function (userId) {
@@ -44,8 +44,15 @@ module.exports = db.define('userOrders', { // OB/SB: maybe could just be called 
             return this.update({sessionId: sessionId});
         },
         updateShipping: function(infoObj) {
-            //add after fixing session
-        }
+            var addressString = '' + infoObj.firstName+ ' ' + infoObj.lastName
+                                    + ' ' + infoObj.address + ' ' + infoObj.city + ' '  
+                                   + infoObj.state + ' ' + infoObj.zipCode;
+
+            return this.update({shipTo: addressString})
+                    .catch(console.error)
+    }
+
+
     }
     // onUpdate status, go update orderDetails
 });

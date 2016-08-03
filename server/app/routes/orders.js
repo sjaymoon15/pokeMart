@@ -74,6 +74,29 @@ router.get('/cart', function (req, res, next) {
 
 });
 
+router.put('/cart/updateSessionCart', function(req,res,next){
+  UserOrders.findOne({
+    where: {
+        sessionId: req.session.id,
+        status: 'pending'
+    }
+  }).then(function(cart){
+    cart.updateShipping(req.body)
+  }).then(function (){  
+   res.sendStatus(201)
+  }).catch(next)
+ 
+})
+
+router.put('/cart/updateUserCart', function(req,res,next){
+  UserOrders.findByUser(req.user.id)
+    .then(function(cart){
+    cart.updateShipping(req.body)
+  }).then(function (){  
+   res.sendStatus(201)
+  }).catch(next)
+ 
+})
 
 
 router.delete('/cart/:orderId', function (req, res, next) {

@@ -42,11 +42,6 @@ else {
 
 });
 
-router.put('/updateSession', function(req,res,next){
-  req.session.userInfo = res.body;
-  console.log(req.session.userInfo)
-  res.sendStatus(201)
-})
 
 
 
