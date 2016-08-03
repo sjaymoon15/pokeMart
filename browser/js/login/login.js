@@ -20,20 +20,30 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('LoginCtrl', function ($scope, AuthService, $state, AuthFactory, $stateParams) {
+app.controller('LoginCtrl', function ($scope, AuthService, $state, AuthFactory, $stateParams, CartFactory) {
 
     $scope.login = {};
     $scope.error = null;
     $scope.token = $stateParams.token;
 
-    $scope.forgetPassword = AuthFactory.forgetPassword;
-    $scope.resetPassword = AuthFactory.resetPassword;
+    $scope.forgetPassword = function (email) {
+        AuthFactory.forgetPassword(email).then(function () {
+            Materialize.toast('Check your email', 1000);
+        })
+    };
+    $scope.resetPassword = function (token, password) {
+        AuthFactory.resetPassword(password).then(function() {
+            $state.go('store');
+        })
+    };
 
     $scope.sendLogin = function (loginInfo) {
 
         $scope.error = null;
 
         AuthService.login(loginInfo).then(function () {
+            return CartFactory.fetchAllFromCart()
+        }).then(function (cart) {
             $state.go('store');
         }).catch(function () {
             $scope.error = 'Invalid login credentials.';

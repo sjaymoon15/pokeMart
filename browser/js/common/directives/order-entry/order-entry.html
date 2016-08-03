@@ -1,27 +1,28 @@
 <img class="col s2 order-thumbnail" src='http://pokeapi.co/media/img/{{order.productId}}.png'/>
 <form name="orderEntryUpdateForm">
      <div class="col s1">
-     {{order.userOrderId}}
+        <input name="userOrderId" type="text" ng-model="order.userOrderId" required/>
     </div>
     
     <div class="col s2">
-    {{order.title}}
-    </div>
-
-    <div class="col s1">
-    {{order.status}}
+        <input name="title" type="text" ng-model="order.title" ng-disabled/>
     </div>
 
     <div class="col s2">
-    {{order.price}}
+        <input name="price" type="text" ng-model="order.price" required/>
     </div>
 
     <div class="col s1">
-    {{order.quantity}}
+        <input name="quantity" type="text" ng-model="order.quantity" required/>
     </div>
 
     <div class="col s2">
-    {{order.user.firstName +' '+ order.user.lastName }}
+        <input name="firstName" type="text" ng-model="order.user.firstName" ng-disabled/>
     </div>
+     <div class="col s2">
+        <input name="lastName" type="text" ng-model="order.user.lastName" ng-disabled/>
+    </div>
+   <!--  <a class="col s1 btn waves-effect waves-light" ng-click="updateStatus(ngModel.id)">update</a>
+    <a class="col s1 btn waves-effect waves-light red" ng-click="deleteUserOrder(ngModel.id)">delete</a> -->
 
 </form>

@@ -17,8 +17,8 @@ app.factory('AuthFactory',  function($http){
         return $http.post('/reset/password/' + token, login);
     }
 
-    AuthFactory.forgetPassword = function (login) {
-        return $http.post('/forgot', login);
+    AuthFactory.forgetPassword = function (email) {
+        return $http.post('/forgot', email);
     }
 
     return AuthFactory;

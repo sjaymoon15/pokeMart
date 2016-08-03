@@ -8,7 +8,6 @@ app.directive('userOrder', function (ManageOrdersFactory) {
         },
         link: function (scope, elem, attr) {
             scope.updateStatus = function (id) {
-                console.log('scope.ngModel', scope.ngModel);
                 ManageOrdersFactory.updateStatus(id, scope.ngModel)
             };
             scope.deleteUserOrder = function (id) {
