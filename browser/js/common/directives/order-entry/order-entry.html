@@ -1,9 +1,11 @@
 <div ng-repeat="orderDetail in orderDetails" class="modal" id="order{{orderDetail.userOrderId}}">
-    <img class="col s12 order-thumbnail" src='http://pokeapi.co/media/img/{{orderDetail.productId}}.png'/>
-    <h6 class="col s12">Order: {{orderDetail.userOrderId}}</h6>
-    <h6 class="col s12">Title: {{orderDetail.title}}</h6>
-    <h6 class="col s12">Price: {{orderDetail.price}}</h6>
-    <h6 class="col s12">Quantity: {{orderDetail.quantity}}</h6>
-    <h6 class="col s12">First Name: {{orderDetail.user.firstName}}</h6>
-    <h6 class="col s12">Last Name: {{orderDetail.user.lastName}}</h6>
+    <div class="modal-content">
+        <img class="col s12 order-thumbnail" src='http://pokeapi.co/media/img/{{orderDetail.productId}}.png'/>
+        <h6 class="col s12">Order: {{orderDetail.userOrderId}}</h6>
+        <h6 class="col s12">Title: {{orderDetail.title}}</h6>
+        <h6 class="col s12">Price: {{orderDetail.price}}</h6>
+        <h6 class="col s12">Quantity: {{orderDetail.quantity}}</h6>
+        <h6 class="col s12">First Name: {{orderDetail.user.firstName}}</h6>
+        <h6 class="col s12">Last Name: {{orderDetail.user.lastName}}</h6>
+    </div>
 </div>

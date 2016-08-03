@@ -10,11 +10,11 @@
         <input name="date" type="text" ng-model="ngModel.updatedAt" required/>
     </div>
 
-    <div class="col s1">
+    <div class="col s2">
         <input name="status" type="text" ng-model="ngModel.status" required/>
     </div>
     <div class="col s1"></div>
-    <a class="col s1 btn waves-effect waves-light" ng-click="updateStatus(ngModel.id)">update</a>
-    <a class="col s1 btn waves-effect waves-light" href="#order{{ngModel.id}}" modal>more</a>
+    <a class="col s2 btn waves-effect waves-light" ng-click="updateStatus(ngModel.id)">update</a>
+    <a class="col s1 btn waves-effect waves-light" ng-href="#order{{ngModel.id}}" modal>more</a>
     <a class="col s1 btn waves-effect waves-light red" ng-click="deleteUserOrder(ngModel.id)">x</a>
 </form>

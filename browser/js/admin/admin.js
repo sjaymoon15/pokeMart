@@ -9,9 +9,7 @@ app.config(function ($stateProvider) {
                 return ProductFactory.fetchAll();
             },
             allUsers: function (UserFactory) {
-                return UserFactory.fetchAll().catch(function (err) {
-                    console.log(err)
-                });
+                return UserFactory.fetchAll()
             },
             allOrderDetails: function(ManageOrdersFactory){
                 return ManageOrdersFactory.fetchAll();
