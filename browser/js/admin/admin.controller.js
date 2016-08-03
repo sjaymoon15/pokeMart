@@ -5,8 +5,6 @@ app.controller('AdminCtrl', function ($scope, allUserOrders, $log, allProducts, 
     $scope.users = allUsers;
     $scope.userOrders = allUserOrders;
 
-    console.log(allUserOrders);
-
     //adding status to each orderDetail
     allOrderDetails.forEach(function(orderDetail){
     	ManageOrdersFactory.findStatus(orderDetail.userOrderId)
@@ -22,6 +20,13 @@ app.controller('AdminCtrl', function ($scope, allUserOrders, $log, allProducts, 
     		orderDetail.user = user;
     	}).catch($log.error);
     })
-    $scope.orders = allOrderDetails;
+    allOrderDetails = allOrderDetails.sort(function (a, b) {
+        return a.userOrderId - b.userOrderId;
+    });
+    allOrderDetails = _.groupBy(allOrderDetails, 'userOrderId')
+    $scope.orders = $.map(allOrderDetails,function (order, i) {
+        if (i) return [order];
+    })
+    console.log($scope.orders)
 
 });

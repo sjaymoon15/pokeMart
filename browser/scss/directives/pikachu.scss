@@ -1,29 +1,29 @@
-.pikachu {
+// .pikachu {
 
-    &.move {
-        animation: pikachu-right-move 10s 1s linear forwards 1;
-    }
+//     &.move {
+//         animation: pikachu-right-move 10s 1s linear forwards 1;
+//     }
 
-    i {
-        background: url("http://orig12.deviantart.net/bc36/f/2013/004/b/a/b_w_pikachu_overworlds__by_baconboy914-d5qgs39.gif"); // 96px x 128px
-        background-repeat: no-repeat;
-        display: block;
-        width: 32px;
-        height: 40px;
-        zoom:2;
-        -moz-transform:scale(2);
-        -moz-transform-origin: 0 0;
-        &.pikachu-down {
-            left: 24%;
-                background-position: -32px -32px;
-                animation: pikachu-down 0.5s infinite steps(1);
-        }
-    }
-}
+//     i {
+//         background: url("http://orig12.deviantart.net/bc36/f/2013/004/b/a/b_w_pikachu_overworlds__by_baconboy914-d5qgs39.gif"); // 96px x 128px
+//         background-repeat: no-repeat;
+//         display: block;
+//         width: 32px;
+//         height: 40px;
+//         zoom:2;
+//         -moz-transform:scale(2);
+//         -moz-transform-origin: 0 0;
+//         &.pikachu-down {
+//             left: 24%;
+//                 background-position: -32px -32px;
+//                 animation: pikachu-down 0.5s infinite steps(1);
+//         }
+//     }
+// }
 
 
-@keyframes pikachu-down {
-    0% { background-position: -32px -32px; }
-    50% { background-position:  -64px -32px; }
-}
+// @keyframes pikachu-down {
+//     0% { background-position: -32px -32px; }
+//     50% { background-position:  -64px -32px; }
+// }
 

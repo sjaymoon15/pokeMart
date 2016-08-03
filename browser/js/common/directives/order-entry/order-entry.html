@@ -1,28 +1,9 @@
-<img class="col s2 order-thumbnail" src='http://pokeapi.co/media/img/{{order.productId}}.png'/>
-<form name="orderEntryUpdateForm">
-     <div class="col s1">
-        <input name="userOrderId" type="text" ng-model="order.userOrderId" required/>
-    </div>
-    
-    <div class="col s2">
-        <input name="title" type="text" ng-model="order.title" ng-disabled/>
-    </div>
-
-    <div class="col s2">
-        <input name="price" type="text" ng-model="order.price" required/>
-    </div>
-
-    <div class="col s1">
-        <input name="quantity" type="text" ng-model="order.quantity" required/>
-    </div>
-
-    <div class="col s2">
-        <input name="firstName" type="text" ng-model="order.user.firstName" ng-disabled/>
-    </div>
-     <div class="col s2">
-        <input name="lastName" type="text" ng-model="order.user.lastName" ng-disabled/>
-    </div>
-   <!--  <a class="col s1 btn waves-effect waves-light" ng-click="updateStatus(ngModel.id)">update</a>
-    <a class="col s1 btn waves-effect waves-light red" ng-click="deleteUserOrder(ngModel.id)">delete</a> -->
-
-</form>
+<div ng-repeat="orderDetail in orderDetails" class="modal" id="order{{orderDetail.userOrderId}}">
+    <img class="col s12 order-thumbnail" src='http://pokeapi.co/media/img/{{orderDetail.productId}}.png'/>
+    <h6 class="col s12">Order: {{orderDetail.userOrderId}}</h6>
+    <h6 class="col s12">Title: {{orderDetail.title}}</h6>
+    <h6 class="col s12">Price: {{orderDetail.price}}</h6>
+    <h6 class="col s12">Quantity: {{orderDetail.quantity}}</h6>
+    <h6 class="col s12">First Name: {{orderDetail.user.firstName}}</h6>
+    <h6 class="col s12">Last Name: {{orderDetail.user.lastName}}</h6>
+</div>

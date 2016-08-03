@@ -1,0 +1,46 @@
+.jessie {
+
+    &.move{
+        animation: jessie-right-move 7s 1s linear forwards 1;
+    }
+
+
+    i {
+        background: url("http://orig12.deviantart.net/3042/f/2016/112/4/6/jessie__white_uniform__overworld_bw_by_jikaroriginal-d9ztqu8.png"); // 98px x 134px
+        background-repeat: no-repeat;
+        display: block;
+        width: 50px;
+        height: 58px;
+        &.jessie-down {
+            left: 24%;
+            background-position: -73px -10px;
+            animation: jessie-down 0.7s infinite steps(1);
+        }
+        &.jessie-right {
+            left: 24%;
+            background-position: -10px -156px;
+            animation: jessie-right 0.7s infinite steps(1);
+        }
+    }
+}
+
+@keyframes jessie-down {
+    0% { background-position: -73px -10px; }
+    50% { background-position: -217px -10px; }
+}
+
+@keyframes jessie-right {
+    0% { background-position: -10px -156px; }
+    25% { background-position: -77px -156px; }
+    50% { background-position: -10px -156px; }
+    75% { background-position:  -215px -156px; }
+}
+@keyframes jessie-right-move {
+    0% { opacity: 0; transform: translateX(0); }
+    2% { opacity: 1; }
+    12% { transform: translateX(15vw); animation-timing-function: ease-out; }
+    35% { transform: translateX(20vw) scaleX(1); animation-timing-function: ease-in; }
+    44% { opacity: 1; }
+    55% { transform: translateX(60vw); opacity: 0; }
+    100% { opacity: 0; }
+}

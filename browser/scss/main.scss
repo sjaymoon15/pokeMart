@@ -5,6 +5,8 @@
 body {
   background: #fdfdfd;
   margin: 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 
@@ -57,3 +59,4 @@ input[name="min-price"] {
 @import 'star-rating/main';
 @import 'cart/main';
 @import 'checkout/main';
+@import 'animation/main';

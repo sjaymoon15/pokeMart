@@ -1,0 +1,92 @@
+.pikachu {
+
+    &.move {
+        animation: pikachu-right-move 10s 1s linear forwards 1;
+    }
+
+    .quote {
+        animation: pika-quote 10s 1s linear forwards;
+    }
+
+    i {
+        background: url("http://orig12.deviantart.net/bc36/f/2013/004/b/a/b_w_pikachu_overworlds__by_baconboy914-d5qgs39.gif"); // 96px x 128px
+        background-repeat: no-repeat;
+        display: block;
+        width: 32px;
+        height: 40px;
+        zoom:2;
+        -moz-transform:scale(2);
+        -moz-transform-origin: 0 0;
+        &.pikachu-left {
+            left: 24%;
+            background-position: -32px -64px;
+            animation: pikachu-left 0.7s infinite steps(1);
+        }
+        &.pikachu-down {
+            left: 24%;
+            background-position: -32px -32px;
+            animation: pikachu-down 0.5s infinite steps(1);
+        }
+        &.pikachu-right {
+            left: 24%;
+            background-position: -32px -96px;
+            animation: pikachu-right 0.7s infinite steps(1);
+        }
+    }
+}
+
+.exclamation {
+    position: absolute;
+    background: url("http://files.simey.me/pokonami/sprite.png");
+    background-repeat: no-repeat;
+    display: block;
+    width: 15px;
+    height: 18px;
+    padding: 0;
+    margin: 0;
+    top: -8px;
+    left: 8px;
+    background-position: -129px -62px;
+}
+
+@keyframes pikachu-left {
+    0% { background-position: -32px -64px; }
+    50% { background-position:  -64px -64px; }
+}
+
+@keyframes pikachu-down {
+    0% { background-position: -32px -32px; }
+    50% { background-position:  -64px -32px; }
+}
+
+@keyframes pikachu-right {
+    0% { background-position: -32px -96px; }
+    50% { background-position:  -64px -96px; }
+}
+
+@keyframes pikachu-right-move {
+    0% { opacity: 1; transform: translateX(0); }
+    2% { opacity: 1; }
+    22% { transform: translateX(37vw); animation-timing-function: ease-out; }
+    25% { transform: translateX(40vw); animation-timing-function: steps(1); }
+    25.1% { transform: translateX(40vw); animation-timing-function: steps(1); }
+    // 32% { transform: translateX(40vw) scaleX(-1); animation-timing-function: linear; }
+    // 35% { transform: translateX(40vw) scaleX(-1); animation-timing-function: ease-out; }
+    // 41% { transform: translateX(33vw) scaleX(-1); }
+    // 46% { transform: translateX(33vw) scaleX(-1); animation-timing-function: steps(1); }
+    // 47% { transform: translateX(33vw) scaleX(-1); animation-timing-function: steps(1); }
+    48% { transform: translateX(53vw) step(1); animation-timing-function: ease-in; }
+    49% { opacity: 1; }
+    52% { transform: translateX(60vw); opacity: 0; }
+    100% { opacity: 0; }
+}
+
+@keyframes pika-quote {
+    0% { opacity: 0; }
+    30% { opacity: 0; }
+    43% { opacity: 1; }
+    48% { opacity: 1; }
+    54% { opacity: 0; }
+    100% { opacity: 0; }
+}
+

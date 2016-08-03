@@ -1,0 +1,47 @@
+.cassidy {
+
+    &.move {
+        animation: cassidy-right-move 6s 1s linear forwards 1;
+    }
+
+
+    i {
+        background: url("http://orig15.deviantart.net/7a5f/f/2016/112/d/d/cassidy_overworld_bw_by_jikaroriginal-d9zvz64.png"); // 98px x 134px
+        background-repeat: no-repeat;
+        display: block;
+        width: 50px;
+        height: 68px;
+        &.cassidy-down {
+            left: 24%;
+            background-position: -73px -2px;
+            animation: cassidy-down 0.7s infinite steps(1);
+        }
+        &.cassidy-right {
+            left: 24%;
+            background-position: -10px -152px;
+            animation: cassidy-right 0.7s infinite steps(1);
+        }
+    }
+}
+
+@keyframes cassidy-down {
+    0% { background-position: -73px -2px; }
+    50% { background-position: -217px -2px; }
+}
+
+@keyframes cassidy-right {
+    0% { background-position: -10px -148px; }
+    25% { background-position: -77px -145px; }
+    50% { background-position: -10px -148px; }
+    75% { background-position: -215px -148px; }
+}
+
+@keyframes cassidy-right-move {
+    0% { opacity: 0; transform: translateX(0); }
+    2% { opacity: 1; }
+    12% { transform: translateX(15vw); animation-timing-function: ease-out; }
+    35% { transform: translateX(20vw) scaleX(1); animation-timing-function: ease-in; }
+    44% { opacity: 1; }
+    55% { transform: translateX(60vw); opacity: 0; }
+    100% { opacity: 0; }
+}

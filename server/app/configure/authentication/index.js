@@ -82,7 +82,8 @@ module.exports = function (app, db) {
                   'If you did not request this, please ignore this email and your password will remain unchanged.\n'
             };
             smtpTransport.sendMail(mailOptions, function(err) {
-                console.log('info', 'An e-mail has been sent to ' + 'req.user.email' + ' with further instructions.');
+                if (err) console.log(err);
+                else console.log('info', 'An e-mail has been sent to ' + 'req.user.email' + ' with further instructions.');
             });
         }
 
