@@ -27,6 +27,6 @@ app.controller('AdminCtrl', function ($scope, allUserOrders, $log, allProducts, 
     $scope.orders = $.map(allOrderDetails,function (order, i) {
         if (i) return [order];
     })
-    console.log($scope.orders)
+    console.log($scope.orders);
 
 });
