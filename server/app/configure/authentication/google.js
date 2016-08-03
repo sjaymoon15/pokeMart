@@ -18,6 +18,11 @@ module.exports = function (app, db) {
     var verifyCallback = function (accessToken, refreshToken, profile, done) {
         // profile is a json object, don't trust console.log(profile)...
         // stringify it first, is there another way????
+        console.log('here??????????')
+        console.log(profile.id);
+        console.log(profile.emails[0].value);
+        console.log(profile.name.givenName)
+        console.log(profile.name.familyName)
         User.findOne({
                 where: {
                     google_id: profile.id
@@ -31,11 +36,13 @@ module.exports = function (app, db) {
                         google_id: profile.id,
                         email: (profile.emails[0].value) ? profile.emails[0].value : profile.displayName + '@fake.com',
                         firstName: profile.name.givenName,
-                        lastName: profile.name.familyName
+                        lastName: profile.name.familyName,
+                        password: 'dummy'
                     });
                 }
             })
             .then(function (userToLogin) {
+                console.log(userToLogin)
                 done(null, userToLogin);
             })
             .catch(function (err) {
