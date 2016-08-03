@@ -1,4 +1,4 @@
-app.directive('navbar', function ($rootScope, AuthService, AuthInterceptor, AUTH_EVENTS, $state) {
+app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) {
 
     return {
         restrict: 'E',
@@ -47,7 +47,6 @@ app.directive('navbar', function ($rootScope, AuthService, AuthInterceptor, AUTH
                 // console.log(AuthInterceptor);
                 AuthService.getLoggedInUser().then(function (user) {
                     scope.admin = AuthService.isAdmin(user);
-                    console.log(scope.admin)
                 });
             };
 
