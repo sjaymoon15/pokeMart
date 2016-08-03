@@ -37,7 +37,6 @@ module.exports = function (app, db) {
                 }
             })
             .then(function (userToLogin) {
-                console.log(userToLogin)
                 done(null, userToLogin);
             })
             .catch(function (err) {
