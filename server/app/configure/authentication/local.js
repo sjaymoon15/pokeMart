@@ -28,23 +28,32 @@ module.exports = function (app, db) {
 
     passport.use(new LocalStrategy({usernameField: 'email', passwordField: 'password'}, strategyFn));
 
-    app.post('/signup', function(req, res, next) {
+    
+  app.post('/signup', function(req, res, next) {
         User.findOne({
             where: {
               email: req.body.email // OB/SB: alternative: set field to be unique in the model
             }
         }).then(function(userOrNull){
+            var re = /\S+@\S+\.\S+/;
+            var test=re.test(userOrNull);
+
             if (userOrNull){
               res.send('email exists already')
-            } else{
-              User.create(req.body)
+            } 
+            else if (!test) {             
+                    res.send('not a valid email')
+                }
+                else {
+                    User.create(req.body)
               .then(function(user) {
                 req.login(user, function (err) {
                     if (err) console.log(err);
                     res.redirect('/');
                 })
               })
-            }
+                }          
+            
         })
     });
 
