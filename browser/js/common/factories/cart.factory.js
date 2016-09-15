@@ -38,6 +38,7 @@ app.factory('CartFactory', function ($http, $log, $state, $rootScope) {
     }
 
     CartFactory.addToCart = function (productId, quantity) {
+      
         var duplicate = CartFactory.checkForDuplicates(productId);
         if (duplicate) {
             return CartFactory
@@ -137,6 +138,8 @@ app.factory('CartFactory', function ($http, $log, $state, $rootScope) {
             $('#cart-icon').removeClass('animated rubberBand');
         })
     }
+
+
 
     function addRemoveAnimation() {
         $('#cart-icon').addClass('animated shake').one(animationEnd, function () {

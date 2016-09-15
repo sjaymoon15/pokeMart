@@ -11,13 +11,13 @@
 
             <li ng-show="admin" ui-sref="admin"><a>Admin</a></li>
 
-            <li ng-show="!user" ui-sref="login" class="login-button"><a>Login</a></li>
+            <li ng-show="!user" ui-sref="login" class="login-button"><a>Login/Sign up</a></li>
             <li ng-show="user" class="welcome">
                 <a class="dropdown-button" data-activates='userDropdown' dropdown data-hover="true"><i class="medium material-icons"> perm_identity</i></a>
                 <ul id='userDropdown' class='dropdown-content'>
                     <li><a>Profile</a></li>
                     <li><a ui-sref="orderHistories">Order History</a></li>
-                    <li><a ng-click="logout()">Log Out</a></li>
+                    <li ng-hide="!user"><a ng-click="logout()">Log Out</a></li>
                 </ul>
             </li>
             <li class="shopping-cart-dummy"><i class="medium material-icons" ui-sref='cart'>shopping_cart</i></li>
