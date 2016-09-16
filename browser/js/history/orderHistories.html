@@ -1,8 +1,12 @@
+
 <div class="row">
-  <div  ng-repeat="userOrder in userOrders">
+	
+  <div ng-repeat="userOrder in userOrders">
   	<div>Your order made on: {{userOrder.date}}</div>
   	<order-history histories="userOrder"></order-history>
+
   </div>
+    	<h1 ng-show="userOrders=='undefined' ||userOrders=='null' || userOrders.length==0 ">histories</h1>
 </div>
 
 <a ui-sref="store" class="back-to-store-btn btn btn-primary btn-block">Go Back To Store</a>
