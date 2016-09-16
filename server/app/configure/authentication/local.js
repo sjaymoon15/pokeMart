@@ -28,34 +28,6 @@ module.exports = function (app, db) {
 
     passport.use(new LocalStrategy({usernameField: 'email', passwordField: 'password'}, strategyFn));
 
-    
-  app.post('/signup', function(req, res, next) {
-        User.findOne({
-            where: {
-              email: req.body.email // OB/SB: alternative: set field to be unique in the model
-            }
-        }).then(function(userOrNull){
-            var re = /\S+@\S+\.\S+/;
-            var test=re.test(userOrNull);
-
-            if (userOrNull){
-              res.send('email exists already')
-            } 
-            else if (!test) {             
-                    res.send('not a valid email')
-                }
-                else {
-                    User.create(req.body)
-              .then(function(user) {
-                req.login(user, function (err) {
-                    if (err) console.log(err);
-                    res.redirect('/');
-                })
-              })
-                }          
-            
-        })
-    });
 
 
     // A POST /login route is created to handle login.
@@ -88,6 +60,62 @@ module.exports = function (app, db) {
 
     });
 
+ app.post('/signup', function(req, res, next) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    var test=re.test(req.body.email);
+    if (!test){
+        res.send('not a valid email')
+    }
+    else {
+        User.findOne({
+            where: {
+              email: req.body.email // OB/SB: alternative: set field to be unique in the model
+            }
+        }).then(function(userOrNull){
+            if (userOrNull){
+              res.send('email exists already')
+            }                                              
+                else {
+                    User.create(req.body)
+              .then(function(user) {
+                req.login(user, function (err) {
+                    if (err) console.log(err);
+                    res.redirect('/');
+                })
+              })
+                }             
+            
+        })
+    }
+    });
+  // app.post('/signup', function(req, res, next) {
+  //       User.findOne({
+  //           where: {
+  //             email: req.body.email // OB/SB: alternative: set field to be unique in the model
+  //           }
+  //       }).then(function(userOrNull){
+  //           if (userOrNull){
+  //             res.send('email exists already')
+  //           } 
+  //           else {             
+  //                 var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  //                 var test=re.test(userOrNull);
+  //               if (!test){
+  //                   res.send('not a valid email')
+  //               }
+  //               else {
+  //                   User.create(req.body)
+  //             .then(function(user) {
+  //               req.login(user, function (err) {
+  //                   if (err) console.log(err);
+  //                   res.redirect('/');
+  //               })
+  //             })
+  //               }
+  //           }
+            
+  //       })
+  //   });
     // app.use('/auth/google', require('./google'));
 
     // router.use('/twitter', require('./twitter.oauth'));
