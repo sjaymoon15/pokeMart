@@ -34,6 +34,12 @@ input[name="min-price"] {
  *
  * Copyright (c) 2016 Daniel Eden
  */
+ .noOrderHistory {
+   color:#26a69a;
+  text-align:center;
+  margin-top:50px;
+  'Josefin Slab', sans-serif;
+ }
 .animated {
   -webkit-animation-duration: 1s;
   animation-duration: 1s;

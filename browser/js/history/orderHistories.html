@@ -6,9 +6,9 @@
   	<order-history histories="userOrder"></order-history>
 
   </div>
-    	<h1 ng-show="userOrders=='undefined' ||userOrders=='null' || userOrders.length==0 ">histories</h1>
+    	<h5 class="noOrderHistory" ng-show="userOrders=='undefined' ||userOrders=='null' || userOrders.length==0 ">You have no Order History yet! Go and create one :)</h5>
 </div>
 
 <a ui-sref="store" class="back-to-store-btn btn btn-primary btn-block">Go Back To Store</a>
 
-
+  
