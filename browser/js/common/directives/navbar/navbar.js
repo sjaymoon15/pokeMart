@@ -19,7 +19,7 @@ app.directive('navbar', function ($rootScope, AuthService, AUTH_EVENTS, $state) 
             scope.untoggleLogo = function() {
                 $('.pokeball i.great').css('background-position', '-293px -9px')
 
-            }
+            }   
 
             scope.user = null;
 
