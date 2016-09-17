@@ -16,8 +16,18 @@ app.factory('UserFactory', function ($http) {
                 })
     };
 
+
+    UserFactory.findUser=function(id){
+        return $http.get(baseUrl + id)
+         .then(getData)
+        .then(function(user){
+            console.log('say my nameeeeeee', user)
+            return user;
+        })
+    }
+
     UserFactory.updateUser = function (id, data) {
-        return $http.put(baseUrl + id, data)
+        return $http.get(baseUrl + id, data)
                 .then(getData)
                 .then(function (user) {
                     var updatedInd = cachedUsers.findIndex(function (user) {

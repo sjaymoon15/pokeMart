@@ -38,7 +38,7 @@ input[name="min-price"] {
    color:#26a69a;
   text-align:center;
   margin-top:50px;
-  'Josefin Slab', sans-serif;
+  font-family:'Josefin Slab', sans-serif;
  }
 .animated {
   -webkit-animation-duration: 1s;
@@ -2636,8 +2636,8 @@ tutorial-section-menu {
 .add-to-cart-btn {
   width: 300px;
   height: 70px;
-  margin-left: 350px;
-  margin-top: -200px;
+  margin-left: 330px;
+  margin-top: -230px;
   text-align: center; }
 
 .review-entry-stars {

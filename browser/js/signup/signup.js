@@ -20,9 +20,12 @@ app.config(function ($stateProvider) {
                 Materialize.toast('It is not a valid email', 2000);
             }
             else {
-                $state.go('store');
+                 Materialize.toast('Go ahead and login', 4000);
+                $state.go('login');
             }
         })
     }
     $scope.googleSignup = AuthFactory.googleSignup;
 });
+
+

@@ -25,6 +25,7 @@ router.get('/getLoggedInUserId', function(req,res,next){
 })
 
 
+
 router.get('/:id', function(req, res, next){
 	if(req.params.id==req.user.id || req.user.isAdmin) { // OB/SB: consider making auth utility
   User.findOne({

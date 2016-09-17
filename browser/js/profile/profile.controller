@@ -1,0 +1,23 @@
+app.controller('ProfileCtrl', function($scope,UserFactory, $log, userProfile){
+  UserFactory.findUser(user.id)
+  // $scope.info = {};
+  // return UserFactory.findUser((user.id)
+  //   $scope.userProfile=userProfile;
+  // $scope.validateUser= function () {
+
+  //       UserFactory.updateUserBeforePayment($scope.info)
+  //       .then(function() {
+  //         $scope.showCC = true;
+  //       }).catch($log.error)
+        
+  // }
+  // $scope.totalCost = totalCost;
+  // $scope.arrayOfItems = arrayOfItems;
+  // $scope.stringOfItems = arrayOfItems.map(item => item.title).join(',')
+})
+
+app.controller('ProfileCtrl', function($scope,UserFactory, $log, userProfile){
+  // UserFactory.findUser(user.id)
+  $scope.userProfile=userProfile;
+  
+})

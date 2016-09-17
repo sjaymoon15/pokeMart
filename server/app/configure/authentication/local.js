@@ -80,11 +80,11 @@ module.exports = function (app, db) {
               .then(function(user) {
                 req.login(user, function (err) {
                     if (err) console.log(err);
-                    res.redirect('/');
+                    res.redirect('/login');
                 })
               })
                 }             
-            
+              
         })
     }
     });

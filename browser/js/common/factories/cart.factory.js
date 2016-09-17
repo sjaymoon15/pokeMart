@@ -147,6 +147,10 @@ app.factory('CartFactory', function ($http, $log, $state, $rootScope) {
         })
     }
 
+   CartFactory.findOneUserInfo=function(){
+     return $http.get(baseUrl + 'checkout')
+    }
+
     return CartFactory;
 
 });
