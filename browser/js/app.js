@@ -35,7 +35,7 @@ app.run(function ($rootScope, AuthService, $state) {
             return;
         }
 
-        if (AuthService.isAuthenticated()) {
+        if (AuthService.isAuthenticated()) {  
             // The user is authenticated.
             // Short circuit with return.
             return;
