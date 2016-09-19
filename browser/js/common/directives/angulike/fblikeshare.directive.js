@@ -8,6 +8,7 @@ angular.module('angulike')
                 //     fbLike: '=?'
                 // },
                 link: function (scope, element, attrs) {
+                    
                     if (!$window.FB) {
                         // Load Facebook SDK if not already loaded
                         $.getScript('//connect.facebook.net/en_US/sdk.js', function () {

@@ -6,4 +6,4 @@ app.controller('FBlike', [
               ImageUrl: 'http://pokemart-fsa.herokuapp.com'
           };
       }
-  ]);
+  ]);    

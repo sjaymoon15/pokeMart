@@ -34,7 +34,7 @@
         </span>
       </h5>
       <p>{{review.date}}</p>
-      <h6>{{review.content}}</h6>
+      <h6>{{review.content}}</h6>  
     </div>
   </div>
 
@@ -55,6 +55,8 @@
 
 
 </section>
-<div fb-like="myModel.Url"></div>
+<div class="socialMedia">
+<div fb-like="myModel.Url" fbLike:"{{myModel.Url}}"></div><div tweet="myModel.Name"></div>
+</div>
 <a id='add-to-cart-button' class="add-to-cart-btn btn col s5" ng-click="addToCart()">Add To Cart</a>
 
