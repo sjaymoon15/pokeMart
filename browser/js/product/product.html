@@ -17,12 +17,15 @@
       </div>
     </div>
   </div>
-
+  <div>
+<div style="margin-top:45px;" fb-like="myModel.Url" fbLike:"{{myModel.Url}}"></div>
+</br></div></div><div style="margin-left:110px; margin-top:-42px;" tweet="myModel.Name"></div>
+<div style="margin-left:180px; margin-top:-27px;"pin-it="myModel.Name" pin-it-image="myModel.ImageUrl"></div>
+</div>
   <div class="stars-wrapper" ng-click="modalOpen=!modalOpen">
     <input-stars ng-model="newReview.rating" max="5"></input-stars>
     <h6></h6>
   </div>
-
   <div class="review-wrapper">
     <div ng-repeat="review in reviews">
       <h5>
@@ -56,8 +59,8 @@
 
 </section>
 
-<div fb-like="myModel.Url" fbLike:"{{myModel.Url}}"></div>
+<!-- <div fb-like="myModel.Url" fbLike:"{{myModel.Url}}"></div>
 </br></div></div><div tweet="myModel.Name"></div>
-<div pin-it="myModel.Name" pin-it-image="myModel.ImageUrl"></div>
+<div pin-it="myModel.Name" pin-it-image="myModel.ImageUrl"></div> -->
 <a id='add-to-cart-button' class="add-to-cart-btn btn col s5" ng-click="addToCart()">Add To Cart</a>
 
