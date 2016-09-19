@@ -3,6 +3,7 @@ angular.module('angulike')
         '$window', '$rootScope', function ($window, $rootScope) {
             return {
                 restrict: 'A',
+                controller:'FBlike',
                 // scope: {
                 //     fbLike: '=?'
                 // },
