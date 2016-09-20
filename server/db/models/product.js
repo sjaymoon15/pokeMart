@@ -5,14 +5,12 @@ var Sequelize = require('sequelize');
 var db = require('../_db');
 
 
-
-// OB/SB: consider more validations
 module.exports = db.define('product', {
     title: {
         type: Sequelize.STRING,
         allowNull: false
     },
-    category: { // OB/SB: just one?
+    category: { 
         type: Sequelize.STRING
     },
     description: {

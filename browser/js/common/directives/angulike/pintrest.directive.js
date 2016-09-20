@@ -3,11 +3,11 @@ app.directive('pinIt', [
         function ($window, $location) {
             return {
                 restrict: 'A',
-                // scope: {
-                //     pinIt: '=',
-                //     pinItImage: '=',
-                //     pinItUrl: '='
-                // },
+                scope: {
+                    pinIt: '=',
+                    pinItImage: '=',
+                    pinItUrl: '='
+                },
                 controller:'PintCtrl',
                 link: function (scope, element, attrs) {
                     if (!$window.parsePins) {

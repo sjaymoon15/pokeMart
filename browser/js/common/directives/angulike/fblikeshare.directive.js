@@ -4,11 +4,11 @@ angular.module('angulike')
             return {
                 restrict: 'A',
                 controller:'FBlike',
-                // scope: {
-                //     fbLike: '=?'
-                // },
+                scope: {
+                    fbLike: '=?'
+                },
                 link: function (scope, element, attrs) {
-                    
+                    // attrs.fbLike=myModel.Url;
                     if (!$window.FB) {
                         // Load Facebook SDK if not already loaded
                         $.getScript('//connect.facebook.net/en_US/sdk.js', function () {
@@ -42,7 +42,7 @@ angular.module('angulike')
                             element.html('<div class="fb-like"' + (!!scope.fbLike ? ' data-href="' + scope.fbLike + '"' : '') + ' data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>');
                             $window.FB.XFBML.parse(element.parent()[0]);
                         }
-                    }
+                    }   
                 }
             };
         }

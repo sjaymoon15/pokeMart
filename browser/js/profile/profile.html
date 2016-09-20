@@ -1,8 +1,8 @@
 <div>
-<form action="/payments" method="POST">
-	<input  ng-model = "info.firstName">{{info.firstName}}</input>
-	<input placeholder= 'Last Name' ng-model = "info.lastName"></input>
-	<input placeholder= 'Address' ng-model = "info.address"></input>
+<form >
+	<input  ng-model = "theUser.firstName">{{theUser.firstName}}</input>
+	<input >{{theUser}}</input>
+	<input placeholder= 'Address' ng-model = "theUser.address"></input>
 	<input placeholder= 'City' type='text' ng-model = "info.city"></input> 
 <select material-select ng-model = "info.state">
     <option value="AL">Alabama</option>
@@ -59,18 +59,7 @@
 </select>
 <input placeholder='Zip Code' ng-model ='info.zipCode'></input>
 
-  
-<div ng-show = 'showCC'>
-  <script
-    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="pk_test_6pRNASCoBOKtIshFeQd4XMUh"
-    data-amount='{{totalCost*100}}'
-    data-name='{{stringOfItems}}'
-    data-description="Widget"
-    data-image="/img/documentation/checkout/marketplace.png"
-    data-locale="auto">
-  </script>
-</div>
+<button>Save</button>
 
 </form>
 

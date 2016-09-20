@@ -3,6 +3,8 @@
 var router = require('express').Router();
 var User = require('../../db/models/user');
 
+
+
 router.get('/', function (req, res, next) {
   //check user priviledge
   console.log('session', req.session) // OB/SB: dead code
@@ -19,7 +21,11 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/getLoggedInUserId', function(req,res,next){
-    if(req.user) res.send(req.user)
+    if(req.user) {
+       console.log('hereeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',req.user)
+    res.send(req.user)
+    }
+
     else res.send({id: 'session'})
 
 })
@@ -33,6 +39,7 @@ router.get('/:id', function(req, res, next){
       id: req.params.id
     }
   }).then(function(user){
+    console.log('userrrrrrr',user)
     res.send(user)
   })
   .catch(next);

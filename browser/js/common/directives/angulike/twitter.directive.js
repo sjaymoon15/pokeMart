@@ -3,10 +3,10 @@ app.directive('tweet', [
         function ($window, $location) {
             return {
                 restrict: 'A',
-                // scope: {
-                //     tweet: '=',
-                //     tweetUrl: '='
-                // },
+                scope: {
+                    tweet: '=',
+                    tweetUrl: '='
+                },
                 // controller:'TwitterCtrl',
                 link: function (scope, element, attrs) {
                     if (!$window.twttr) {
@@ -40,4 +40,4 @@ app.directive('tweet', [
                 }
             };
         }
-    ]);
+    ]);   

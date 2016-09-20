@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
     where: req.query
   })
   .then(function(allProducts){
+   
   	res.send(allProducts);
   })
   .catch(next);

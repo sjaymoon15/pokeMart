@@ -36,7 +36,7 @@ app.factory('UserFactory', function ($http) {
                     cachedUsers[updatedInd] = user;
                     return user;
                 })
-    }
+    }  
 
     UserFactory.deleteUser = function (id) {
         return $http.delete(baseUrl + id).success(function() {
