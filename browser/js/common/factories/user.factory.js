@@ -17,14 +17,14 @@ app.factory('UserFactory', function ($http) {
     };
 
 
-    UserFactory.findUser=function(id){
-        return $http.get(baseUrl + id)
-         .then(getData)
-        .then(function(user){
-            console.log('say my nameeeeeee', user)
-            return user;
-        })
-    }
+    // UserFactory.findUser=function(id){
+    //     return $http.get(baseUrl + id)
+    //      .then(getData)
+    //     .then(function(user){
+    //         console.log('say my nameeeeeee', user)
+    //         return user;
+    //     })
+    // }
 
     UserFactory.updateUser = function (id, data) {
         return $http.get(baseUrl + id, data)
@@ -63,12 +63,13 @@ app.factory('UserFactory', function ($http) {
             })
     }
 
-    UserFactory.userProfileInfo = function(){
-        return $http.get(baseUrl + 'getLoggedInUserId')
-        .then(function(userInfo){
-            return userInfo;
-        })
-    }
+    // UserFactory.userProfileInfo = function(){
+    //     return $http.get(baseUrl + 'userProfile')
+    //     .then(getData)
+    //     .then(function(userInfo){
+    //         return userInfo;
+    //     })
+    // }
 
     return UserFactory;
 })

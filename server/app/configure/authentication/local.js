@@ -52,8 +52,8 @@ module.exports = function (app, db) {
                 });
             });
 
-            console.log('=====req user=====', req.user.id); // hash
-
+            console.log('=====req user=====',  req.user); // hash
+                // console.log('=====req user=====',  req.user, req.user.firstName); 
         };
 
         passport.authenticate('local', authCb)(req, res, next);

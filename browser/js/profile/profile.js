@@ -1,17 +1,13 @@
 app.config(function ($stateProvider) {
     $stateProvider.state('profile', {
-        // url: '/profile/:userId',
-             url: '/profile/:userId',
+             url: '/profile',
         templateUrl: 'js/profile/profile.html',
-        controller:'ProfileCtrl',
-       //  resolve: {
-       
-       // singleUser: function (UserFactory, $stateParams) {
-       //          return UserFactory.findUser($stateParams.userId);
-       //      },
-       //  }
+        controller:'ProfileCtrl'
+        // resolve: {      
+        // profileInfo: function (User, UserFactory) {
+        //         return UserFactory.userProfileInfo();
+        //     },
+        // }
     });
 });
- 
-
-            
+                

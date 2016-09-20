@@ -1,9 +1,14 @@
 
-   <h1>{{userInfo.firstName}}</h1>
-<div>
- 
+<section>
+  <div class="col-md-3 sidebar">
+    <h3>Welcome {{ userInfo }} {{ userInfo.lastName }}</h3>
+</div>
+  </section>
+
+<!-- <div> -->
+<!--  
 <form >
-	<input  ng-model = "userInfo.firstName">{{userInfo}}</input>
+	<input  ng-model = "userInfo.firstName">{{profileInfo}}</input>
 	<input >{{userInfo}}</input>
 	<input placeholder= 'Address' ng-model = "theUser.address"></input>
 	<input placeholder= 'City' type='text' ng-model = "info.city"></input> 
@@ -66,6 +71,6 @@
 
 </form>
 
-<!-- <button ng-hide ='showCC' ng-click='validateUser()' material>Validate Info</button>  -->
-
-</div>
+<! <button ng-hide ='showCC' ng-click='validateUser()' material>Validate Info</button>  -->
+<!-- 
+</div> --> 

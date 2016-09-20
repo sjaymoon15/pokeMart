@@ -1,7 +1,0 @@
-
-app.controller('ProfileCtrl', function($scope, UserFactory, $log){
-	UserFactory.userProfileInfo(function(user){
-		 $scope.userInfo=user;
-	})
-})
-

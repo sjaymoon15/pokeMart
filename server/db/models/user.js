@@ -20,31 +20,31 @@ module.exports = db.define('user', {
     }
 },
 firstName: {
-    type: Sequelize.STRING,
-     allowNull: false
+    type: Sequelize.STRING
+     // allowNull: false
 },
 lastName: {
-    type: Sequelize.STRING,
-       allowNull: false
+    type: Sequelize.STRING
+       // allowNull: false
 },
 address: {
     type: Sequelize.STRING,
-       allowNull: false
+       // allowNull: false
 },
 zipCode: {
     type: Sequelize.INTEGER,
-       allowNull: false,
-       validate: {
-         isNumeric: true
-       }
+       // allowNull: false
+       // validate: {
+       //   isNumeric: true
+       // }
 },
 city: {
     type: Sequelize.STRING,
-       allowNull: false
+       // allowNull: false
 },
 state: {
     type: Sequelize.STRING,
-       allowNull: false
+       // allowNull: false
 },
 country: {
     type: Sequelize.STRING,

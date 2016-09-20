@@ -10,7 +10,7 @@
     app.factory('Socket', function () {
         if (!window.io) throw new Error('socket.io not found!');
         return window.io(window.location.origin);
-    });
+    });   
 
     // AUTH_EVENTS is used throughout our app to
     // broadcast and listen from and to the $rootScope
