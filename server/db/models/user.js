@@ -33,7 +33,10 @@ address: {
 },
 zipCode: {
     type: Sequelize.INTEGER,
-       allowNull: false
+       allowNull: false,
+       validate: {
+         isNumeric: true
+       }
 },
 city: {
     type: Sequelize.STRING,

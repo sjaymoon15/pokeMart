@@ -21,7 +21,7 @@ angular.module('angulike')
                         });
                     } else {
                         renderLikeButton();
-                    }
+                    }   
  
                     var watchAdded = false;
                     function renderLikeButton() {

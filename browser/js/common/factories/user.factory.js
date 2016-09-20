@@ -63,5 +63,12 @@ app.factory('UserFactory', function ($http) {
             })
     }
 
+    UserFactory.userProfileInfo = function(){
+        return $http.get(baseUrl + 'getLoggedInUserId')
+        .then(function(userInfo){
+            return userInfo;
+        })
+    }
+
     return UserFactory;
 })

@@ -1,11 +1,7 @@
-app.controller('ProfileCtrl', function($scope,UserFactory, $log, singleUser){
- // UserFactory.findUser(userId);
- //   $scope.theUser = singleUser;
- 
+
+app.controller('ProfileCtrl', function($scope, UserFactory, $log){
+	UserFactory.userProfileInfo(function(user){
+		 $scope.userInfo=user;
+	})
 })
 
-// app.controller('ProfileCtrl', function($scope,UserFactory, $log, userProfile){
-//   // UserFactory.findUser(user.id)
-//   $scope.userProfile=userProfile;
-  
-// })

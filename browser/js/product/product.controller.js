@@ -30,5 +30,5 @@ app.controller('ProductCtrl', function ($scope, theProduct, allReviews, ProductF
         return arr;
     }
 
-})
+})   
 
