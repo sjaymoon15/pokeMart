@@ -63,13 +63,13 @@ app.factory('UserFactory', function ($http) {
             })
     }
 
-    // UserFactory.userProfileInfo = function(){
-    //     return $http.get(baseUrl + 'userProfile')
-    //     .then(getData)
-    //     .then(function(userInfo){
-    //         return userInfo;
-    //     })
-    // }
+    UserFactory.userProfileInfo = function(){
+        return $http.get(baseUrl + 'getLoggedInUserId')
+        .then(getData)
+        .then(function(userInfo){
+            return userInfo;
+        })
+    }
 
     return UserFactory;
 })
