@@ -1,7 +1,7 @@
 <div>
 	<div ng-repeat="cart in cartContent" class="row cart-entry-wrapper">
-		<div class="col s12 m12 l2 center">
-            <img class="cart-thumbnail" src='http://pokeapi.co/media/img/{{cart.productId}}.png'/>
+		<div class="col s12 m12 l2 center checkoutPic">
+      <img class="cart-thumbnail" src='{{cart.imageUrl}}'/>
         </div>
 		<h6 class="cart-entry-item col s12 m12 l2 center">{{cart.title}}</h6>
         <div class="col s12 m12 l2 center quantity-btn">
