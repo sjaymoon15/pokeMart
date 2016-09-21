@@ -6,13 +6,16 @@
 // })
 
 app.controller('ProfileCtrl', function($scope, UserFactory, $stateParams, $log){
-UserFactory.fetchOne($stateParams.id)
+	   alert($stateParams.id, 'whyyy'); 
+	   UserFactory.fetchOne($stateParams.id)
   .then(function(user) {
+  	 alert($stateParams.id, 'noo'); 
+  	
     $scope.user = user;
   })
   // .catch(function (err) {
-    // $scope.error = 'Unauthorized'
-    // console.error(err)
+  // 	 alert($stateParams.id); 
+  //   console.error('blaaaa',$stateParams.id)
   // });
 
 })

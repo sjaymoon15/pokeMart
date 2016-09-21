@@ -5,18 +5,19 @@
         </div>
 		<h6 class="cart-entry-item col s12 m12 l2 center">{{cart.title}}</h6>
         <div class="col s12 m12 l2 center quantity-btn">
-			<h6 class="cart-entry-item"><span class="btn-small" ng-click="changeQuantity(cart.id,cart.quantity,'subtract')">-</span>
-			{{cart.quantity}}
-			<span class="btn-small" ng-click="changeQuantity(cart.id,cart.quantity,'add')">+</span></h6>
+			<h6 class="cart-entry-item"><div class="reduceQuantity"><span class="btn-small reduceQuantity" ng-click="changeQuantity(cart.id,cart.quantity,'subtract')"> - </span></div>
+			<div class="quantityNumber">{{cart.quantity}}</div>
+			<div class="addQuantity"><span class="btn-small" ng-click="changeQuantity(cart.id,cart.quantity,'add')"> + </span></div></h6>
         </div>
 		<h6 class="cart-entry-item col s12 m12 l2 center">${{cart.price * cart.quantity}}</h6>
-		<button class="cart-entry-item col s12 m12 l4 center btn" ng-click="remove(cart.id)">Remove from Cart</button>
+		<button style="margin-top:35px;"class="cart-entry-item col s12 m12 l4 center btn" ng-click="remove(cart.id)">Remove from Cart</button>
 	</div>
 </div>
 
 <div class="row">
     <div class="col s12 m12 l8"></div>
-    <h5 class=" col s12 m12 l2 center">Total: $ {{total()}}</h5>
+
+    <h5 class=" col s12 m12 l2 center">Total: ${{total()}}</h5>
     <a ui-sref='checkout' class="btn red lighten-2 col s12 m12 l2">Checkout</a>
 </div>
 

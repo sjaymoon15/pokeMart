@@ -20,7 +20,8 @@ app.factory('UserFactory', function ($http) {
     return $http.get(baseUrl + id)
     .then(function(response) {
       return response.data;
-    });
+    })
+    
   }
 
     // UserFactory.findUser=function(id){

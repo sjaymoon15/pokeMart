@@ -8,7 +8,7 @@ var User = require('../../db/models/user');
 
 
 router.get('/', function (req, res, next) {
-  console.log('fuck', req.user.id)
+  console.log('not working', req.user.id)
   //check user priviledge
   console.log('session', req.session) // OB/SB: dead code
   //if user isAdmin then return all users
