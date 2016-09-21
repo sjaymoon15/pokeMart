@@ -16,6 +16,12 @@ app.factory('UserFactory', function ($http) {
                 })
     };
 
+     UserFactory.fetchOne = function(id) {
+    return $http.get(baseUrl + id)
+    .then(function(response) {
+      return response.data;
+    });
+  }
 
     // UserFactory.findUser=function(id){
     //     return $http.get(baseUrl + id)
@@ -63,13 +69,15 @@ app.factory('UserFactory', function ($http) {
             })
     }
 
-    UserFactory.userProfileInfo = function(){
-        return $http.get(baseUrl + 'getLoggedInUserId')
-        .then(getData)
-        .then(function(userInfo){
-            return userInfo;
-        })
-    }
+    // UserFactory.userProfileInfo = function(){
+    //     return $http.get(baseUrl + 'getLoggedInUserId')
+    //     .then(getData)
+    //     .then(function(userInfo){
+    //         return userInfo;
+    //     })
+    // }
+    //instead: test:
+
 
     return UserFactory;
 })

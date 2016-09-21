@@ -8,6 +8,7 @@ var User = require('../../db/models/user');
 
 
 router.get('/', function (req, res, next) {
+  console.log('fuck', req.user.id)
   //check user priviledge
   console.log('session', req.session) // OB/SB: dead code
   //if user isAdmin then return all users
@@ -22,20 +23,52 @@ router.get('/', function (req, res, next) {
 	}
 });
 
+/////////////////////test
+router.get('/:id', function (req, res, next){
+    console.log('great', req.user.id)
+  // check that user is current user or Admin
+  if (!req.user.isAdmin && req.user.id != req.params.id){
+    res.status(403).send('Forbidden');
+    return
+  }
+  User.findById(req.params.id)
+  .then(function (user){
+    res.send(user)
+  }).catch(next)
+})
+//////test if not working check below
+
+// router.get('/:id', function(req, res, next){
+//   if(req.params.id==req.user.id || req.user.isAdmin) { // OB/SB: consider making auth utility
+//   User.findOne({
+//     where: {
+//       id: req.params.id
+//     }
+//   }).then(function(user){
+//     console.log('userrrrrrr',user)
+//     res.send(user)
+//   })
+//   .catch(next);
+// }
+// else {
+//   res.status(401).send('Sorry, youre not the one you claim to be buhhhh');
+// }
+
+// });
+
 router.get('/getLoggedInUserId', function(req,res,next){
     if(req.user) {
       console.log('yaaaaaaaaa', req.user)
     res.send(req.user)
     }
-
     else res.send({id: 'session'})
 
 })
 
-router.get('/userProfile', function(req,res,next){
-    if(req.user) {
-      res.send(req.user.data)
-    }
+// router.get('/userProfile', function(req,res,next){
+//     if(req.user) {
+//       res.send(req.user)
+//     }
   // User.findById(req.user.id)
   // .then(function(user){
   //   console.log('looooook hereeeeeeeeeee!!!!!!!!!!!!!!!!!!!!!!!!!',req.user, req.user.firstName)
@@ -43,26 +76,10 @@ router.get('/userProfile', function(req,res,next){
   // })
 
   // .catch(next)
-})
+// })
 
 
-router.get('/:id', function(req, res, next){
-	if(req.params.id==req.user.id || req.user.isAdmin) { // OB/SB: consider making auth utility
-  User.findOne({
-    where: {
-      id: req.params.id
-    }
-  }).then(function(user){
-    console.log('userrrrrrr',user)
-    res.send(user)
-  })
-  .catch(next);
-}
-else {
-	res.status(401).send('Sorry, youre not the one you claim to be buhhhh');
-}
 
-});
 
 
 

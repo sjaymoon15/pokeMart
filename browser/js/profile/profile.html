@@ -1,9 +1,31 @@
 
+
+
 <section>
   <div class="col-md-3 sidebar">
-    <h3>Welcome {{ userInfo }} {{ userInfo.lastName }}</h3>
+    <h3 ng-model="user.firstname">Welcome {{ user.firstName }} {{ user.lastName }}</h3>
 </div>
   </section>
+<form name="userEntryUpdateForm">
+    <div class="col s2">
+        <input name="firstName" value="{{user.firstName}}" type="text" required />
+    </div>
+    <div class="col s2">
+        <input name="lastName" value="{{user.lastName}}" type="text" required />
+    </div>
+    <div class="col s2">
+        <input name="email" value="{{user.email}}" type="text" required />
+    </div>
+    <div class="col s2">
+        <input name="zipCode" value="{{user.zipCode}}" type="text" required />
+    </div>
+    <div class="col s1">
+        <input name="isAdmin" value="{{user.isAdmin}}" type="text"  required />
+    </div>
+    <a class="col s2 btn waves-effect waves-light" ng-click="forgetPassword(user.email)">Password reset</a>
+    <a class="col s1 btn red waves-effect waves-light" ng-click="deleteUser(user.id)">x</a>
+</form>
+
 
 <!-- <div> -->
 <!--  
