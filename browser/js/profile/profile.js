@@ -1,23 +1,33 @@
-// app.config(function ($stateProvider) {
-//     $stateProvider.state('profile', {
-//              url: '/profile',
-//         templateUrl: 'js/profile/profile.html',
-//         controller:'ProfileCtrl'
-//         // resolve: {      
-//         // profileInfo: function (User, UserFactory) {
-//         //         return UserFactory.userProfileInfo();
-//         //     },
-//         // }
-//     });
-// });
-                
-
 app.config(function ($stateProvider) {
-    $stateProvider.state('user', {
-             url: '/users/:id',
+    $stateProvider.state('profile', {
+             url: '/user/:id',
         templateUrl: 'js/profile/profile.html',
-        controller:'ProfileCtrl'
- 
+        controller:'ProfileCtrl',
+        // resolve: {      
+        // profileInfo: function (UserFactory, $stateParams) {
+        //         console.log('Users id:\n', $stateParams);
+        //         return UserFactory.fetchOne($stateParams.id);
+        //     }
+        // }
     });
 });
+                
+
+// app.config(function ($stateProvider) {
+//     $stateProvider.state('user', {
+//              url: '/users/:id',
+//         templateUrl: 'js/profile/profile.html',
+//         controller:'ProfileCtrl'
+ 
+//     });
+// });
              
+
+// app.config(function ($stateProvider) {
+//     $stateProvider.state('user', {
+//              url: '/users',
+//         templateUrl: 'js/profile/profile.html',
+//         controller:'ProfileCtrl'
+ 
+//     });
+// });

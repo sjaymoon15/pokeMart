@@ -1,5 +1,3 @@
-
-
 'use strict'
 
 var router = require('express').Router();
@@ -7,21 +5,30 @@ var User = require('../../db/models/user');
 
 
 
-router.get('/', function (req, res, next) {
-  console.log('not working', req.user.id)
-  //check user priviledge
-  console.log('session', req.session) // OB/SB: dead code
-  //if user isAdmin then return all users
-  if (req.user.isAdmin){
-  User.findAll()
-  .then(function (usersArray){
-    res.send(usersArray)
-  }).catch(next)
-	}
-	else {
-		res.status(401).send('Sorry, its just for employees :-(((');
-	}
-});
+router
+  .get('/', function (req, res, next) {
+    console.log('not working', req.user.id)
+    //check user priviledge
+    console.log('session', req.session) // OB/SB: dead code
+    //if user isAdmin then return all users
+    if (req.user.isAdmin){
+      User.findAll().then(function (usersArray){
+        res.send(usersArray)
+    }).catch(next)
+  	}
+  	else {
+  		res.status(401).send('Sorry, its just for employees :-(((');
+  	}
+  });
+
+router.get('/getLoggedInUserId', function(req,res,next){
+    if(req.user) {
+      console.log('yaaaaaaaaa', req.user)
+    res.send(req.user)
+    }
+    else res.send({id: 'session'})
+
+})
 
 /////////////////////test
 router.get('/:id', function (req, res, next){
@@ -56,14 +63,7 @@ router.get('/:id', function (req, res, next){
 
 // });
 
-router.get('/getLoggedInUserId', function(req,res,next){
-    if(req.user) {
-      console.log('yaaaaaaaaa', req.user)
-    res.send(req.user)
-    }
-    else res.send({id: 'session'})
 
-})
 
 // router.get('/userProfile', function(req,res,next){
 //     if(req.user) {

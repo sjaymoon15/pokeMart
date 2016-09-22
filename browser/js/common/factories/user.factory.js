@@ -16,14 +16,20 @@ app.factory('UserFactory', function ($http) {
                 })
     };
 
-     UserFactory.fetchOne = function(id) {
-    return $http.get(baseUrl + id)
-    .then(function(response) {
-      return response.data;
-    })
-    
-  }
+  //    UserFactory.fetchOne = function(id) {
+  //   return $http.get(baseUrl + id)
+  //   .then(function(response) {
+  //     return response.data;
+  //   })
 
+  // }
+ UserFactory.fetchOne = function(id) {
+    return $http.get(baseUrl + id)
+       .then(getData)
+    .then(function(user) {
+     return user;
+    })
+  }
     // UserFactory.findUser=function(id){
     //     return $http.get(baseUrl + id)
     //      .then(getData)

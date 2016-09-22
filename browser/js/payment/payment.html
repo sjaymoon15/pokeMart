@@ -1,7 +1,6 @@
 <div>
-
-<p>Your total cost will be : $ {{totalCost}}</p>
-For <ul><li ng-repeat='item in arrayOfItems'>{{item.quantity}} {{item.title}}, Price: ${{item.price * item.quantity}}</li></ul>
+<p class="paymentItemsList">Your total cost will be : $ {{totalCost}}</p>
+<ul ><p class="paymentItemsList">Your Items:</p><li ng-repeat='item in arrayOfItems'>{{item.quantity}} {{item.title}}, Price: ${{item.price * item.quantity}}</li></ul>
 
 
 <form action="/payments" method="POST">
