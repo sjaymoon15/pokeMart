@@ -5,29 +5,24 @@
 
 // })
 
-app.controller('ProfileCtrl', function($scope, $stateParams, UserFactory){
+app.controller('ProfileCtrl', function($scope, $stateParams, UserFactory, $state){
 	   // $scope.user = profileInfo;
-     /*
-	   UserFactory.fetchOne()
-  .then(function(user) {
-  	 alert($stateParams.id, 'noo', user); 
+    
+	    UserFactory.fetchOne()
+      .then(function(user){
+       $scope.user = user;
+       console.log('helloo',user.id)
+      })
+  // .then(function(user) {
+  // 	 alert($stateParams.id, 'noo', user); 
   	
-    $scope.user = user;
-  })
-  .catch(function (err) {
-  	 alert($stateParams.id); 
-    console.error('blaaaa',$stateParams.id)
-  });
-  */
-  
-  function x(){
-    $http
-      .get('/api/user/' + $stateParams.id)
-      .then(function(data){
-        $scope.user = data;
-      });
-  }
-
+  //   $scope.user = user;
+  // })
+  // .catch(function (err) {
+  // 	 alert($stateParams.id); 
+  //   console.error('blaaaa',$stateParams.id)
+  // });
+// console.log('helloo',user.id)
 })
 
 // app.controller('ProfileCtrl', function($scope, UserFactory, $stateParams, $log){

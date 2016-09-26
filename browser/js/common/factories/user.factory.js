@@ -8,7 +8,7 @@ app.factory('UserFactory', function ($http) {
     UserFactory.fetchAll = function () {
         return $http.get(baseUrl).then(getData)
                 .then(function (users) {
-                    angular.copy(users, cachedUsers); // why angular copy alters array order!!!!!!!
+                    angular.copy(users, cachedUsers); 
                     cachedUsers.sort(function (a, b) {
                         return a.id - b.id;
                     })
@@ -16,20 +16,19 @@ app.factory('UserFactory', function ($http) {
                 })
     };
 
-  //    UserFactory.fetchOne = function(id) {
-  //   return $http.get(baseUrl + id)
-  //   .then(function(response) {
-  //     return response.data;
-  //   })
 
-  // }
- UserFactory.fetchOne = function(id) {
-    return $http.get(baseUrl + id)
-       .then(getData)
-    .then(function(user) {
-     return user;
-    })
-  }
+ // UserFactory.fetchOne = function(id) {
+ //    return $http.get(baseUrl + id)
+ //       .then(getData)
+ //    .then(function(user) {
+ //     return user;
+ //    })
+ //  }
+  UserFactory.fetchOne = function() {
+    return $http.get(baseUrl + 'getLoggedInUserId')
+            .then(getData)
+
+  };
     // UserFactory.findUser=function(id){
     //     return $http.get(baseUrl + id)
     //      .then(getData)

@@ -1,6 +1,7 @@
 <div  ng-show="histories!='undefined' && histories!='null' && histories.length!=0" ng-repeat="history in histories" class="row cart-entry-wrapper">
     <div class="col s12 m3 l3 center">
         <img class="cart-thumbnail" src='http://pokeapi.co/media/img/{{history.productId}}.png'/>
+<!--         <img class="cart-thumbnail" src='{{history.photoUrl}'/> -->
     </div>
     <h6 class="cart-entry-item col s12 m3 l3 center">hello{{history.title}}</h6>
     <h6 class="cart-entry-item col s12 m3 l3 center">{{history.quantity}}</h6>

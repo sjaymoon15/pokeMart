@@ -5,8 +5,7 @@ var User = require('../../db/models/user');
 
 
 
-router
-  .get('/', function (req, res, next) {
+router.get('/', function (req, res, next) {
     console.log('not working', req.user.id)
     //check user priviledge
     console.log('session', req.session) // OB/SB: dead code
@@ -23,7 +22,7 @@ router
 
 router.get('/getLoggedInUserId', function(req,res,next){
     if(req.user) {
-      console.log('yaaaaaaaaa', req.user)
+      console.log('yaaaaaaaaa', req.user.id)
     res.send(req.user)
     }
     else res.send({id: 'session'})
@@ -43,46 +42,6 @@ router.get('/:id', function (req, res, next){
     res.send(user)
   }).catch(next)
 })
-//////test if not working check below
-
-// router.get('/:id', function(req, res, next){
-//   if(req.params.id==req.user.id || req.user.isAdmin) { // OB/SB: consider making auth utility
-//   User.findOne({
-//     where: {
-//       id: req.params.id
-//     }
-//   }).then(function(user){
-//     console.log('userrrrrrr',user)
-//     res.send(user)
-//   })
-//   .catch(next);
-// }
-// else {
-//   res.status(401).send('Sorry, youre not the one you claim to be buhhhh');
-// }
-
-// });
-
-
-
-// router.get('/userProfile', function(req,res,next){
-//     if(req.user) {
-//       res.send(req.user)
-//     }
-  // User.findById(req.user.id)
-  // .then(function(user){
-  //   console.log('looooook hereeeeeeeeeee!!!!!!!!!!!!!!!!!!!!!!!!!',req.user, req.user.firstName)
-  //   res.send(user)
-  // })
-
-  // .catch(next)
-// })
-
-
-
-
-
-
 
 router.post('/', function(req,res,next){
   User.findOne({
