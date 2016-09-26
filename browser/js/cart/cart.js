@@ -8,10 +8,10 @@
  			cartContent:function(CartFactory){
 
  				return CartFactory.fetchAllFromCart();
-
+            
  			}
- 		}
- 	})   
+ 		}   
+ 	})            
  })         
-
-                                                                           
+                  
+                                                                                                                  

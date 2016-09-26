@@ -56,7 +56,7 @@ if (req.user){
             };
             smtpTransport.sendMail(mailOptions, function(err) {
               if (err) {
-                console.log(error)
+           
               }
             })
           }

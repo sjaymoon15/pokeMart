@@ -116,7 +116,7 @@ app.factory('CartFactory', function ($http, $log, $state, $rootScope) {
         .catch(function () {
             Materialize.toast('Oops, Something went wrong', 1000);
         })
-    }
+    }  
 
     CartFactory.getTotalCost = function(){
         var total = 0;

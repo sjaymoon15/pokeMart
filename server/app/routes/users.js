@@ -29,7 +29,6 @@ router.get('/getLoggedInUserId', function(req,res,next){
 
 })
 
-/////////////////////test
 router.get('/:id', function (req, res, next){
     console.log('great', req.user.id)
   // check that user is current user or Admin
