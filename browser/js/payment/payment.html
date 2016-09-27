@@ -1,8 +1,63 @@
+<div class="container">
+    <table id="cart" class="table table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th style="width:50%">Product</th>
+                            <th style="width:150%">Price</th>
+                            <th style="width:25%">Quantity</th>
+                            <th style="width:25%" class="text-center">Subtotal</th>
+                            <th style="width:15%"></th>
+                        </tr>
+                    </thead>
+                    <tbody  ng-repeat='item in arrayOfItems'>
+                        <tr>
+
+                            <td data-th="Product">
+                                <div class="row">
+                                    <div class="col-sm-2 hidden-xs"><img src="http://placehold.it/100x100" alt="..." class="img-responsive"/></div>
+                                    <div class="col-sm-10">
+                                        <h5 class="nomargin">{{item.title}}</h5>
+                                       <!--  <p>Quis aute iure reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Lorem ipsum dolor sit amet.</p> -->
+                                    </div>
+                                </div>
+                            </td>
+                            <td data-th="Price">${{item.price}}</td>
+                            <td data-th="Price">{{item.quantity}}</td>
+                           <!--  <td data-th="Quantity">
+                                <input type="number" class="form-control text-center" value="1">{{item.quantity}} 
+                            </td> -->
+                            <td data-th="Subtotal" class="text-center">${{item.price * item.quantity}}</td>
+                            <td class="actions" data-th="">
+                                <button ng-click="edit()" class="btn btn-info btn-sm">Edit</button>
+                                                               
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr class="visible-xs">
+                            <td class="text-center"><strong> Your total is $ {{totalCost}}</strong></td>
+                        </tr>
+                       <!--  <tr>
+                            <td><a href="#" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a></td>
+                            <td colspan="2" class="hidden-xs"></td>
+                            <td class="hidden-xs text-center"><strong>Total $1.99</strong></td>
+                            <td><a href="#" class="btn btn-success btn-block">Checkout <i class="fa fa-angle-right"></i></a></td>
+                        </tr> -->
+                    </tfoot>
+                </table>
+</div>
+
+
+
+<!-- 
 <div>
 <p class="paymentItemsList">Your total cost will be : $ {{totalCost}}</p>
+
+
 <ul ><p class="paymentItemsList">Your Items:</p><li ng-repeat='item in arrayOfItems'>{{item.quantity}} {{item.title}}, Price: ${{item.price * item.quantity}}</li></ul>
 
-
+ -->
+ <h5>Your info</h5>
 <form action="/payments" method="POST">
 	<input placeholder= 'First Name' ng-model = "info.firstName"></input>
 	<input placeholder= 'Last Name' ng-model = "info.lastName"></input>
