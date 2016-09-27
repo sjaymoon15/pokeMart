@@ -1,8 +1,29 @@
 .welcomeProfile{
+	color:#2bbbad;
 	font-size:20px; 
 	background-color:white;
 	font-family: 'Josefin Slab', sans-serif;
 }
 .frontProfileIcon{
-	margin-left:320px;
+	margin-left:140px;
+}
+.saveButton{
+	background-color:#2bbbad;
+	width:150px;
+	height:50px;
+	
+}
+.dontSave{
+	background-color:#ff4d4d;
+	width:50px;
+	height:50px;
+}
+.profileButtons{
+	margin-left:220px;
+}
+.profileBox{
+	margin-left:170px;
+}
+.input{
+	background-color:black;
 }
