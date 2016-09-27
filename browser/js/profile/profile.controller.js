@@ -8,7 +8,12 @@ app.controller('ProfileCtrl', function($scope, UserFactory, $state){
       $scope.user = {};
   
   $scope.saveUserInfo= function () {
-        return UserFactory.updateUserBeforePayment($scope.user)       
+         UserFactory.updateUserBeforePayment($scope.user) 
+        .then(function(){
+           Materialize.toast('You successfully updated your profile!', 1000);
+        }).catch(function () {
+            Materialize.toast('Something went wrong', 1000);
+        })   
   }
   $scope.dontSaveInfo=function(){
      $state.go('store');
