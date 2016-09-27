@@ -1,4 +1,4 @@
-app.controller('ProfileCtrl', function($scope, $stateParams, UserFactory, $state){
+app.controller('ProfileCtrl', function($scope, UserFactory, $state){
 	    UserFactory.fetchOne()
       .then(function(user){
        $scope.user = user;
@@ -9,6 +9,9 @@ app.controller('ProfileCtrl', function($scope, $stateParams, UserFactory, $state
   
   $scope.saveUserInfo= function () {
         return UserFactory.updateUserBeforePayment($scope.user)       
+  }
+  $scope.dontSaveInfo=function(){
+     $state.go('store');
   }
 })
 
