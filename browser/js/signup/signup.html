@@ -9,10 +9,53 @@
             <label for="email">Email address</label>
             <input type="text" ng-model="signup.email" class="form-control" id="email" placeholder="Enter email">
         </div>
-        <div class="form-group">
+
+
+   <!--      <div class="form-group">
             <label for="signup-password">Password</label>
             <input type="password" ng-model="signup.password" class="form-control" id="signup-password" placeholder="Password">
+        </div> -->
+             <div class="form-group">
+            <label for="signup-password">Password</label>
+            <input type="password" ng-model="signup.password" class="form-control" id="signup-password" placeholder="Password">
+            <input type="password" ng-model="signup.confirm" placeholder="Confirm Password">
         </div>
+<!-- <div class="form-group">
+            <label for="signup-password">Password</label>
+               <input type="password" ng-model="singup.newPassword" class="form-control" id="signup-password" placeholder="Password">
+              <label for="signup-password">Confirm Password</label>
+              <input type="password" ng-model="password.confirm" placeholder="Confirm Password">
+        </div>
+ -->
+
+    <!--     <div>
+        <input name="newPassword" ng-model="password.new">
+        <input match-password="newPassword" name="confirmPassword" ng-model="password.confirm">
+    </div> -->
+
+
+<!-- <form name="profileForm" autocomplete="off" novalidate="" ng-submit="submit(password)">
+  <fieldset>
+    <label for="newPassword">New Password</label>
+    <input type="password" name="newPassword" ng-model="password.new" required=""/>
+    <div class="clearfix">
+      <div ng-messages="profileForm.newPassword.$error" ng-if="profileForm.$submitted || profileForm.newPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+        <div ng-message="required" class="message slide-left">You did not enter a field name</div>
+      </div>
+    </div>
+    <label for="confirmPassword">Re-Type New Password</label>
+    <input type="password" name="confirmPassword" ng-model="password.confirm" match-password="newPassword" required=""/>
+    <div class="clearfix">
+      <div ng-messages="profileForm.confirmPassword.$error" ng-if="profileForm.$submitted || profileForm.confirmPassword.$dirty" ng-messages-multiple="ng-messages-multiple" class="error-messages slide-right">
+        <div ng-message="required" class="message slide-left">You did not enter a field name</div>
+        <div ng-message="passwordMatch" class="message slide-left">Your passwords did not match</div>
+      </div>
+    </div>
+  </fieldset>
+  <button>Submit</button>
+</form> -->
+
+
         <div class="signup-btn-group">
             <button type="submit" class="btn btn-default">Sign Up</button>
         </div>

@@ -5,7 +5,7 @@
     // Hope you didn't forget Angular! Duh-doy.
     if (!window.angular) throw new Error('I can\'t find Angular!');
 
-    var app = angular.module('fsaPreBuilt', ['angulike', 'fsaPreBuilt', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'ui.materialize', 'angular-input-stars','angular-stripe']);
+    var app = angular.module('fsaPreBuilt', ['angulike', 'fsaPreBuilt','ngPassword', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'ui.materialize', 'angular-input-stars','angular-stripe']);
 
     app.factory('Socket', function () {
         if (!window.io) throw new Error('socket.io not found!');

@@ -2,7 +2,7 @@
 <div class="row">
 	
   <div ng-repeat="userOrder in userOrders">
-  	<div>Your order made on: {{userOrder.date}}</div>
+  	<div>Your order made on: {{userOrder.date | date}}</div>
   	<order-history histories="userOrder"></order-history>
 
   </div>

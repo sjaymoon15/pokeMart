@@ -1,4 +1,4 @@
-app.controller('OrderHistoriesCtrl', function ($log, $scope, OrderHistoriesFactory) {
+app.controller('OrderHistoriesCtrl', function ($log, $scope, OrderHistoriesFactory, CartFactory) {
 
     OrderHistoriesFactory.fetchAll()
     .then(function (userOrdersArr) {

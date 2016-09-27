@@ -19,6 +19,9 @@ app.config(function ($stateProvider) {
             else if (response === 'not a valid email'){
                 Materialize.toast('It is not a valid email', 2000);
             }
+            else if (response === 'passwords do not match'){
+                Materialize.toast('Your passwords do not match. Please try again!', 2000);
+            }
             else {
                  Materialize.toast('Go ahead and login', 4000);
                 $state.go('login');

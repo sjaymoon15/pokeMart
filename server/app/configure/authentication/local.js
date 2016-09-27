@@ -61,11 +61,19 @@ module.exports = function (app, db) {
     });
 
  app.post('/signup', function(req, res, next) {
+    // console.log(req.body)
+    
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     var test=re.test(req.body.email);
-    if (!test){
+    if (req.body.password!=req.body.confirm){
+         console.log('password yooooo',req.body.password, req.body.confirm)
+          res.send('passwords do not match')
+     }
+   
+    else if (!test){
         res.send('not a valid email')
     }
+   
     else {
         User.findOne({
             where: {
