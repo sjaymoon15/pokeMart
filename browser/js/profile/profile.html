@@ -1,6 +1,14 @@
+<!-- <form action="/profile" method="POST">
+   <input placeholder= 'First Name' ng-model = "user.firstName">{{ user.firstName }}</input>
+   <input placeholder= {{ user.lastName }} ng-model = "user.lastName">{{ user.lastName }}</input>
+</form>
+
+
+ -->
+<div>
 <span style="display:inline;">
    <i class="material-icons md-48 medium mdi-content-add frontProfileIcon">face</i>
-   <span class="welcomeProfile">Hey {{ user.firstName }} ! Check out your profile!</span>
+   <span  class="welcomeProfile" >Hey {{ user.firstName }} ! Check out your profile!</span>
 </span>
 </br></br></br>
 <div class="row">
@@ -8,11 +16,11 @@
    <div class="row">
       <div class="input-field col s6">
          <i class="material-icons prefix">account_circle</i>
-         <input placeholder="{{ user.firstName }}" id="first_name" type="text" class="validate">
+         <input ng-model="user.firstName" placeholder="{{ user.firstName }}" id="first_name" type="text" class="validate">
          <label class="active"for="first_name">First Name</label>
       </div>
       <div class="input-field col s6">
-         <input placeholder="{{ user.lastName }}" id="last_name" type="text" class="validate">
+         <input ng-model = "user.lastName" placeholder="{{ user.lastName }}" id="last_name" type="text" class="validate">
          <label class="active" for="last_name">Last Name</label>
       </div>
    </div>
@@ -20,32 +28,32 @@
       <div class="input-field col s8">
          <i  class="material-icons">email</i>
          <i class="mdi-content-mail prefix"></i>
-         <input placeholder="{{ user.address }}" id="first_name" type="text" class="validate">
+         <input ng-model="user.address" placeholder="{{ user.address }}" id="first_name" type="text" class="validate">
          <label class="active"for="first_name">Address</label>
       </div>
    </div>
    <div class="row">
       <div class="input-field col s6">
          <i class="mdi-content-mail prefix"></i>
-         <input placeholder="{{ user.address }}" id="email" type="email" class="validate">
+         <input ng-model="user.email"placeholder="{{ user.address }}" id="email" type="email" class="validate">
          <label for="email">Email</label>
       </div>
       <div class="input-field col s6">
-         <input id="password" type="password" class="validate">
+         <input ng-model="user.password" id="password" type="password" class="validate">
          <label for="password">Password</label>
       </div>
    </div>
    <div class="row" style="margin-left:35px;">
       <div class="input-field col s2">
-         <input placeholder="{{ user.city }}" id="first_name" type="text" class="validate">
+         <input ng-model="user.city" placeholder="{{ user.city }}" id="first_name" type="text" class="validate">
          <label class="active"for="first_name">City</label>
       </div>
       <div class="input-field col s2">
-         <input placeholder="{{ user.state }}" id="last_name" type="text" class="validate">
+         <input ng-model="user.state" placeholder="{{ user.state }}" id="last_name" type="text" class="validate">
          <label class="active" for="last_name">State</label>
       </div>
       <div class="input-field col s2">
-         <input placeholder="{{ user.zipCode }}" id="first_name" type="text" class="validate" >
+         <input ng-model="user.zipCode" placeholder="{{ user.zipCode }}" id="first_name" type="text" class="validate" >
          <label class="active"for="first_name">Zip Code</label>
       </div>
    </div>
@@ -54,3 +62,4 @@
 <button ng-click="saveUserInfo()">Save Info</button>
 <button ng-click="dontSaveInfo()">X</button>
 
+</div>
