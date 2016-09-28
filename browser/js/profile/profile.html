@@ -107,33 +107,17 @@
 </div>
 
 <div>
-<button ng-click="showReviews()">My reviews</button>
-<p>hello</p>
-<div ng-repeat="review in reviews">
-  <p>{{review.title}}</p>
-<h5>hello</h5>
-     <!--    <span> -->
-          <p>{{review.title}}</p>
-           <p>{{review.title}}</p>
-          <h5>hello</h5>
-  <!--       </span>
-      </h5>
-      <h6>{{review.content}}ggg</h6>   -->
-</div>
-</div>
-<h1>break</h1>
+<button class="showReviews" ng-click="showReviews()">Show my reviews</button>
 <div class="review-wrapper">
     <div ng-repeat="review in reviews">
-      <h5>
         <span>
           <div class="review-entry-stars">
             <input-stars ng-model="review.rating" max="5"></input-stars>
           </div>
-          <h5>{{review.title}}</h5>
-        </span>
-      </h5>
-      <p>Review left on: {{review.date | date}}</p>
-      <h6>{{review.content}}</h6>  
-    <!--   <p>------------------------------</p> -->
+           <p> <span class="reviewtitles">Title: </span>{{review.title}}</p>
+        </span>     
+     <p> <span class="reviewtitles">Review left on: </span>{{review.date | date}}</p>
+        <p> <span class="reviewtitles">Your review: </span>{{review.content}}</p>  
+      <p class="lineBorder"></p> 
     </div>
   </div>
