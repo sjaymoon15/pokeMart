@@ -46,6 +46,7 @@ if (req.user){
     // The card has been declined
   }
   else{
+
     var sendEmail = function () {
             var smtpTransport = nodemailer.createTransport('smtps://ytcdeveloper@gmail.com:ytcdeveloper123@smtp.gmail.com');
             var mailOptions = {
@@ -56,7 +57,7 @@ if (req.user){
             };
             smtpTransport.sendMail(mailOptions, function(err) {
               if (err) {
-           
+                console.log(error)
               }
             })
           }
