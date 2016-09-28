@@ -3,8 +3,10 @@ app.directive('shoppingCart', function(CartFactory, $rootScope) {
         restrict: 'E',
         templateUrl: 'js/common/directives/cart-reveal/cart-reveal.html',
         scope: {
-            active: '='
+            active: '=',
+            addAndRevealCard: '='
         },
+        // scope: { setFn: '&' },
         link: function (scope, elem, attr) {
             scope.showCart = 'checkout';
             CartFactory.fetchAllFromCart().then(function (cart) {
@@ -15,6 +17,7 @@ app.directive('shoppingCart', function(CartFactory, $rootScope) {
             })
             scope.revealCart = function () {
                 scope.showCart = 'checkout checkout--active';
+                
             };
             scope.hideCart = function () {
                 scope.active = 'inactive';
@@ -25,7 +28,9 @@ app.directive('shoppingCart', function(CartFactory, $rootScope) {
                 if(scope.cart)
                 scope.cart.forEach(item => total += (item.price * item.quantity))
                 return total;
-            }
+            } 
+            // scope.setFn({theDirFn: scope.updateMap});
+
         }
     }
 })

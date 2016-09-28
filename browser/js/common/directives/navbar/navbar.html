@@ -1,23 +1,24 @@
 <nav class="navbar-fixed row">
         <div class="col s6 logo-wrapper">
-            <a ui-sref='home'><span  ng-mouseenter = 'toggleLogo()' ng-mouseleave = 'untoggleLogo()' class="logo">P<i class="pokeball">
+            <a ui-sref='store'><span  ng-mouseenter = 'toggleLogo()' ng-mouseleave = 'untoggleLogo()' class="logo">P<i class="pokeball">
             <i class="great"></i></i>KEMART</span></a>
         </div>
 
         <ul class="right">
+        
             <li ng-repeat="item in items" ng-show="!item.auth || isLoggedIn()">
                 <a ui-sref-active="active" ui-sref="{{ item.state }}">{{ item.label }}</a>
             </li>
 
             <li ng-show="admin" ui-sref="admin"><a>Admin</a></li>
 
-            <li ng-show="!user" ui-sref="login" class="login-button"><a>Login</a></li>
+            <li ng-show="!user" ui-sref="login" class="login-button"><a>Login/Sign up</a></li>
             <li ng-show="user" class="welcome">
                 <a class="dropdown-button" data-activates='userDropdown' dropdown data-hover="true"><i class="medium material-icons"> perm_identity</i></a>
                 <ul id='userDropdown' class='dropdown-content'>
-                    <li><a>Profile</a></li>
+                    <li><a ui-sref="profile">Profile</a></li>
                     <li><a ui-sref="orderHistories">Order History</a></li>
-                    <li><a ng-click="logout()">Log Out</a></li>
+                    <li ng-hide="!user"><a ng-click="logout()">Log Out</a></li>
                 </ul>
             </li>
             <li class="shopping-cart-dummy"><i class="medium material-icons" ui-sref='cart'>shopping_cart</i></li>
@@ -26,3 +27,4 @@
 
 </nav>
 <!-- <ul><li class="shopping-cart-corner"><i class="medium material-icons" ui-sref='cart'>shopping_cart</i></li></ul> -->
+  

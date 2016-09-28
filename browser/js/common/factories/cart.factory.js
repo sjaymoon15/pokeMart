@@ -38,6 +38,7 @@ app.factory('CartFactory', function ($http, $log, $state, $rootScope) {
     }
 
     CartFactory.addToCart = function (productId, quantity) {
+      
         var duplicate = CartFactory.checkForDuplicates(productId);
         if (duplicate) {
             return CartFactory
@@ -115,7 +116,7 @@ app.factory('CartFactory', function ($http, $log, $state, $rootScope) {
         .catch(function () {
             Materialize.toast('Oops, Something went wrong', 1000);
         })
-    }
+    }  
 
     CartFactory.getTotalCost = function(){
         var total = 0;
@@ -138,10 +139,16 @@ app.factory('CartFactory', function ($http, $log, $state, $rootScope) {
         })
     }
 
+
+
     function addRemoveAnimation() {
         $('#cart-icon').addClass('animated shake').one(animationEnd, function () {
             $('#cart-icon').removeClass('animated shake');
         })
+    }
+
+   CartFactory.findOneUserInfo=function(){
+     return $http.get(baseUrl + 'checkout')
     }
 
     return CartFactory;

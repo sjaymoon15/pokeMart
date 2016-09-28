@@ -19,7 +19,8 @@
     var total = 0;
     cartContent.forEach(cart => total += (cart.price * cart.quantity))
 
-    return total;
+    return total;  
   }
  })
 
+ 

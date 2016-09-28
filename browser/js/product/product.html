@@ -1,3 +1,5 @@
+<fb-like="myModel.Url"></fb-like>
+<tweet="myModel.Name"></tweet>
 <section class="product-page">
 
   <div class="product-wrapper">
@@ -8,7 +10,7 @@
       <div class="name-type-wrapper">
         <h4>{{product.title}}</h4>
         <h6>{{product.category}} Type Pokemon</h6>
-      </div>
+      </div> 
       <div>
         <h4>${{product.price}}</h4>
         <h6>Quantity<select ng-model ='quantity' ng-init="quantity='1'" material-select>
@@ -17,12 +19,30 @@
       </div>
     </div>
   </div>
+  <div>
+
+
+   <div ng-controller="angulikeCtrl" class="jumbotron text-center">
+        <div class="container">
+            <div class="col-xs-3">
+                <div fb-like="myModel.Url"></div>
+            </div>
+            <div class="col-xs-3">
+                <div style="margin-left:110px;  margin-top: -20px;" tweet="myModel.Name" tweet-url="myModel.Url"></div>
+            </div>
+            <div class="col-xs-3">
+                <div  google-plus="myModel.Url"></div>
+            </div>
+            <div class="col-xs-3">
+                <div style="margin-left:50px; margin-top: -26px;" pin-it="myModel.Name" pin-it-image="myModel.ImageUrl" pin-it-url="myModel.Url"></div>
+            </div>
+        </div>
+    </div>
 
   <div class="stars-wrapper" ng-click="modalOpen=!modalOpen">
     <input-stars ng-model="newReview.rating" max="5"></input-stars>
     <h6></h6>
   </div>
-
   <div class="review-wrapper">
     <div ng-repeat="review in reviews">
       <h5>
@@ -33,8 +53,8 @@
           {{review.title}}
         </span>
       </h5>
-      <p>{{review.date}}</p>
-      <h6>{{review.content}}</h6>
+      <p>{{review.date | date}}</p>
+      <h6>{{review.content}}</h6>  
     </div>
   </div>
 
@@ -55,5 +75,5 @@
 
 
 </section>
-
 <a id='add-to-cart-button' class="add-to-cart-btn btn col s5" ng-click="addToCart()">Add To Cart</a>
+

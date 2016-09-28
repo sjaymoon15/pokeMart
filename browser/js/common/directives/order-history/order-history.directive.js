@@ -6,5 +6,8 @@ app.directive('orderHistory', function () {
             histories: '='
         },
         controller: 'OrderHistoryCtrl'
+   
     }
+
 })
+  

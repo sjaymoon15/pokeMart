@@ -3,47 +3,44 @@
 var router = require('express').Router();
 var User = require('../../db/models/user');
 
+
+
 router.get('/', function (req, res, next) {
-  //check user priviledge
-  console.log('session', req.session) // OB/SB: dead code
-  //if user isAdmin then return all users
-  if (req.user.isAdmin){
-  User.findAll()
-  .then(function (usersArray){
-    res.send(usersArray)
-  }).catch(next)
-	}
-	else {
-		res.status(401).send('Sorry, its just for employees :-(((');
-	}
-});
+    console.log('not working', req.user.id)
+    //check user priviledge
+    console.log('session', req.session) // OB/SB: dead code
+    //if user isAdmin then return all users
+    if (req.user.isAdmin){
+      User.findAll().then(function (usersArray){
+        res.send(usersArray)
+    }).catch(next)
+  	}
+  	else {
+  		res.status(401).send('Sorry, its just for employees :-(((');
+  	}
+  });
 
 router.get('/getLoggedInUserId', function(req,res,next){
-    if(req.user) res.send(req.user)
+    if(req.user) {
+      console.log('yaaaaaaaaa', req.user.id, req.user.email)
+    res.send(req.user)
+    }
     else res.send({id: 'session'})
 
 })
 
-
-router.get('/:id', function(req, res, next){
-	if(req.params.id==req.user.id || req.user.isAdmin) { // OB/SB: consider making auth utility
-  User.findOne({
-    where: {
-      id: req.params.id
-    }
-  }).then(function(user){
+router.get('/:id', function (req, res, next){
+    console.log('great', req.user.id)
+  // check that user is current user or Admin
+  if (!req.user.isAdmin && req.user.id != req.params.id){
+    res.status(403).send('Forbidden');
+    return
+  }
+  User.findById(req.params.id)
+  .then(function (user){
     res.send(user)
-  })
-  .catch(next);
-}
-else {
-	res.status(401).send('Sorry, youre not the one you claim to be buhhhh');
-}
-
-});
-
-
-
+  }).catch(next)
+})
 
 router.post('/', function(req,res,next){
   User.findOne({
@@ -97,3 +94,4 @@ else {
 })
 
 module.exports = router;
+

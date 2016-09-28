@@ -1,9 +1,15 @@
 app.factory('UserFactory', function ($http) {
     var UserFactory = {};
-
+        UserFactory.cachedReviews=[];
     var cachedUsers = [];
+    var test=[];
     var baseUrl = '/api/users/';
     var getData = res => res.data;
+    var parseTimeStr = function (review) {
+        var date = review.createdAt.substr(0, 10);
+        review.date = date;
+        return review;
+    }
 
     UserFactory.fetchAll = function () {
         return $http.get(baseUrl).then(getData)
@@ -15,6 +21,10 @@ app.factory('UserFactory', function ($http) {
                     return cachedUsers;
                 })
     };
+      UserFactory.fetchOne = function() {
+         return $http.get(baseUrl + 'getLoggedInUserId')
+            .then(getData)
+  };
 
     UserFactory.updateUser = function (id, data) {
         return $http.put(baseUrl + id, data)
@@ -53,5 +63,21 @@ app.factory('UserFactory', function ($http) {
             })
     }
 
+
+      UserFactory.fetchOneReview = function () {
+        return $http.get(baseUrl + 'getLoggedInUserId')
+        .then(getData)
+          .then(function(user){
+            return $http.get('/api/reviews/' + user.id + '/reviews')
+            .then(function (response) {
+                console.log('response', response)
+                angular.copy(response.data, UserFactory.cachedReviews);
+                UserFactory.cachedReviews.forEach(function(x){console.log("hallo", x)})
+                 console.log('bla', UserFactory.cachedReviews.map(parseTimeStr))
+                return UserFactory.cachedReviews.map(parseTimeStr);
+            })
+        })
+    }
     return UserFactory;
 })
+

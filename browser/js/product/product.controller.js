@@ -18,13 +18,17 @@ app.controller('ProductCtrl', function ($scope, theProduct, allReviews, ProductF
     // add to cart
     $scope.addToCart = function () {
         CartFactory.addToCart($scope.product.id, $scope.quantity)
+        .then(function(){
+            Materialize.toast('Thank you! Your item was added to your cart!', 1000);
+        })
     };
     $scope.arrayMaker = function (num){
         var arr = [];
         for (var i = 1; i <=num; i ++){
             arr.push(i)
-        }
+        }  
         return arr;
     }
-})
+
+})   
 

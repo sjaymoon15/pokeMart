@@ -8,17 +8,27 @@ app.config(function ($stateProvider) {
 
 });
 
-app.controller('SignupCtrl', function ($scope, AuthFactory, $state) {
-    $scope.signup = {};
+  app.controller('SignupCtrl', function ($scope, AuthFactory, $state) {
+    $scope.signup = {}; 
     $scope.sendSignup = function (signupInfo) {
         AuthFactory.signup(signupInfo)
         .then(function (response) {
             if (response === 'email exists already') {
                 Materialize.toast('User already exists', 2000);
-            } else {
-                $state.go('store');
+            } 
+            else if (response === 'not a valid email'){
+                Materialize.toast('It is not a valid email', 2000);
+            }
+            else if (response === 'passwords do not match'){
+                Materialize.toast('Your passwords do not match. Please try again!', 2000);
+            }
+            else {
+                 Materialize.toast('Go ahead and login', 4000);
+                $state.go('login');
             }
         })
     }
     $scope.googleSignup = AuthFactory.googleSignup;
 });
+
+

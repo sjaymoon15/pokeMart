@@ -3,5 +3,6 @@ app.config(function($stateProvider) {
         url: '/histories',
         templateUrl: 'js/history/orderHistories.html',
         controller: 'OrderHistoriesCtrl'
+        
     });
 });

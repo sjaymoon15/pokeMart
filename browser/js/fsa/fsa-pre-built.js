@@ -5,12 +5,12 @@
     // Hope you didn't forget Angular! Duh-doy.
     if (!window.angular) throw new Error('I can\'t find Angular!');
 
-    var app = angular.module('fsaPreBuilt', []);
+    var app = angular.module('fsaPreBuilt', ['angulike', 'fsaPreBuilt','ngPassword', 'ui.router', 'ui.bootstrap', 'ngAnimate', 'ui.materialize', 'angular-input-stars','angular-stripe']);
 
     app.factory('Socket', function () {
         if (!window.io) throw new Error('socket.io not found!');
         return window.io(window.location.origin);
-    });
+    });   
 
     // AUTH_EVENTS is used throughout our app to
     // broadcast and listen from and to the $rootScope
@@ -54,6 +54,7 @@
             var data = response.data;
             Session.create(data.id, data.user);
             $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
+            // console.log(data.user);
             return data.user;
         }
 
