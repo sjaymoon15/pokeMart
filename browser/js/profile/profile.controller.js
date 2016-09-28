@@ -3,12 +3,6 @@ app.controller('ProfileCtrl', function($scope, UserFactory, $state){
       .then(function(user){
        $scope.user = user;
       })
-      // .then(function(){
-      //   UserFactory.fetchOneReview()
-      // })
-      // .then(function(reviews){
-      //  $scope.reviews = reviews;
-      //  })
       .catch(function () {
             Materialize.toast('Something went wrong', 1000);
         }) 
@@ -31,7 +25,6 @@ app.controller('ProfileCtrl', function($scope, UserFactory, $state){
   $scope.showReviews=function(){
     UserFactory.fetchOneReview()
     .then(function(reviews){
-      console.log("whatsupp", reviews)
       $scope.reviews = reviews;
     })
   }

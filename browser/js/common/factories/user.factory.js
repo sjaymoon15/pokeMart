@@ -70,10 +70,7 @@ app.factory('UserFactory', function ($http) {
           .then(function(user){
             return $http.get('/api/reviews/' + user.id + '/reviews')
             .then(function (response) {
-                console.log('response', response)
-                angular.copy(response.data, UserFactory.cachedReviews);
-                UserFactory.cachedReviews.forEach(function(x){console.log("hallo", x)})
-                 console.log('bla', UserFactory.cachedReviews.map(parseTimeStr))
+                angular.copy(response.data, UserFactory.cachedReviews);                
                 return UserFactory.cachedReviews.map(parseTimeStr);
             })
         })

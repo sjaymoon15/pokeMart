@@ -6,9 +6,7 @@ var User = require('../../db/models/user');
 
 
 router.get('/', function (req, res, next) {
-    console.log('not working', req.user.id)
     //check user priviledge
-    console.log('session', req.session) // OB/SB: dead code
     //if user isAdmin then return all users
     if (req.user.isAdmin){
       User.findAll().then(function (usersArray){
@@ -22,7 +20,6 @@ router.get('/', function (req, res, next) {
 
 router.get('/getLoggedInUserId', function(req,res,next){
     if(req.user) {
-      console.log('yaaaaaaaaa', req.user.id, req.user.email)
     res.send(req.user)
     }
     else res.send({id: 'session'})
