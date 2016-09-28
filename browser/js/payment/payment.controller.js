@@ -11,8 +11,8 @@ app.controller('PaymentCtrl', function($scope,UserFactory, $state, $log, CartFac
   }
   $scope.edit=function(){
     $state.go('cart')
-
   }
+
   $scope.totalCost = totalCost;
   $scope.arrayOfItems = arrayOfItems;
   $scope.stringOfItems = arrayOfItems.map(item => item.title).join(',')

@@ -22,7 +22,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/getLoggedInUserId', function(req,res,next){
     if(req.user) {
-      console.log('yaaaaaaaaa', req.user.id)
+      console.log('yaaaaaaaaa', req.user.id, req.user.email)
     res.send(req.user)
     }
     else res.send({id: 'session'})

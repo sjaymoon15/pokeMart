@@ -52,8 +52,8 @@ module.exports = function (app, db) {
                 });
             });
 
-            console.log('=====req user=====',  req.user); // hash
-                // console.log('=====req user=====',  req.user, req.user.firstName); 
+            console.log('=====req user=====',  req.user);
+
         };
 
         passport.authenticate('local', authCb)(req, res, next);
@@ -65,7 +65,7 @@ module.exports = function (app, db) {
     
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     var test=re.test(req.body.email);
-    if (req.body.password!=req.body.confirm){
+    if (req.body.password!==req.body.confirm){
          console.log('password yooooo',req.body.password, req.body.confirm)
           res.send('passwords do not match')
      }
@@ -77,7 +77,7 @@ module.exports = function (app, db) {
     else {
         User.findOne({
             where: {
-              email: req.body.email // OB/SB: alternative: set field to be unique in the model
+              email: req.body.email 
             }
         }).then(function(userOrNull){
             if (userOrNull){
@@ -97,11 +97,6 @@ module.exports = function (app, db) {
     }
     });
 
-    // app.use('/auth/google', require('./google'));
-
-    // router.use('/twitter', require('./twitter.oauth'));
-
-    // router.use('/github', require('./github.oauth'));
 
 
 };

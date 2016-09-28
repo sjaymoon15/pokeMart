@@ -25,12 +25,15 @@ router.post('/:productId', function(req,res,next){
 })
 
 router.get('/:userId/reviews', function(req,res,next){
+  console.log("whaggggggggggggggggggggggggggggggggggggggggggggggggggggggp")
 Review.findAll({
   where:{
     authorId:req.params.userId
+
   }
 })
 .then(function(reviews){
+  console.log(reviews)
   if (reviews){
       res.send(reviews);
   }

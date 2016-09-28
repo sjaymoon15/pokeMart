@@ -9,11 +9,11 @@
    <div class="row line">
       <div class="input-field col s5">
          <i class="material-icons prefix">account_circle</i>
-         <input ng-model="user.firstName" placeholder="{{ user.firstName }}" id="first_name" type="text">
+         <input ng-model="user.firstName" id="first_name" type="text">
          <label class="active"for="first_name">First Name</label>
       </div>
       <div class="input-field col s5">
-         <input ng-model = "user.lastName" placeholder="{{ user.lastName }}" id="last_name" type="text">
+         <input ng-model = "user.lastName"  id="last_name" type="text">
          <label class="active" for="last_name">Last Name</label>
       </div>
    </div>
@@ -21,31 +21,25 @@
       <div class="input-field col s5">
            <i class="material-icons prefix">message</i>
          <i class="mdi-content-mail prefix"></i>
-         <input ng-model="user.email"placeholder="{{ user.address }}" id="email" type="email">
+         <input ng-model="user.email" id="email" type="email">
          <label for="email">Email</label>
-      </div>
-      <div class="input-field col s5">
-        <i class="material-icons prefix">lock_outline</i>
-         <i class="mdi-content-mail prefix"></i>
-         <input ng-model="user.password" id="password" type="password">
-         <label for="password">Password</label>
       </div>
    </div>
       <div class="row">
       <div class="input-field col s8">
               <i class="material-icons prefix">room</i>
          <i class="mdi-content-mail prefix"></i>
-         <input ng-model="user.address" placeholder="{{ user.address }}" id="first_name" type="text">
+         <input ng-model="user.address" id="first_name" type="text">
          <label class="active"for="first_name">Address</label>
       </div>
    </div>
    <div class="row" style="margin-left:35px;">
       <div class="input-field col s3">
-         <input ng-model="user.city" placeholder="{{ user.city }}" id="first_name" type="text">
+         <input ng-model="user.city" id="first_name" type="text">
          <label class="active"for="first_name">City</label>
       </div>
         <div class="input-field col s3">
-         <input ng-model="user.zipCode" placeholder="{{ user.zipCode }}" id="first_name" type="text">
+         <input ng-model="user.zipCode" id="first_name" type="text">
          <label class="active"for="first_name">Zip Code</label>
       </div>
           <div class="input-field col s3">
@@ -111,3 +105,35 @@
 <button class="dontSave" ng-click="dontSaveInfo()">X</button>
 </div>
 </div>
+
+<div>
+<button ng-click="showReviews()">My reviews</button>
+<p>hello</p>
+<div ng-repeat="review in reviews">
+  <p>{{review.title}}</p>
+<h5>hello</h5>
+     <!--    <span> -->
+          <p>{{review.title}}</p>
+           <p>{{review.title}}</p>
+          <h5>hello</h5>
+  <!--       </span>
+      </h5>
+      <h6>{{review.content}}ggg</h6>   -->
+</div>
+</div>
+<h1>break</h1>
+<div class="review-wrapper">
+    <div ng-repeat="review in reviews">
+      <h5>
+        <span>
+          <div class="review-entry-stars">
+            <input-stars ng-model="review.rating" max="5"></input-stars>
+          </div>
+          <h5>{{review.title}}</h5>
+        </span>
+      </h5>
+      <p>Review left on: {{review.date | date}}</p>
+      <h6>{{review.content}}</h6>  
+    <!--   <p>------------------------------</p> -->
+    </div>
+  </div>
