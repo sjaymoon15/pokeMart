@@ -25,6 +25,7 @@ app.controller('ProfileCtrl', function($scope, UserFactory, $state){
   $scope.showReviews=function(){
     UserFactory.fetchOneReview()
     .then(function(reviews){
+      console.log("helloooo", reviews)
       $scope.reviews = reviews;
     })
   }
