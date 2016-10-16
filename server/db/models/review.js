@@ -19,5 +19,8 @@ module.exports = db.define('review', {
             max:5
         }
         // OB/SB: min/max validations
+    },
+    authorId:{
+        type: Sequelize.INTEGER
     }
 });
