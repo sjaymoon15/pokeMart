@@ -49,7 +49,7 @@ router.param('id', function(req, res, next, theId){
 })
 
 router.get('/:id', function(req,res,next){
-  console.log('hellooodjdcjncjnencencednrnf', req.user.firstName)
+  console.log('hellooodjdcjncjnencencednrnf')
 	res.send(req.product);
 })
 

@@ -63,12 +63,19 @@ app.factory('ProductFactory', function ($http) {
     };
 
     ProductFactory.createReview = function (productId, data) {
-        return $http.post('/api/reviews/' + productId, data)
-            .then(function (response) {
-                var review = parseTimeStr(response.data);
-                ProductFactory.cachedReviews.push(review);
-                return review;
-            })
+        return $http.get('/api/users/getLoggedInUserId')
+        .then(function (res) {
+            var id = res.data.id;
+            data.authorId = id;
+        })
+        .then(function () {
+            $http.post('/api/reviews/' + productId, data)
+                .then(function (response) {
+                    var review = parseTimeStr(response.data);
+                    ProductFactory.cachedReviews.push(review);
+                    return review;
+            });
+        });
     }
 
     ProductFactory.fetchAllReviews = function (productId) {
