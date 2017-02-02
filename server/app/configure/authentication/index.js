@@ -71,7 +71,7 @@ module.exports = function (app, db) {
     app.post('/forgot', function(req, res, next) {
         var token = crypto.randomBytes(16).toString('hex');
         var sendEmail = function () {
-            var smtpTransport = nodemailer.createTransport('smtps://ytcdeveloper@gmail.com:ytcdeveloper123@smtp.gmail.com');
+            var smtpTransport = nodemailer.createTransport('smtps://developercoding2016:developercoding@smtp.gmail.com');
             var mailOptions = {
                 to: req.body.email,
                 from: 'passwordreset@pokemart.com',

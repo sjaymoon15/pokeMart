@@ -17,23 +17,6 @@ router.get('/', function(req, res, next) {
   .catch(next);
 });
 
-// OB/SB: recommend query string, e.g. ?category=foo
-// OB/SB: if so you could probably delete this one and fold the logic into the above route handler
-// router.get('/category/', function(req, res, next) {
-//   Products.findAll({
-//   	where:{
-//   		category:req.params.category
-//   	}
-//   })
-
-//   .then(function(foundProducts){
-//   	res.send(foundProducts);
-//   })
-//   .catch(next);
-// });
-
-// OB/SB: check out express router.param—will dry out routes with repeated logic
-
 router.param('id', function(req, res, next, theId){
 	Products.findById(theId)
 	.then(function(product){

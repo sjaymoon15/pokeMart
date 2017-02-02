@@ -28,11 +28,13 @@ app.controller('LoginCtrl', function ($scope, AuthService, $state, AuthFactory, 
 
     $scope.forgetPassword = function (email) {
         AuthFactory.forgetPassword(email).then(function () {
+            console.log("2222222222forget", email)
             Materialize.toast('Check your email', 1000);
         })
     };
     $scope.resetPassword = function (token, password) {
         AuthFactory.resetPassword(password).then(function() {
+             console.log("2222222222reset", email)
             $state.go('store');
         })
     };

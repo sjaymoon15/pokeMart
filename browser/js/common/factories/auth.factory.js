@@ -18,6 +18,7 @@ app.factory('AuthFactory',  function($http){
     }
 
     AuthFactory.forgetPassword = function (email) {
+        console.log("11111111", email)
         return $http.post('/forgot', email);
     }
 
